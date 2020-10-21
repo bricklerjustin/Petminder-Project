@@ -22,5 +22,15 @@ namespace Petminder_RestApi.Data
 
             return pets;           
         }
+
+        public void CreatePet(Pets Pet)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool SaveChanges()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Petminder_RestApi.Models
+namespace Petminder_RestApi.Dtos
 {
-    [Table("pets")]
-    public partial class Pets
+    public class PetReadDto
     {
-        public Pets()
-        {
-            PetFiles = new HashSet<PetFiles>();
-            Reminders = new HashSet<Reminders>();
-        }
-
         [Key]
         [Column("pet_id")]
         public int PetId { get; set; }
@@ -29,19 +20,10 @@ namespace Petminder_RestApi.Models
         [Column("type")]
         [StringLength(255)]
         public string Type { get; set; }
-        [Required]
         [Column("account_id")]
         public int AccountId { get; set; }
         [Column("breed")]
         [StringLength(255)]
         public string Breed { get; set; }
-
-        [ForeignKey(nameof(AccountId))]
-        [InverseProperty(nameof(Accounts.Pets))]
-        public virtual Accounts Account { get; set; }       
-        [InverseProperty("Pet")]
-        public virtual ICollection<PetFiles> PetFiles { get; set; }
-        [InverseProperty("Pet")]
-        public virtual ICollection<Reminders> Reminders { get; set; }
     }
 }

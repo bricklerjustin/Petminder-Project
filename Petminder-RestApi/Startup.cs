@@ -35,7 +35,7 @@ namespace Petminder_RestApi
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddScoped<IPetRepo, MockPetRepo>();
+            services.AddScoped<IPetRepo, SqlPetRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
