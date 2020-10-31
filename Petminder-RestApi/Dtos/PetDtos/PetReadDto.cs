@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,7 +8,7 @@ namespace Petminder_RestApi.Dtos
     {
         [Key]
         [Column("pet_id")]
-        public int PetId { get; set; }
+        public Guid Id { get; set; }
         [Required]
         [Column("name")]
         [StringLength(255)]
@@ -21,7 +22,7 @@ namespace Petminder_RestApi.Dtos
         [StringLength(255)]
         public string Type { get; set; }
         [Column("account_id")]
-        public int AccountId { get; set; }
+        public Guid AccountId { get; set; }
         [Column("breed")]
         [StringLength(255)]
         public string Breed { get; set; }
