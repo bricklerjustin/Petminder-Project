@@ -8,15 +8,9 @@ namespace Petminder_RestApi.Models
     [Table("pets")]
     public partial class Pets
     {
-        public Pets()
-        {
-            PetFiles = new HashSet<PetFiles>();
-            Reminders = new HashSet<Reminders>();
-        }
-
         [Key]
-        [Column("pet_id")]
-        public int PetId { get; set; }
+        [Column("id")]
+        public Guid Id { get; set; }
         [Required]
         [Column("name")]
         [StringLength(255)]
@@ -29,19 +23,14 @@ namespace Petminder_RestApi.Models
         [Column("type")]
         [StringLength(255)]
         public string Type { get; set; }
-        [Required]
-        [Column("account_id")]
-        public int AccountId { get; set; }
         [Column("breed")]
         [StringLength(255)]
         public string Breed { get; set; }
+        [Column("account_id")]
+        public Guid AccountId { get; set; }
 
         [ForeignKey(nameof(AccountId))]
         [InverseProperty(nameof(Accounts.Pets))]
-        public virtual Accounts Account { get; set; }       
-        [InverseProperty("Pet")]
-        public virtual ICollection<PetFiles> PetFiles { get; set; }
-        [InverseProperty("Pet")]
-        public virtual ICollection<Reminders> Reminders { get; set; }
+        public virtual Accounts Account { get; set; }
     }
 }
