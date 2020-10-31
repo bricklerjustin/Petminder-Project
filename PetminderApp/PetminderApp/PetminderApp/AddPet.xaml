@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Class="PetminderApp.AddPet"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:PetminderApp">
+
+    <ContentPage.Content>
+        <Frame>
+            <StackLayout>
+
+                <!-- Pet Name TextBox -->
+                <Frame CornerRadius="8" 
+                       BackgroundColor="#CBEAF7" 
+                       Padding="0,0,0,0"
+                       Margin="20,40,20,3">
+                    <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                       BackgroundColor="#CBEAF7"
+                                       Placeholder="Pet Name"
+                                       Margin="10,0,0,0"
+                                       WidthRequest="250"
+                                       HeightRequest="40"
+                                       FontSize="18"
+                                       ReturnType="Search" />
+                </Frame>
+                <!-- Weight -->
+                <Frame CornerRadius="8" 
+                       BackgroundColor="#CBEAF7" 
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,3">
+                    <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                       BackgroundColor="#CBEAF7"
+                                       Placeholder="Weight"
+                                       Margin="10,0,0,0"
+                                       WidthRequest="250"
+                                       HeightRequest="40"
+                                       FontSize="18"
+                                       ReturnType="Search" />
+                </Frame>
+                <!-- Gender -->
+                <Frame CornerRadius="8" 
+                       BackgroundColor="#CBEAF7" 
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,3">
+                    <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                       BackgroundColor="#CBEAF7"
+                                       Placeholder="Gender"
+                                       Margin="10,0,0,0"
+                                       WidthRequest="250"
+                                       HeightRequest="40"
+                                       FontSize="18"
+                                       ReturnType="Search" />
+                </Frame>
+                <!-- Age -->
+                <Frame CornerRadius="8" 
+                       BackgroundColor="#CBEAF7" 
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,3">
+                    <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                       BackgroundColor="#CBEAF7"
+                                       Placeholder="Age"
+                                       Margin="10,0,0,0"
+                                       WidthRequest="250"
+                                       HeightRequest="40"
+                                       FontSize="18"
+                                       ReturnType="Search" />
+                </Frame>
+                <!-- Speices -->
+                <Frame CornerRadius="8" 
+                       BackgroundColor="#CBEAF7" 
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,3">
+                    <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                       BackgroundColor="#CBEAF7"
+                                       Placeholder="Species"
+                                       Margin="10,0,0,0"
+                                       WidthRequest="250"
+                                       HeightRequest="40"
+                                       FontSize="18"
+                                       ReturnType="Search" />
+                </Frame>
+                <!-- Breed -->
+                <Frame CornerRadius="8" 
+                       BackgroundColor="#CBEAF7" 
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,3">
+                    <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                       BackgroundColor="#CBEAF7"
+                                       Placeholder="Breed"
+                                       Margin="10,0,0,0"
+                                       WidthRequest="250"
+                                       HeightRequest="40"
+                                       FontSize="18"
+                                       ReturnType="Search" />
+                </Frame>
+                <!-- Upload Pet Photo -->
+                <Frame CornerRadius="8" 
+                       BackgroundColor="#CBEAF7" 
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,3">
+                    <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                       BackgroundColor="#CBEAF7"
+                                       Placeholder="Upload Pet Photo"
+                                       Margin="10,0,0,0"
+                                       WidthRequest="250"
+                                       HeightRequest="40"
+                                       FontSize="18"
+                                       ReturnType="Search" />
+                </Frame>
+
+
+                <!-- Submit Button -->
+                <ImageButton Source="{local:ImageResource
+                PetminderApp.Images.Submit.png}" 
+                BackgroundColor="Transparent"         
+                HeightRequest="75"
+                FlexLayout.AlignSelf="Center"
+                FlexLayout.Grow="1"
+                x:Name="submitPet"                    
+                Aspect="AspectFit">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+
+                <!-- Need to make the lWould you like to add another pet a button! 
+                come back to this page after adding info to database 
+                When you tap on the text to add another pet it does clear the fields-->
+                <Label Text="Add Another Pet"                           
+                       HorizontalTextAlignment="Center"
+                       Margin="5,20,5,5"
+                       FontSize="16"
+                       TextColor="#ff634d"
+                       x:Name="addPet">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="AddAnotherPet_Tapped">
+                        </TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

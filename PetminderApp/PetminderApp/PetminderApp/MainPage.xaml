@@ -1,24 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PetminderApp.MainPage">
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Class="PetminderApp.MainPage"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:PetminderApp">
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+    <ContentPage.Content>
+        <Frame>
+            <StackLayout>
+                <!-- Logo Name Label -->
+                <Image Source="{local:ImageResource 
+                PetminderApp.Images.Screen1Top.png}" 
+                HeightRequest="350" WidthRequest="400" />
+                
+                <!-- Sign Up Button -->
+                <ImageButton Source="{local:ImageResource
+                PetminderApp.Images.Screen1SignUp.png}" 
+                BackgroundColor="Transparent"         
+                HeightRequest="75"
+                FlexLayout.AlignSelf="Center"
+                FlexLayout.Grow="1"
+                x:Name="signUp"                    
+                Aspect="AspectFit">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+                
+                <!-- Sign In Button -->
+                <ImageButton Source="{local:ImageResource
+                PetminderApp.Images.Screen1LogIn.png}" 
+                BackgroundColor="Transparent"      
+                HeightRequest="75"
+                FlexLayout.AlignSelf="Center"
+                FlexLayout.Grow="1"
+                x:Name="signIn"        
+                Aspect="AspectFit">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+
+            </StackLayout>
         </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-    </StackLayout>
+    </ContentPage.Content>
 
 </ContentPage>
