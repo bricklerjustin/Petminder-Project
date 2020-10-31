@@ -6,7 +6,10 @@
         <StackLayout>
 
             <Frame BackgroundColor="#f4f4f4" Padding="24" CornerRadius="0">
-                <Label Text="Logo Logo Here" HorizontalTextAlignment="Center" TextColor="#333333" FontSize="36"/>
+                <StackLayout>
+                    <Label Text="Logo Logo Here" HorizontalTextAlignment="Center" TextColor="#333333" FontSize="36"/>
+                </StackLayout>
+                
             </Frame>
             <Grid>
                 <Grid.RowDefinitions>
