@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PetminderApp.App">
     <Application.Resources>
+        <!-- Colors -->
+        <Color x:Key="AppBackgroundColor">#CBEAF7</Color>
+        <Color x:Key="EntryFieldColor">#B6B6B6</Color>
 
-
-   
     </Application.Resources>
 </Application>

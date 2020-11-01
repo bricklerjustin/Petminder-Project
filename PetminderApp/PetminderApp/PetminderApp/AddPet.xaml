@@ -13,11 +13,11 @@
 
                 <!-- Pet Name TextBox -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BackgroundColor="{StaticResource AppBackgroundColor}"
                        Padding="0,0,0,0"
                        Margin="20,40,20,3">
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
+                    <local:CustomEntry PlaceholderColor="{StaticResource EntryFieldColor}"
+                                       BackgroundColor="{StaticResource AppBackgroundColor}"
                                        Placeholder="Pet Name"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -27,11 +27,11 @@
                 </Frame>
                 <!-- Weight -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BackgroundColor="{StaticResource AppBackgroundColor}"
                        Padding="0,0,0,0"
                        Margin="20,3,20,3">
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
+                    <local:CustomEntry PlaceholderColor="{StaticResource EntryFieldColor}"
+                                       BackgroundColor="{StaticResource AppBackgroundColor}"
                                        Placeholder="Weight"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -41,11 +41,11 @@
                 </Frame>
                 <!-- Gender -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BackgroundColor="{StaticResource AppBackgroundColor}"
                        Padding="0,0,0,0"
                        Margin="20,3,20,3">
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
+                    <local:CustomEntry PlaceholderColor="{StaticResource EntryFieldColor}"
+                                       BackgroundColor="{StaticResource AppBackgroundColor}"
                                        Placeholder="Gender"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -55,11 +55,11 @@
                 </Frame>
                 <!-- Age -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BackgroundColor="{StaticResource AppBackgroundColor}"
                        Padding="0,0,0,0"
                        Margin="20,3,20,3">
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
+                    <local:CustomEntry PlaceholderColor="{StaticResource EntryFieldColor}"
+                                       BackgroundColor="{StaticResource AppBackgroundColor}"
                                        Placeholder="Age"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -69,11 +69,11 @@
                 </Frame>
                 <!-- Speices -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BackgroundColor="{StaticResource AppBackgroundColor}" 
                        Padding="0,0,0,0"
                        Margin="20,3,20,3">
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
+                    <local:CustomEntry PlaceholderColor="{StaticResource EntryFieldColor}"
+                                       BackgroundColor="{StaticResource AppBackgroundColor}"
                                        Placeholder="Species"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -83,11 +83,11 @@
                 </Frame>
                 <!-- Breed -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BackgroundColor="{StaticResource AppBackgroundColor}" 
                        Padding="0,0,0,0"
                        Margin="20,3,20,3">
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
+                    <local:CustomEntry PlaceholderColor="{StaticResource EntryFieldColor}"
+                                       BackgroundColor="{StaticResource AppBackgroundColor}"
                                        Placeholder="Breed"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -97,11 +97,11 @@
                 </Frame>
                 <!-- Upload Pet Photo -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BackgroundColor="{StaticResource AppBackgroundColor}"
                        Padding="0,0,0,0"
                        Margin="20,3,20,3">
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
+                    <local:CustomEntry PlaceholderColor="{StaticResource EntryFieldColor}"
+                                       BackgroundColor="{StaticResource AppBackgroundColor}"
                                        Placeholder="Upload Pet Photo"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"

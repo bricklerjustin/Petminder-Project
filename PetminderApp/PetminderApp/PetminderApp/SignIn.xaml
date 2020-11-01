@@ -18,11 +18,11 @@
 
                 <!-- Email TextBox -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BackgroundColor="{StaticResource AppBackgroundColor}"
                        Padding="0,0,0,0"
                        Margin="20,6,20,6">
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
+                    <local:CustomEntry PlaceholderColor="{StaticResource EntryFieldColor}"
+                                       BackgroundColor="{StaticResource AppBackgroundColor}"
                                        Placeholder="Email"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -32,11 +32,11 @@
                 </Frame>
                 <!-- Password TextBox -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BackgroundColor="{StaticResource AppBackgroundColor}"
                        Padding="0,0,0,0"
                        Margin="20,6,20,6">
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
+                    <local:CustomEntry PlaceholderColor="{StaticResource EntryFieldColor}"
+                                       BackgroundColor="{StaticResource AppBackgroundColor}"
                                        Placeholder="Enter Password"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
