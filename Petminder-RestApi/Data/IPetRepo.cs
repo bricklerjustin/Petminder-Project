@@ -7,7 +7,7 @@ namespace Petminder_RestApi.Data
     public interface IPetRepo
     {
         bool SaveChanges();
-        bool ValidateAccountKey(Guid AccountId);
+        // bool ValidateAccountKey(Guid AccountId);
 
         IEnumerable<Pets> GetAllUserPets(Guid AccountId);
         Pets GetPetById(Guid id, Guid AccountId);

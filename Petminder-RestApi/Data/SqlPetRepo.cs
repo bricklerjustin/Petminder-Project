@@ -55,17 +55,5 @@ namespace Petminder_RestApi.Data
 
             _context.Pets.Remove(Pet);
         }
-
-        public bool ValidateAccountKey(Guid AccountId)
-        {
-            var account = _context.Accounts.FirstOrDefault((p) => p.Id == AccountId);
-
-            if (account == null)
-            {
-                return false;
-            }
-
-            return true;
-        }
     }
 }
