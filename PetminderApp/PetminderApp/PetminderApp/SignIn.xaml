@@ -22,6 +22,12 @@
                        Padding="0,0,0,0"
                        Margin="20,6,20,6">
                     <local:CustomEntry PlaceholderColor="#B6B6B6"
+                       BackgroundColor="{StaticResource AppBackgroundColor}"
+                       Padding="0,0,0,0"
+                       Margin="20,6,20,6">
+                    <local:CustomEntry PlaceholderColor="{StaticResource EntryFieldColor}"
+                                       BackgroundColor="{StaticResource AppBackgroundColor}"
+>>>>>>> be0bd81b2d539e595bc3d34be2ee7458c54115fa
                                        Placeholder="Email"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -31,10 +37,18 @@
                 </Frame>
                 <!-- Password TextBox -->
                 <Frame CornerRadius="8" 
+<<<<<<< HEAD
                        BorderColor="#CBEAF7" 
                        Padding="0,0,0,0"
                        Margin="20,6,20,20">
                     <local:CustomEntry PlaceholderColor="#B6B6B6"
+=======
+                       BackgroundColor="{StaticResource AppBackgroundColor}"
+                       Padding="0,0,0,0"
+                       Margin="20,6,20,6">
+                    <local:CustomEntry PlaceholderColor="{StaticResource EntryFieldColor}"
+                                       BackgroundColor="{StaticResource AppBackgroundColor}"
+>>>>>>> be0bd81b2d539e595bc3d34be2ee7458c54115fa
                                        Placeholder="Enter Password"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"

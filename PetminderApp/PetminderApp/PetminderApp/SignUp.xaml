@@ -17,10 +17,10 @@
                        Margin="0,50,0,50" />
                 <!-- FirstName TextBox -->
                 <Frame CornerRadius="8" 
-                       BorderColor="#CBEAF7"                       
+                       BorderColor="{#CBEAF7}"                       
                        Padding="0,0,0,0"
                        Margin="30,6,30,6" >
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"                                      
+                    <local:CustomEntry PlaceholderColor="{#D7D7D7}"                                    
                                        Placeholder="Full Name"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -30,10 +30,10 @@
                 </Frame>
                 <!-- Email TextBox -->
                 <Frame CornerRadius="8" 
-                       BorderColor="#CBEAF7" 
+                       BorderColor="{#CBEAF7}"
                        Padding="0,0,0,0"
                        Margin="30,6,30,6">
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"                                       
+                    <local:CustomEntry PlaceholderColor="{#D7D7D7}"                                       
                                        Placeholder="Email"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -43,10 +43,10 @@
                 </Frame>
                 <!-- Password TextBox -->
                 <Frame CornerRadius="8" 
-                       BorderColor="#CBEAF7"
+                       BorderColor="{#CBEAF7}"
                        Padding="0,0,0,0"
                        Margin="30,6,30,20">
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"                                       
+                    <local:CustomEntry PlaceholderColor="{#D7D7D7}"                                       
                                        Placeholder="Enter Password"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
