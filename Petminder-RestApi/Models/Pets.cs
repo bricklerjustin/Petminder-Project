@@ -8,6 +8,11 @@ namespace Petminder_RestApi.Models
     [Table("pets")]
     public partial class Pets
     {
+        public Pets()
+        {
+            Files = new HashSet<Files>();
+        }
+
         [Key]
         [Column("id")]
         public Guid Id { get; set; }
@@ -32,5 +37,7 @@ namespace Petminder_RestApi.Models
         [ForeignKey(nameof(AccountId))]
         [InverseProperty(nameof(Accounts.Pets))]
         public virtual Accounts Account { get; set; }
+        [InverseProperty("Pet")]
+        public virtual ICollection<Files> Files { get; set; }
     }
 }

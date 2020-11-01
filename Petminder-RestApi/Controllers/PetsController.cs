@@ -79,7 +79,7 @@ namespace Petminder_RestApi.Controllers
         {
             var petModel = _mapper.Map<Pets>(petCreateDto);
 
-            if(!_repository.ValidateAccountKey(petModel.AccountId))
+            if(_validate.GetAccountById(petModel.AccountId) == null)
             {
                 ModelState.AddModelError("accountId", $"The account with key: {petModel.AccountId}, does not exist");
                 return ValidationProblem();

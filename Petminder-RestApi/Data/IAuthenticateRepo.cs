@@ -10,5 +10,6 @@ namespace Petminder_RestApi.Data
         Users GetUserByUserAuth(string Username, string Password);
         Users GetUserByToken(string Token);
         Accounts GetAccountByToken(string Token);
+        Accounts GetAccountById(Guid AccountIds);
     }
 }

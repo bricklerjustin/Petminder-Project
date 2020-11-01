@@ -13,6 +13,13 @@ namespace Petminder_RestApi.Data
             _context = context;
         }
 
+        public Accounts GetAccountById(Guid AccountId)
+        {
+           var account = _context.Accounts.FirstOrDefault(p => p.Id == AccountId);
+
+           return account;
+        }
+
         public Accounts GetAccountByToken(string Token)
         {
             var Account = _context.Accounts.FirstOrDefault(p => p.ApiKey == Token);
