@@ -13,11 +13,10 @@
 
                 <!-- Pet Name TextBox -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BorderColor="#CBEAF7" 
                        Padding="0,0,0,0"
-                       Margin="20,40,20,3">
+                       Margin="20,60,20,3">
                     <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
                                        Placeholder="Pet Name"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -27,11 +26,10 @@
                 </Frame>
                 <!-- Weight -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BorderColor="#CBEAF7"
                        Padding="0,0,0,0"
                        Margin="20,3,20,3">
                     <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
                                        Placeholder="Weight"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -41,11 +39,10 @@
                 </Frame>
                 <!-- Gender -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BorderColor="#CBEAF7" 
                        Padding="0,0,0,0"
                        Margin="20,3,20,3">
                     <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
                                        Placeholder="Gender"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -55,11 +52,10 @@
                 </Frame>
                 <!-- Age -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BorderColor="#CBEAF7" 
                        Padding="0,0,0,0"
                        Margin="20,3,20,3">
                     <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
                                        Placeholder="Age"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -69,11 +65,10 @@
                 </Frame>
                 <!-- Speices -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BorderColor="#CBEAF7" 
                        Padding="0,0,0,0"
                        Margin="20,3,20,3">
                     <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
                                        Placeholder="Species"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -83,11 +78,10 @@
                 </Frame>
                 <!-- Breed -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BorderColor="#CBEAF7" 
                        Padding="0,0,0,0"
                        Margin="20,3,20,3">
                     <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
                                        Placeholder="Breed"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -97,11 +91,10 @@
                 </Frame>
                 <!-- Upload Pet Photo -->
                 <Frame CornerRadius="8" 
-                       BackgroundColor="#CBEAF7" 
+                       BorderColor="#CBEAF7" 
                        Padding="0,0,0,0"
-                       Margin="20,3,20,3">
+                       Margin="20,3,20,20">
                     <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       BackgroundColor="#CBEAF7"
                                        Placeholder="Upload Pet Photo"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -136,9 +129,9 @@
                     </VisualStateManager.VisualStateGroups>
                 </ImageButton>
 
-                <!-- Need to make the lWould you like to add another pet a button! 
+                <!-- Need to make the popout window would you like to add another pet, yes / no! 
                 come back to this page after adding info to database 
-                When you tap on the text to add another pet it does clear the fields-->
+                When you hit the submit a popup asking yes no if yes clears text
                 <Label Text="Add Another Pet"                           
                        HorizontalTextAlignment="Center"
                        Margin="5,20,5,5"
@@ -150,7 +143,7 @@
                             Tapped="AddAnotherPet_Tapped">
                         </TapGestureRecognizer>
                     </Label.GestureRecognizers>
-                </Label>
+                </Label> -->
 
             </StackLayout>
         </Frame>
