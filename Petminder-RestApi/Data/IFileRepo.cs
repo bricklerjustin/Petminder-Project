@@ -10,7 +10,7 @@ namespace Petminder_RestApi.Data
 
         IEnumerable<Files> GetAllUserFiles(Guid AccountId);
         Files GetFileById(Guid id, Guid AccountId);
-        void CreateFile(Files File, Filedata Data);
+        void CreateFile(Files File);
         void UpdateFile(Files File);
         void DeleteFile(Files File);
     }

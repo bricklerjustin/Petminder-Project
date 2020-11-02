@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Petminder_RestApi.Models;
 
 namespace Petminder_RestApi.Data
@@ -13,37 +14,44 @@ namespace Petminder_RestApi.Data
             _context = context;
         }
 
-        public void CreateFile(Files File, Filedata Data)
+        public void CreateFile(Files File)
         {
-            if (File != null)
+            if (File == null)
             {
-                
+                throw new ArgumentNullException(nameof(File));
             }
+
+            _context.Files.Add(File);
         }
 
         public void DeleteFile(Files File)
         {
-            throw new NotImplementedException();
+            if (File == null)
+            {
+                throw new ArgumentNullException(nameof(File));
+            }
+
+            _context.Files.Remove(File);
         }
 
         public IEnumerable<Files> GetAllUserFiles(Guid AccountId)
         {
-            throw new NotImplementedException();
+            return _context.Files.Where(p => p.AccountId == AccountId);
         }
 
         public Files GetFileById(Guid id, Guid AccountId)
         {
-            throw new NotImplementedException();
+            return _context.Files.FirstOrDefault(p => p.Id == id && p.AccountId == AccountId);
         }
 
         public bool SaveChanges()
         {
-            throw new NotImplementedException();
+            return (_context.SaveChanges() > 0);
         }
 
         public void UpdateFile(Files File)
         {
-            throw new NotImplementedException();
+            //Nothing
         }
     }
 }

@@ -46,6 +46,8 @@ namespace Petminder_RestApi
             services.AddScoped<IAuthenticateRepo, SqlAuthenticateRepo>();
             services.AddScoped<IUserRepo, SqlUserRepo>();
             services.AddScoped<IAccountRepo, SqlAccountRepo>();
+            services.AddScoped<IFileRepo, SqlFileRepo>();
+            services.AddScoped<IFileDataRepo, SqlFileDataRepo>();
 
             // //Adding Token Authentication
             // services.AddAuthentication(x =>
