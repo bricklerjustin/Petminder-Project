@@ -18,6 +18,7 @@ using Petminder_RestApi.Data;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Petminder_RestApi.Helpers;
+using Microsoft.OpenApi.Models;
 
 namespace Petminder_RestApi
 {
@@ -33,6 +34,8 @@ namespace Petminder_RestApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+
             services.AddDbContext<PetminderContext>(opt => opt.UseSqlServer
                 (Configuration.GetConnectionString("PetminderConnection")));          
 
@@ -46,6 +49,14 @@ namespace Petminder_RestApi
             services.AddScoped<IAuthenticateRepo, SqlAuthenticateRepo>();
             services.AddScoped<IUserRepo, SqlUserRepo>();
             services.AddScoped<IAccountRepo, SqlAccountRepo>();
+            services.AddScoped<IFileRepo, SqlFileRepo>();
+            services.AddScoped<IFileDataRepo, SqlFileDataRepo>();
+            services.AddScoped<IReminderRepo, SqlReminderRepo>();
+
+            services.AddSwaggerGen(c =>
+            {           
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Petminder API", Version = "v1"});
+            });
 
             // //Adding Token Authentication
             // services.AddAuthentication(x =>
@@ -71,16 +82,25 @@ namespace Petminder_RestApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // app.UseStaticFiles();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Petminder API");
+                //c.RoutePrefix = string.Empty;
+            });
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
