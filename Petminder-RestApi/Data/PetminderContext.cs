@@ -10,6 +10,7 @@ namespace Petminder_RestApi.Data
             
         }
 
+        public virtual DbSet<Reminders> Reminders {get; set; }
         public virtual DbSet<Accounts> Accounts { get; set; }
         public virtual DbSet<Pets> Pets { get; set; }
         public virtual DbSet<Users> Users { get; set; }

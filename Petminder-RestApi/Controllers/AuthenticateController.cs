@@ -24,6 +24,7 @@ namespace Petminder_RestApi.Controllers
 
         //This is a bad way to do authentication, needs to be fixed when I have more time
         //GET api/authenticate
+        [HttpGet]
         public ActionResult <AuthenticateReadDto> GetUserToken()
         {
             var re = Request;
