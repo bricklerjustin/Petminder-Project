@@ -88,19 +88,31 @@
                                        FontSize="18"
                                        ReturnType="Search" />
             </Frame>
-            <!-- Upload Pet Photo , need another window that will allow for upload of photo-->
-            <Frame CornerRadius="8" 
-                       BorderColor="#CBEAF7"
-                       Padding="0,0,0,0"
-                       Margin="20,3,20,20">
-                <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       Placeholder="Upload Pet Photo"
-                                       Margin="10,0,0,0"
-                                       WidthRequest="250"
-                                       HeightRequest="40"
-                                       FontSize="18"
-                                       ReturnType="Search" />
-            </Frame>
+            <!-- Upload Pet Photo -->
+            <ImageButton Source="{local:ImageResource
+                PetminderApp.Images.Submit.png}" 
+                BackgroundColor="Transparent"         
+                HeightRequest="75"
+                FlexLayout.AlignSelf="Center"
+                FlexLayout.Grow="1"
+                x:Name="uploadPet"                    
+                Aspect="AspectFit">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+
             <!-- Submit Button -->
             <ImageButton Source="{local:ImageResource
                 PetminderApp.Images.Submit.png}" 
