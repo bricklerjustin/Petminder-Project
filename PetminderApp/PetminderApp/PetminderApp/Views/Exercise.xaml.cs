@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PetminderApp
+namespace PetminderApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomeScreen : ContentPage
+    public partial class Exercise : ContentPage
     {
-        public HomeScreen()
+        public Exercise()
         {
             InitializeComponent();
-        }       
+        }
     }
 }

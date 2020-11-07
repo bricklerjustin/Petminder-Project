@@ -8,45 +8,44 @@
              xmlns:local="clr-namespace:PetminderApp">
 
     <ContentPage.Content>
-        <Frame>
-            <StackLayout>
-                <!-- Logo -->
-                <Image Source="{local:ImageResource 
+        <StackLayout Padding="30" Spacing="0">
+            <!-- Logo -->
+            <Image Source="{local:ImageResource 
                        PetminderApp.Images.Logo.png}" 
-                       HeightRequest="100" WidthRequest="400" 
-                       Margin="0,50,0,50" />
-                <!-- FirstName TextBox -->
-                <Frame CornerRadius="8" 
+                       HeightRequest="85" WidthRequest="400" 
+                       Margin="0,50,0,70" />
+            <!-- FirstName TextBox -->
+            <Frame CornerRadius="8" 
                        BorderColor="#CBEAF7"                       
                        Padding="0,0,0,0"
-                       Margin="30,6,30,6" >
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"                                    
+                       Margin="30,3,30,9" >
+                <local:CustomEntry PlaceholderColor="#B6B6B6"                                    
                                        Placeholder="Full Name"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
                                        HeightRequest="40"
                                        FontSize="18"
                                        ReturnType="Search" />
-                </Frame>
-                <!-- Email TextBox -->
-                <Frame CornerRadius="8" 
+            </Frame>
+            <!-- Email TextBox -->
+            <Frame CornerRadius="8" 
                        BorderColor="#CBEAF7"
                        Padding="0,0,0,0"
-                       Margin="30,6,30,6">
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"                                       
+                       Margin="30,3,30,9">
+                <local:CustomEntry PlaceholderColor="#B6B6B6"                                       
                                        Placeholder="Email"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
                                        HeightRequest="40"
                                        FontSize="18"
                                        ReturnType="Search" />
-                </Frame>
-                <!-- Password TextBox -->
-                <Frame CornerRadius="8" 
-                       BorderColor"#CBEAF7"
+            </Frame>
+            <!-- Password TextBox -->
+            <Frame CornerRadius="8" 
+                       BorderColor="#CBEAF7"
                        Padding="0,0,0,0"
-                       Margin="30,6,30,20">
-                    <local:CustomEntry PlaceholderColor="#B6B6B6"                                       
+                       Margin="30,3,30,20">
+                <local:CustomEntry PlaceholderColor="#B6B6B6"                                       
                                        Placeholder="Enter Password"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -57,10 +56,10 @@
                                        IsTextPredictionEnabled="false"
                                        IsPassword="true"
                                        ReturnType="Search" />
-                </Frame>
-          
-                <!-- Sign Up Button -->
-                <ImageButton Source="{local:ImageResource
+            </Frame>
+
+            <!-- Sign Up Button -->
+            <ImageButton Source="{local:ImageResource
                 PetminderApp.Images.Screen1SignUp.png}" 
                 BackgroundColor="Transparent"         
                 HeightRequest="75"
@@ -68,42 +67,41 @@
                 FlexLayout.Grow="1"
                 x:Name="signUp"                    
                 Aspect="AspectFit">
-                    <VisualStateManager.VisualStateGroups>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter Property="Scale" Value="1"/>
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Pressed">
-                                <VisualState.Setters>
-                                    <Setter Property="Scale" Value="0.8"/>
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateManager.VisualStateGroups>
-                </ImageButton>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
 
-                <!-- Need to make the logIn Text clickable to go back to the sign in page -->
-                <Label Text="Already have an account?"                           
+            <!-- Sends yout to logIn or sighIn  -->
+            <Label Text="Already have an account?"                           
                        HorizontalTextAlignment="Center"
                        Margin="5,20,5,0"
                        FontSize="16">
-                </Label>
-                <Label Text="Log In"                           
+            </Label>
+            <Label Text="Log In"                           
                        HorizontalTextAlignment="Center"
                        Margin="5,0,5,5"
                        FontSize="16"
                        TextColor="#ff634d"
                        x:Name="addPet">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
                             Tapped="GotoLogIn_Tapped">
-                        </TapGestureRecognizer>
-                    </Label.GestureRecognizers>
-                </Label>
+                    </TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
 
-            </StackLayout>
-        </Frame>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

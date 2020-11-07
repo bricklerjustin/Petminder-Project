@@ -17,6 +17,8 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(CustomEntry), typeof(CustomEntryRenderer))]
 namespace PetminderApp.Droid
 {
+  // Fixed the depreciation //
+    [Obsolete]
     public class CustomEntryRenderer: EntryRenderer
     {
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)

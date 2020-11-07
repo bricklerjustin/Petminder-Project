@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PetminderApp.EditPet"
+             xmlns:local="clr-namespace:PetminderApp" >
+
+    <ContentPage.Content>
+        <StackLayout Spacing="0" Padding="30">
+
+<!-- We have to make these invisible? or make visible but how to deal with more then 6 pets -->
+            <!-- First Pet Name TextBox -->
+            <Frame>
+                <Grid Padding="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150" />
+                        <RowDefinition Height="200" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Frame CornerRadius="8" 
+                       BorderColor="#CBEAF7"
+                       Padding="0,0,0,0"
+                       Margin="20,50,20,9"
+                           Grid.Row="0"
+                           Grid.Column="0">
+                        <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                       Placeholder="Pet Name"
+                                       Margin="10,0,0,0"
+                                       WidthRequest="250"
+                                       HeightRequest="40"
+                                       FontSize="18"
+                                       ReturnType="Search" />
+                    </Frame>
+                </Grid>
+            </Frame>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
