@@ -11,16 +11,18 @@ namespace Petminder_RestApi.Models
         public Accounts()
         {
             Pets = new HashSet<Pets>();
-            Users = new HashSet<Users>();
         }
 
         [Key]
-        [Column("account_id")]
-        public int AccountId { get; set; }
+        [Column("id")]
+        public Guid Id { get; set; }
+        [Column("create_date", TypeName = "datetime")]
+        public DateTime? CreateDate { get; set; }
+        [Required]
+        [Column("api_key")]
+        public string ApiKey { get; set; }
 
         [InverseProperty("Account")]
         public virtual ICollection<Pets> Pets { get; set; }
-        [InverseProperty("Account")]
-        public virtual ICollection<Users> Users { get; set; }
     }
 }
