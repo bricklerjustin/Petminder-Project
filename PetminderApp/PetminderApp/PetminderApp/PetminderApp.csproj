@@ -12,11 +12,8 @@
 
   <ItemGroup>
     <Compile Remove="NewFolder1\**" />
-    <Compile Remove="NewFolder\**" />
     <EmbeddedResource Remove="NewFolder1\**" />
-    <EmbeddedResource Remove="NewFolder\**" />
     <None Remove="NewFolder1\**" />
-    <None Remove="NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,8 +34,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\Screen1LogIn.png" />
     <EmbeddedResource Include="Images\Logo.png" />
-    <EmbeddedResource Include="Images\Screen1LogIn.png" />
     <EmbeddedResource Include="Images\Screen1SignUp.png" />
     <EmbeddedResource Include="Images\Screen1Top.png" />
     <EmbeddedResource Include="Images\Submit.png" />
@@ -58,6 +55,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="HomeScreen.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Location.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Reminder.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="SignIn.xaml">

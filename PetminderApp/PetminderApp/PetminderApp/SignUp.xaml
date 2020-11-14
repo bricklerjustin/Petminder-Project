@@ -87,7 +87,7 @@
                 <!-- Need to make the logIn Text clickable to go back to the sign in page -->
                 <Label Text="Already have an account?"                           
                        HorizontalTextAlignment="Center"
-                       Margin="5,2 0,5,0"
+                       Margin="5,2,0,5"
                        FontSize="16">
                 </Label>
                 <Label Text="Log In"                           
