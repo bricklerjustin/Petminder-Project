@@ -19,7 +19,8 @@
                        BorderColor="#CBEAF7"                       
                        Padding="0,0,0,0"
                        Margin="30,3,30,9" >
-                <local:CustomEntry PlaceholderColor="#B6B6B6"                                    
+                <local:CustomEntry PlaceholderColor="#B6B6B6"    
+                                   x:Name="FullName"
                                        Placeholder="Full Name"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -32,7 +33,8 @@
                        BorderColor="#CBEAF7"
                        Padding="0,0,0,0"
                        Margin="30,3,30,9">
-                <local:CustomEntry PlaceholderColor="#B6B6B6"                                       
+                <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                   x:Name="Email"
                                        Placeholder="Email"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -45,7 +47,8 @@
                        BorderColor="#CBEAF7"
                        Padding="0,0,0,0"
                        Margin="30,3,30,20">
-                <local:CustomEntry PlaceholderColor="#B6B6B6"                                       
+                <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                   x:Name="Password"
                                        Placeholder="Enter Password"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"

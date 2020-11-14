@@ -58,9 +58,9 @@ namespace Petminder_RestApi.Controllers
             var headers = re.Headers;
             var auth = "";
 
-            if (headers.ContainsKey("Authorization"))
+            if (headers.ContainsKey("token"))
             {
-                auth = headers["Authorization"];
+                auth = headers["token"];
             }
             else
             {

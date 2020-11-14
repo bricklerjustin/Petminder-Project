@@ -32,12 +32,12 @@ namespace Petminder_RestApi.Controllers
         [HttpGet]
         public ActionResult <IEnumerable<FileReadDto>> GetAllUserFileInfo()
         {
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.ContainsKey("token"))
             {
                 return Unauthorized();
             }
 
-            var auth = Request.Headers["Authorization"];
+            var auth = Request.Headers["token"];
             var accountModel = _validate.GetAccountByToken(auth);
 
             if (accountModel == null)
@@ -76,12 +76,12 @@ namespace Petminder_RestApi.Controllers
         [HttpGet("data/{id}")]
         public ActionResult <string> GetFileDataById(Guid id)
         {
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.ContainsKey("token"))
             {
                 return Unauthorized();
             }
 
-            var auth = Request.Headers["Authorization"];
+            var auth = Request.Headers["token"];
             var accountModel = _validate.GetAccountByToken(auth);
 
             if (accountModel == null)
@@ -102,12 +102,12 @@ namespace Petminder_RestApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<FileReadDto> GetFileById(Guid id)
         {
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.ContainsKey("token"))
             {
                 return Unauthorized();
             }
 
-            var auth = Request.Headers["Authorization"];
+            var auth = Request.Headers["token"];
             var accountModel = _validate.GetAccountByToken(auth);
 
             if (accountModel == null)
@@ -129,12 +129,12 @@ namespace Petminder_RestApi.Controllers
         [HttpPut("{id}")]
         public ActionResult UpdateFile(Guid id, FileUpdateDto fileUpdateDto)
         {
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.ContainsKey("token"))
             {
                 return Unauthorized();
             }
 
-            var auth = Request.Headers["Authorization"];
+            var auth = Request.Headers["token"];
             var accountModel = _validate.GetAccountByToken(auth);
 
             if (accountModel == null)
@@ -161,12 +161,12 @@ namespace Petminder_RestApi.Controllers
         // [HttpPatch("{id}")]
         // public ActionResult PartialPetUpdate(Guid id, JsonPatchDocument<FileUpdateDto> patchDoc)
         // {
-        //     if (!Request.Headers.ContainsKey("Authorization"))
+        //     if (!Request.Headers.ContainsKey("token"))
         //     {
         //         return Unauthorized();
         //     }
 
-        //     var auth = Request.Headers["Authorization"];
+        //     var auth = Request.Headers["token"];
         //     var accountModel = _validate.GetAccountByToken(auth);
 
         //     if (accountModel == null)

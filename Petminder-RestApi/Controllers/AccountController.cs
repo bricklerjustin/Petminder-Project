@@ -45,20 +45,24 @@ namespace Petminder_RestApi.Controllers
             return CreatedAtAction(nameof(CreateAccount), accountReadDto);
         }
 
-        [HttpDelete]
-        public ActionResult DeleteAccount(Guid id, [FromHeader] Authorization auth)
-        {
-            if (auth == null)
-            {
-                return Unauthorized();
-            }
+        // [HttpDelete]
+        // public ActionResult DeleteAccount(Guid id)
+        // {
+        //     if (!Request.Headers.ContainsKey("token"))
+        //     {
+        //         return Unauthorized();
+        //     }
 
-            
+        //     var auth = Request.Headers["token"];
 
-            var account = _repository.GetAccountById(id, auth.ToString());
+        //     if (auth == null)
+        //     {
+        //         return Unauthorized();
+        //     }
 
-            return Ok();
+        //     var account = _repository.GetAccountById(id, auth.ToString());
 
-        }
+        //     return Ok();
+        // }
     }
 }

@@ -45,5 +45,15 @@ namespace PetminderApp
         {
             await Navigation.PushAsync(new SearchProviders());
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            //bool logout = await DisplayAlert("Logout", "TODO MESSAGE", "Yes", "No");
+
+            //if (logout)
+            //{
+                return base.OnBackButtonPressed();
+            //}
+        }
     }
 }

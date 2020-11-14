@@ -13,5 +13,7 @@ namespace PetminderApp.Models
         public string Type { get; set; }
         public string Breed { get; set; }
         public Guid AccountId { get; set; }
+
+
     }
 }
