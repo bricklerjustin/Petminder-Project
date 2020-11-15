@@ -42,7 +42,9 @@ namespace PetminderApp
                 Password.Text = "";
 
                 this.IsBusy = false;
-                Navigation.InsertPageBefore(new HomeScreen(), this);
+
+                //CHANGE TO PET CREATION
+                Navigation.InsertPageBefore(new AddPet(), this);
                 await Navigation.PopAsync();
             }
             else
