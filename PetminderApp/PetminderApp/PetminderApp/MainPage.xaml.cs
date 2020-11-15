@@ -18,7 +18,9 @@ namespace PetminderApp
 
             signUp.Clicked += SignUp_Clicked;
             signIn.Clicked += SignIn_Clicked;
-            
+
+           // NavigationPage.SetHasNavigationBar(this, false);
+
         }
 
         private async void SignIn_Clicked(object sender, EventArgs e)
@@ -31,7 +33,7 @@ namespace PetminderApp
             await Navigation.PushAsync(new SignUp());
         }
 
+        
 
-
-    }
+        }
 }

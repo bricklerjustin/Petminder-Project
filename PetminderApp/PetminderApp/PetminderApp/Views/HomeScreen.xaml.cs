@@ -24,6 +24,8 @@ namespace PetminderApp
             exerciseFitBark.Clicked += ExerciseFitBark_Clicked;
 
             searchProviders.Clicked += SearchProviders_Clicked;
+
+            // NavigationPage.SetHasNavigationBar(this, false);
         }
 
         private async void EditPet_Clicked(object sender, System.EventArgs e)

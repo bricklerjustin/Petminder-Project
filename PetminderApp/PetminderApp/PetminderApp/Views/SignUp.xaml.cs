@@ -19,7 +19,10 @@ namespace PetminderApp
         public SignUp()
         {
             InitializeComponent();
+
             signUp.Clicked += SignUp_Clicked;
+
+            // NavigationPage.SetHasNavigationBar(this, false);
         }
 
         private async void SignUp_Clicked(object sender, System.EventArgs e)

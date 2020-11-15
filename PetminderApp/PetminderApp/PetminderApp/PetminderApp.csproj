@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <None Remove="Images\2.png" />
+    <None Remove="Images\dog.png" />
     <None Remove="Images\ExerciseFitBark.png" />
     <None Remove="Images\Logo.png" />
     <None Remove="Images\PetButton.png" />
@@ -65,6 +66,10 @@
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.1141" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.41" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\dog.png" />
   </ItemGroup>
 
   <ItemGroup>

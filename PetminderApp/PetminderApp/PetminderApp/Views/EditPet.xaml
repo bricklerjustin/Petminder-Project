@@ -9,11 +9,26 @@
 
     <ContentPage.Content>
         <StackLayout Spacing="0" Padding="30">
-
-            <TableView>
-                
-            </TableView>
-
+            <ListView ItemsSource="{Binding Pets}" HasUnevenRows="false">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                  
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Row="0" Grid.Column="0" Source="{Binding Image}"></Image>
+                                <Label Grid.Row ="0" Grid.Column="1" Text="{Binding Name}" ></Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
