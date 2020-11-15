@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using PetminderApp.Api;
+using System.Net;
+using Newtonsoft.Json;
+using PetminderApp.Api.Api_Models;
 
 namespace PetminderApp
 {
@@ -23,12 +27,38 @@ namespace PetminderApp
 
         private async void SignIn_Clicked(object sender, System.EventArgs e)
         {
-            await Navigation.PushAsync(new HomeScreen());
+            this.IsBusy = true;
+
+            RestClient restClient = new RestClient();
+
+            UserInfo.Username = Email.Text;
+
+            var response = restClient.Login("api/authenticate", UserInfo.Username, Password.Text);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var content = response.Content.ReadAsStringAsync();
+                AuthenticateReturnModel authenticateReturnModel = JsonConvert.DeserializeObject<AuthenticateReturnModel>(content.Result);
+
+                UserInfo.Token = authenticateReturnModel.ApiKey;
+                Password.Text = "";
+
+                this.IsBusy = false;
+                Navigation.InsertPageBefore(new HomeScreen(), this);
+                await Navigation.PopAsync();
+            }
+            else
+            {
+                this.IsBusy = false;
+                await DisplayAlert("Invalid", "The information entered is invalid, please try again", "OK");
+            }
         }
 
         private async void GoToSignUp_Tapped(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SignUp());
+            Navigation.InsertPageBefore(new SignUp(), this);
+
+            await Navigation.PopAsync();            
         }
     }
 }

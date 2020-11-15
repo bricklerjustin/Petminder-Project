@@ -6,6 +6,7 @@ using Petminder_RestApi.Dtos;
 using Petminder_RestApi.Models;
 using Petminder_RestApi.Helpers;
 using Microsoft.AspNetCore.JsonPatch;
+using System.Net.Http.Headers;
 
 namespace Petminder_RestApi.Controllers
 {
@@ -31,9 +32,9 @@ namespace Petminder_RestApi.Controllers
         {
             var auth = "";
 
-            if (Request.Headers.ContainsKey("Authorization"))
+            if (Request.Headers.ContainsKey("token"))
             {
-                auth = Request.Headers["Authorization"];
+                auth = Request.Headers["token"];
             }
 
             var userModel = _mapper.Map<Users>(userCreateDto);
@@ -73,9 +74,9 @@ namespace Petminder_RestApi.Controllers
         {
             var auth = "";
 
-            if (Request.Headers.ContainsKey("Authorization"))
+            if (Request.Headers.ContainsKey("token"))
             {
-                auth = Request.Headers["Authorization"];
+                auth = Request.Headers["token"];
             }
 
             var userModel = _repository.GetUserById(id);
@@ -102,12 +103,12 @@ namespace Petminder_RestApi.Controllers
         [HttpPatch("{id}")]
         public ActionResult PartialUserUpdate(Guid id, JsonPatchDocument<UserUpdateDto> patchDoc)
         {
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.ContainsKey("token"))
             {
                 return Unauthorized();
             }
 
-            var auth = Request.Headers["Authorization"];
+            var auth = Request.Headers["token"];
 
             var userModelFromRepo = _repository.GetUserById(id);
             if(userModelFromRepo == null)
@@ -140,12 +141,12 @@ namespace Petminder_RestApi.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteUser(Guid id)
         {
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.ContainsKey("token"))
             {
                 return Unauthorized();
             }
 
-            var auth = Request.Headers["Authorization"];
+            var auth = Request.Headers["token"];
 
             var userModelFromRepo = _repository.GetUserById(id);
             if(userModelFromRepo == null)
@@ -163,6 +164,5 @@ namespace Petminder_RestApi.Controllers
 
             return NoContent();
         }
-
     }
 }

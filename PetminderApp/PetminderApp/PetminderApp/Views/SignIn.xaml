@@ -21,6 +21,7 @@
                        Padding="0,0,0,0"
                        Margin="20,3,20,9">
                 <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                   x:Name="Email"
                                        Placeholder="Email"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -34,6 +35,7 @@
                        Padding="0,0,0,0"
                        Margin="20,3,20,20">
                 <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                   x:Name="Password"
                                        Placeholder="Enter Password"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"

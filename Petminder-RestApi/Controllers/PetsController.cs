@@ -29,12 +29,12 @@ namespace Petminder_RestApi.Controllers
         [HttpGet]
         public ActionResult <IEnumerable<PetReadDto>> GetAllUserPets()
         {
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.ContainsKey("token"))
             {
                 return Unauthorized();
             }
 
-            var auth = Request.Headers["Authorization"];
+            var auth = Request.Headers["token"];
             var accountModel = _validate.GetAccountByToken(auth);
 
             if (accountModel == null)
@@ -51,12 +51,12 @@ namespace Petminder_RestApi.Controllers
         [HttpGet("{id}", Name="GetPetById")]
         public ActionResult <PetReadDto> GetPetById(Guid id)
         {
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.ContainsKey("token"))
             {
                 return Unauthorized();
             }
 
-            var auth = Request.Headers["Authorization"];
+            var auth = Request.Headers["token"];
             var accountModel = _validate.GetAccountByToken(auth);
 
             if (accountModel == null)
@@ -97,12 +97,12 @@ namespace Petminder_RestApi.Controllers
         [HttpPut("{id}")]
         public ActionResult UpdatePet(Guid id, PetUpdateDto petUpdateDto)
         {
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.ContainsKey("token"))
             {
                 return Unauthorized();
             }
 
-            var auth = Request.Headers["Authorization"];
+            var auth = Request.Headers["token"];
             var accountModel = _validate.GetAccountByToken(auth);
 
             if (accountModel == null)
@@ -129,12 +129,12 @@ namespace Petminder_RestApi.Controllers
         [HttpPatch("{id}")]
         public ActionResult PartialPetUpdate(Guid id, JsonPatchDocument<PetUpdateDto> patchDoc)
         {
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.ContainsKey("token"))
             {
                 return Unauthorized();
             }
 
-            var auth = Request.Headers["Authorization"];
+            var auth = Request.Headers["token"];
             var accountModel = _validate.GetAccountByToken(auth);
 
             if (accountModel == null)
@@ -168,12 +168,12 @@ namespace Petminder_RestApi.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeletePet(Guid id)
         {
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.ContainsKey("token"))
             {
                 return Unauthorized();
             }
 
-            var auth = Request.Headers["Authorization"];
+            var auth = Request.Headers["token"];
             var accountModel = _validate.GetAccountByToken(auth);
 
             if (accountModel == null)
