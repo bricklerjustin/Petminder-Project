@@ -17,6 +17,8 @@ namespace PetminderApp
             InitializeComponent();
 
             signIn.Clicked += SignIn_Clicked;
+
+           // NavigationPage.SetHasNavigationBar(this, false);
         }
 
         private async void SignIn_Clicked(object sender, System.EventArgs e)

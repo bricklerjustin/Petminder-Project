@@ -34,12 +34,12 @@ namespace PetminderApp
             {
 
                 FileData filedata = await CrossFilePicker.Current.PickFile();
-                // the dataarray of the file will be found in filedata.DataArray 
+                // the data Array of the file will be found in filedata.DataArray 
                 // file name will be found in filedata.FileName;
-                //etc etc.
+                // etc etc.
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 
