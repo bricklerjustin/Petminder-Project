@@ -25,13 +25,13 @@ namespace PetminderApp.Api
             client.Dispose();
         }
 
-        public HttpResponseMessage Get(string uri, string auth)
+        public HttpResponseMessage Get(string endpoint, string auth)
         {
             using (HttpRequestMessage httpRequestMessage = new HttpRequestMessage())
             {
                 httpRequestMessage.Method = HttpMethod.Get;
                 httpRequestMessage.Headers.TryAddWithoutValidation("token", auth);
-                httpRequestMessage.RequestUri = new Uri(uri);
+                httpRequestMessage.RequestUri = new Uri(client.BaseAddress.OriginalString + endpoint);
 
                 var responseBody = client.SendAsync(httpRequestMessage).Result;
                 return responseBody;

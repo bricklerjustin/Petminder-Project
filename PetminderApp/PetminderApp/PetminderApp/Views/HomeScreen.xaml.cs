@@ -50,12 +50,19 @@ namespace PetminderApp
 
         protected override bool OnBackButtonPressed()
         {
-            //bool logout = await DisplayAlert("Logout", "TODO MESSAGE", "Yes", "No");
+            base.OnBackButtonPressed();
 
-            //if (logout)
-            //{
-                return base.OnBackButtonPressed();
-            //}
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                var result = await this.DisplayAlert("Logout", "Would you like to contiune with logout?", "Yes", "No");
+
+                if (result)
+                {
+                    await this.Navigation.PopAsync();
+                }
+            });
+
+            return true;
         }
     }
 }

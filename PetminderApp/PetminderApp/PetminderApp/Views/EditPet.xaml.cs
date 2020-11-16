@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PetminderApp.Api;
+using PetminderApp.Api.Api_Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +8,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Newtonsoft.Json;
 
 namespace PetminderApp
 {
@@ -13,31 +16,54 @@ namespace PetminderApp
     public partial class EditPet : ContentPage
     {
        
-        public IList<Pet> Pets { get; set; }
+        public IList<PetReadModel> Pets { get; set; }
         public EditPet()
         {
             InitializeComponent();
-            Pets = new List<Pet>();
-            Pets.Add(new Pet
+
+            var petsReturn = GetPetList();
+            if (petsReturn != null)
             {
-                Name = "Oliver",
-                // Will come from a URL or file Stream
+                Pets = petsReturn;
+            }
+            //Pets = new List<Pet>();
+            //Pets.Add(new Pet
+            //{
+            //    Name = "Oliver",
+            //    // Will come from a URL or file Stream
 
-               // Image = new Image { Source = "PetminderApp/Images/Logo.png" }
-                Image = new Image { Source = "{local:ImageResource PetminderApp.Images.PetButton.png}" }
+            //   // Image = new Image { Source = "PetminderApp/Images/Logo.png" }
+            //    Image = new Image { Source = "{local:ImageResource PetminderApp.Images.PetButton.png}" }
 
-            });
+            //});
 
             BindingContext = this;
             
         }
 
         // Class that brings up pets added and their corresponding image downloaded
-        public class Pet
+        //public class Pet
+        //{
+        //    public string Name { get; set; }
+        //    public Image Image { get; set; }
+        //    public object ImageSource { get; internal set; }
+        //}
+
+        private List<PetReadModel> GetPetList()
         {
-            public string Name { get; set; }
-            public Image Image { get; set; }
-            public object ImageSource { get; internal set; }
+            RestClient client = new RestClient();
+
+            var responseMessage = client.Get("api/pets", UserInfo.Token);
+            
+            if (responseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var content = responseMessage.Content.ReadAsStringAsync();
+                List<PetReadModel> pets = JsonConvert.DeserializeObject<List<PetReadModel>>(content.Result);
+
+                return pets;
+            }
+
+            return null;
         }
     }
 }

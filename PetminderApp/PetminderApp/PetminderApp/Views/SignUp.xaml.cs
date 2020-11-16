@@ -41,7 +41,7 @@ namespace PetminderApp
                 UserCreateModel userModel = new UserCreateModel();
 
                 userModel.accountId = AccountReturn.id;
-                userModel.email = Email.Text;
+                userModel.email = Email.Text.ToLower();
                 userModel.username = Email.Text;
                 userModel.passwordHash = Password.Text;
                 userModel.googleAuth = "";
@@ -55,13 +55,13 @@ namespace PetminderApp
                     FullName.Text = "";
 
                     UserInfo.AccountId = userModel.accountId;
-                    UserInfo.Username = userModel.email;
+                    UserInfo.Username = userModel.email.ToLower();
                     UserInfo.Token = AccountReturn.apiKey;
 
                     await DisplayAlert("Success", "Account Created", "Ok");
 
                     this.IsBusy = false;
-                    Navigation.InsertPageBefore(new HomeScreen(), this);
+                    Navigation.InsertPageBefore(new AddPet(), this);
                     await Navigation.PopAsync();
                     return;
                 }

@@ -58,7 +58,7 @@
                        Padding="0,0,0,0"
                        Margin="20,3,20,9">
                 <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       x:Name="Gender"
+                                       x:Name="Age"
                                        Placeholder="Age"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -72,7 +72,7 @@
                        Padding="0,0,0,0"
                        Margin="20,3,20,9">
                 <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       x:Name="Gender"
+                                       x:Name="Type"
                                        Placeholder="Species"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"
@@ -86,7 +86,7 @@
                        Padding="0,0,0,0"
                        Margin="20,3,20,9">
                 <local:CustomEntry PlaceholderColor="#B6B6B6"
-                                       x:Name="Gender"
+                                       x:Name="Breed"
                                        Placeholder="Breed"
                                        Margin="10,0,0,0"
                                        WidthRequest="250"

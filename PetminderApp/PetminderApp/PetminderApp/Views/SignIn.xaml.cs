@@ -31,7 +31,7 @@ namespace PetminderApp
 
             RestClient restClient = new RestClient();
 
-            UserInfo.Username = Email.Text;
+            UserInfo.Username = Email.Text.ToLower();
 
             var response = restClient.Login("api/authenticate", UserInfo.Username, Password.Text);
 
@@ -45,8 +45,7 @@ namespace PetminderApp
 
                 this.IsBusy = false;
 
-                //CHANGE TO PET CREATION
-                Navigation.InsertPageBefore(new AddPet(), this);
+                Navigation.InsertPageBefore(new HomeScreen(), this);
                 await Navigation.PopAsync();
             }
             else
