@@ -63,7 +63,7 @@ namespace PetminderApp
                 }
             }
 
-            await DisplayAlert("Creation Error", "Age must be a whole number", "Ok");
+            await DisplayAlert("Creation Error", "", "Ok");
         }
         private async void UploadPet_Clicked(object sender, EventArgs e)
         {

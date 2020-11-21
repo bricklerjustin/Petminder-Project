@@ -74,5 +74,47 @@ namespace PetminderApp.Api
             }
         }
 
+        public HttpResponseMessage Delete(string endpoint, string auth, Guid id)
+        {
+            using (HttpRequestMessage requestMessage = new HttpRequestMessage())
+            {
+                //httpRequestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", auth);
+                requestMessage.Method = HttpMethod.Delete;
+                requestMessage.RequestUri = new Uri(client.BaseAddress.OriginalString + endpoint + $"/{id}");
+                requestMessage.Headers.TryAddWithoutValidation("token", auth);
+
+                try
+                {
+                    var response = client.SendAsync(requestMessage).Result;
+                    return response;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public HttpResponseMessage Delete(string endpoint, string auth, string id)
+        {
+            using (HttpRequestMessage requestMessage = new HttpRequestMessage())
+            {
+                //httpRequestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", auth);
+                requestMessage.Method = HttpMethod.Delete;
+                requestMessage.RequestUri = new Uri(client.BaseAddress.OriginalString + endpoint + $"/{id}");
+                requestMessage.Headers.TryAddWithoutValidation("token", auth);
+
+                try
+                {
+                    var response = client.SendAsync(requestMessage).Result;
+                    return response;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        }
     }
+
 }

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PetminderApp.Views.AddReminder"
+             xmlns:local="clr-namespace:PetminderApp">
+    <ContentPage.Content>
+        <StackLayout Padding="25" Spacing="5">
+            <Label Text="Reminder Name"
+                VerticalOptions="Start" 
+                HorizontalOptions="StartAndExpand"
+                FontSize="20"
+                FontAttributes="Bold"/>
+            
+            <Frame CornerRadius="8" 
+                       BorderColor="#CBEAF7"
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,9">
+                <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                       x:Name="Name"
+                                       Margin="10,0,0,0"
+                                       WidthRequest="250"
+                                       HeightRequest="40"
+                                       FontSize="18"
+                                       ReturnType="Done"
+                                       />
+            </Frame>
+
+            <Label Text="Message"
+                VerticalOptions="Start" 
+                HorizontalOptions="StartAndExpand"
+                FontSize="20"
+                FontAttributes="Bold"/>
+
+            <Frame CornerRadius="8" 
+                       BorderColor="#CBEAF7"
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,9">
+                <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                       x:Name="Message"
+                                       Margin="10,0,0,0"
+                                       WidthRequest="250"
+                                       HeightRequest="40"
+                                       FontSize="18"
+                                       ReturnType="Done" />
+            </Frame>
+
+            <Label Text="Type"
+                VerticalOptions="Start" 
+                HorizontalOptions="StartAndExpand"
+                FontSize="20"
+                FontAttributes="Bold"/>
+
+            <Frame CornerRadius="8" 
+                       BorderColor="#CBEAF7"
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,9">
+                <StackLayout>
+                    <Picker
+                        x:Name="TypePicker"
+                        Title=""
+                        SelectedItem="{Binding SelectedType}"
+                        >
+                    </Picker>
+                </StackLayout>
+            </Frame>
+
+            <Label Text="Start Date"
+                VerticalOptions="Start" 
+                HorizontalOptions="StartAndExpand"
+                FontSize="20"
+                FontAttributes="Bold"/>
+            <DatePicker
+                x:Name="StartDate"
+                FontSize="20"
+                >
+            </DatePicker>
+            <Label Text="Time"
+                VerticalOptions="Start" 
+                HorizontalOptions="StartAndExpand"
+                FontSize="20"
+                FontAttributes="Bold"/>
+            
+            <TimePicker
+                x:Name="Time"
+                FontSize="20"
+                >
+            </TimePicker>
+     
+            <StackLayout
+                Orientation="Horizontal"
+                
+                >
+                <Label Text="Repeat"
+                VerticalOptions="Start" 
+                HorizontalOptions="StartAndExpand"
+                FontSize="20"
+                FontAttributes="Bold"/>
+
+                <Switch OnColor="{x:StaticResource MainBlue}"
+                        ThumbColor="Gray"
+                        HorizontalOptions="EndAndExpand"
+                        Scale="1.25"
+                        Toggled="Repeat_OnToggled"
+                        x:Name="Repeat"
+                        >
+                </Switch>
+            </StackLayout>
+
+            <Frame
+                Opacity="0"
+                Padding="1">
+            </Frame>
+            
+            <Frame CornerRadius="8" 
+                       BorderColor="#CBEAF7"
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,9">
+                <StackLayout>
+                    <Picker
+                        x:Name="Frequency"
+                        Title="Frequency"
+                        >
+                    </Picker>
+                </StackLayout>
+            </Frame>
+
+            <ImageButton Source="{local:ImageResource
+                PetminderApp.Images.Submit.png}" 
+                BackgroundColor="Transparent"         
+                HeightRequest="75"
+                FlexLayout.AlignSelf="Center"
+                FlexLayout.Grow="1"
+                x:Name="submitReminder"                    
+                Aspect="AspectFit"
+                VerticalOptions="EndAndExpand">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomEntryRenderer.cs" />
+    <Compile Include="CustomPickerRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
+    <Folder Include="SuaveControls\MaterialForms\Android\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PetminderApp\PetminderApp.csproj">

@@ -25,7 +25,7 @@ namespace PetminderApp
            // NavigationPage.SetHasNavigationBar(this, false);
         }
 
-        private async void SignIn_Clicked(object sender, System.EventArgs e)
+        private async void SignIn_Clicked(object sender, EventArgs e)
         {
             this.IsBusy = true;
 
@@ -41,6 +41,7 @@ namespace PetminderApp
                 AuthenticateReturnModel authenticateReturnModel = JsonConvert.DeserializeObject<AuthenticateReturnModel>(content.Result);
 
                 UserInfo.Token = authenticateReturnModel.ApiKey;
+                UserInfo.AccountId = authenticateReturnModel.AccountId;
                 Password.Text = "";
 
                 this.IsBusy = false;

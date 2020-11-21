@@ -35,7 +35,7 @@ namespace PetminderApp
 
         private async void ReminderEvents_Clicked(object sender, System.EventArgs e)
         {
-            await Navigation.PushAsync(new Reminders());
+            await Navigation.PushAsync(new ReminderList());
         }
 
         private async void ExerciseFitBark_Clicked(object sender, System.EventArgs e)

@@ -2,9 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PetminderApp.Reminder" 
-             
-            xmlns:local="clr-namespace:PetminderApp" >
-            
+             xmlns:local="clr-namespace:PetminderApp">
+
     <ContentPage.Content >
         <StackLayout Margin= "0,20,80,20">
             <Image Source="{local:ImageResource 
