@@ -24,7 +24,8 @@ namespace PetminderApp
                 // Will come from a URL or file Stream
 
                // Image = new Image { Source = "PetminderApp/Images/Logo.png" }
-                Image = new Image { Source = "{local:ImageResource PetminderApp.Images.PetButton.png}" }
+                //Image = new Image { Source = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Gelada-Pavian.jpg/320px-Gelada-Pavian.jpg" }
+              //ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Gelada-Pavian.jpg/320px-Gelada-Pavian.jpg"
 
             });
 
@@ -36,8 +37,8 @@ namespace PetminderApp
         public class Pet
         {
             public string Name { get; set; }
-            public Image Image { get; set; }
-            public object ImageSource { get; internal set; }
+            //public Image Image { get; set; }
+            //public object ImageUrl { get; set; }
         }
     }
 }

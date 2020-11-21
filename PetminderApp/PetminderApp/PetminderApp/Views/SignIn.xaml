@@ -22,12 +22,12 @@
                        Margin="20,3,20,9">
                 <local:CustomEntry PlaceholderColor="#B6B6B6"
                                    x:Name="Email"
-                                       Placeholder="Email"
-                                       Margin="10,0,0,0"
-                                       WidthRequest="250"
-                                       HeightRequest="40"
-                                       FontSize="18"
-                                       ReturnType="Search" />
+                                   Placeholder="Email"
+                                   Margin="10,0,0,0"
+                                   WidthRequest="250"
+                                   HeightRequest="40"
+                                   FontSize="18"
+                                   ReturnType="Search" />
             </Frame>
             <!-- Password TextBox -->
             <Frame CornerRadius="8" 
@@ -36,10 +36,10 @@
                        Margin="20,3,20,20">
                 <local:CustomEntry PlaceholderColor="#B6B6B6"
                                    x:Name="Password"
-                                       Placeholder="Enter Password"
-                                       Margin="10,0,0,0"
-                                       WidthRequest="250"
-                                       HeightRequest="40"
+                                   Placeholder="Enter Password"
+                                   Margin="10,0,0,0"
+                                   WidthRequest="250"
+                                   HeightRequest="40"
                                        FontSize="18"
                                        MaxLength="15"
                                        IsSpellCheckEnabled="false"
