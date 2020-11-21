@@ -4,9 +4,14 @@
              x:Class="PetminderApp.Views.Exercise">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label x:Name="lblStopwatch" FontSize="50"
+                   HorizontalOptions="CenterAndExpand" 
+                   VerticalOptions="CenterAndExpand">
+            </Label>
+            <Button x:Name="btnStart" Clicked="btnStart_Clicked" Text="Start"></Button>
+            <Button x:Name="btnPause" Clicked="btnPause_Clicked" Text="Pause"></Button>
+            <Button x:Name="btnStop"  Clicked="btnStop_Clicked" Text="Stop"></Button>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
