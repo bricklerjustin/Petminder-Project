@@ -32,7 +32,7 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0" Text="{Binding Name}"></Label>
-                                    <Label Grid.Column="1" Text="{Binding }"
+                                    <Label Grid.Column="1" Text="{Binding }"></Label>
                                 </Grid>
                             </ViewCell.View>
                         </ViewCell>
