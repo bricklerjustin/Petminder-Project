@@ -7,5 +7,6 @@ namespace PetminderApp.Api.Api_Models
     public class AuthenticateReturnModel
     {
         public string ApiKey { get; set; }
+        public Guid AccountId { get; set; }
     }
 }

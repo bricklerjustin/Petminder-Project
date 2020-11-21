@@ -25,13 +25,13 @@ namespace PetminderApp.Api
             client.Dispose();
         }
 
-        public HttpResponseMessage Get(string uri, string auth)
+        public HttpResponseMessage Get(string endpoint, string auth)
         {
             using (HttpRequestMessage httpRequestMessage = new HttpRequestMessage())
             {
                 httpRequestMessage.Method = HttpMethod.Get;
                 httpRequestMessage.Headers.TryAddWithoutValidation("token", auth);
-                httpRequestMessage.RequestUri = new Uri(uri);
+                httpRequestMessage.RequestUri = new Uri(client.BaseAddress.OriginalString + endpoint);
 
                 var responseBody = client.SendAsync(httpRequestMessage).Result;
                 return responseBody;
@@ -74,5 +74,47 @@ namespace PetminderApp.Api
             }
         }
 
+        public HttpResponseMessage Delete(string endpoint, string auth, Guid id)
+        {
+            using (HttpRequestMessage requestMessage = new HttpRequestMessage())
+            {
+                //httpRequestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", auth);
+                requestMessage.Method = HttpMethod.Delete;
+                requestMessage.RequestUri = new Uri(client.BaseAddress.OriginalString + endpoint + $"/{id}");
+                requestMessage.Headers.TryAddWithoutValidation("token", auth);
+
+                try
+                {
+                    var response = client.SendAsync(requestMessage).Result;
+                    return response;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public HttpResponseMessage Delete(string endpoint, string auth, string id)
+        {
+            using (HttpRequestMessage requestMessage = new HttpRequestMessage())
+            {
+                //httpRequestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", auth);
+                requestMessage.Method = HttpMethod.Delete;
+                requestMessage.RequestUri = new Uri(client.BaseAddress.OriginalString + endpoint + $"/{id}");
+                requestMessage.Headers.TryAddWithoutValidation("token", auth);
+
+                try
+                {
+                    var response = client.SendAsync(requestMessage).Result;
+                    return response;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        }
     }
+
 }

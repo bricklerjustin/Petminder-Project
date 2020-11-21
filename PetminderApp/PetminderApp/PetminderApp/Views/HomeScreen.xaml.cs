@@ -35,7 +35,7 @@ namespace PetminderApp
 
         private async void ReminderEvents_Clicked(object sender, System.EventArgs e)
         {
-            await Navigation.PushAsync(new Reminders());
+            await Navigation.PushAsync(new ReminderList());
         }
 
         private async void ExerciseFitBark_Clicked(object sender, System.EventArgs e)
@@ -50,12 +50,19 @@ namespace PetminderApp
 
         protected override bool OnBackButtonPressed()
         {
-            //bool logout = await DisplayAlert("Logout", "TODO MESSAGE", "Yes", "No");
+            base.OnBackButtonPressed();
 
-            //if (logout)
-            //{
-                return base.OnBackButtonPressed();
-            //}
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                var result = await this.DisplayAlert("Logout", "Would you like to contiune with logout?", "Yes", "No");
+
+                if (result)
+                {
+                    await this.Navigation.PopAsync();
+                }
+            });
+
+            return true;
         }
     }
 }

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PetminderApp.Views.ReminderList">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Add"
+            Order="Primary"
+            Priority="0"
+            Clicked="On_ReminderAdd"
+            >
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Spacing="0" Padding="15,0,15,0">
+            <ListView ItemsSource="{Binding Reminders}" HasUnevenRows="False">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Remove" Clicked="On_ReminderDelete" CommandParameter="{Binding .}"></MenuItem>
+                                <MenuItem Text="Edit" Clicked="On_ReminderEdit" CommandParameter="{Binding .}"></MenuItem>
+                            </ViewCell.ContextActions>
+                            
+                            <ViewCell.View>
+                                <Grid Padding="10" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="{Binding Name}"></Label>
+                                    <Label Grid.Column="1" Text="{Binding }"
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

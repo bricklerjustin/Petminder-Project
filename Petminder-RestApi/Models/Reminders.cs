@@ -23,13 +23,11 @@ namespace Petminder_RestApi.Models
         public bool Complete { get; set; }
         [Column("repeat")]
         public bool Repeat { get; set; }
-        [Column("pet_id")]
-        public Guid PetId { get; set; }
         [Column("account_id")]
         public Guid AccountId { get; set; }
-
-        [ForeignKey(nameof(PetId))]
-        [InverseProperty(nameof(Pets.Reminders))]
-        public virtual Pets Pet { get; set; }
+        [Column("frequency")]
+        public string Frequency { get; set; }
+        [Column("type")]
+        public string Type { get; set; }
     }
 }

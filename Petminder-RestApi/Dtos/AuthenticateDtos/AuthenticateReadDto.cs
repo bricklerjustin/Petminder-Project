@@ -8,5 +8,6 @@ namespace Petminder_RestApi.Dtos
     {
         [Required]
         public string ApiKey { get; set; }
+        public Guid AccountId { get; set; }
     }
 }

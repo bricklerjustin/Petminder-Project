@@ -11,7 +11,6 @@ namespace Petminder_RestApi.Models
         public Pets()
         {
             Files = new HashSet<Files>();
-            Reminders = new HashSet<Reminders>();
         }
 
         [Key]
@@ -40,7 +39,5 @@ namespace Petminder_RestApi.Models
         public virtual Accounts Account { get; set; }
         [InverseProperty("Pet")]
         public virtual ICollection<Files> Files { get; set; }
-        [InverseProperty("Pet")]
-        public virtual ICollection<Reminders> Reminders { get; set; }
     }
 }

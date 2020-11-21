@@ -17,10 +17,13 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(CustomEntry), typeof(CustomEntryRenderer))]
 namespace PetminderApp.Droid
 {
-  // Fixed the depreciation //
-    [Obsolete]
     public class CustomEntryRenderer: EntryRenderer
     {
+        public CustomEntryRenderer(Context context) : base(context)
+        {
+
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);
