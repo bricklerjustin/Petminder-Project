@@ -157,6 +157,35 @@ namespace Petminder_RestApi.Controllers
             return NoContent();
         }
 
+        //Delete api/files
+        [HttpDelete("{id}")]
+        public ActionResult DeleteFile(Guid id)
+        {
+            if (!Request.Headers.ContainsKey("token"))
+            {
+                return Unauthorized();
+            }
+
+            var auth = Request.Headers["token"];
+            var accountModel = _validate.GetAccountByToken(auth);
+
+            if (accountModel == null)
+            { 
+                return Unauthorized();
+            }
+
+            var fileModelFromRepo = _repository.GetFileById(id, accountModel.Id);
+            if(fileModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            
+            _repository.DeleteFile(fileModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
+
         //PATCH api/pets/{id}
         // [HttpPatch("{id}")]
         // public ActionResult PartialPetUpdate(Guid id, JsonPatchDocument<FileUpdateDto> patchDoc)
