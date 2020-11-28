@@ -8,26 +8,27 @@ namespace Petminder_RestApi.Models
     [Table("files")]
     public partial class Files
     {
-        public Files()
-        {
-            PetFiles = new HashSet<PetFiles>();
-        }
-
         [Key]
-        [Column("file_id")]
-        public int FileId { get; set; }
-        [Column("data")]
-        public string Data { get; set; }
+        [Column("id")]
+        public Guid Id { get; set; }
+        [Column("account_id")]
+        public Guid AccountId { get; set; }
+        [Column("pet_id")]
+        public Guid PetId { get; set; }
+        [Required]
+        [Column("type")]
+        [StringLength(50)]
+        public string Type { get; set; }
+        [Required]
         [Column("name")]
         [StringLength(500)]
         public string Name { get; set; }
-        [Column("type")]
-        [StringLength(255)]
-        public string Type { get; set; }
-        [Column("pet_file_id")]
-        public int PetFileId { get; set; }
+        [Required]
+        [Column("data_id")]
+        public Guid DataId { get; set; }
 
-        [InverseProperty("File")]
-        public virtual ICollection<PetFiles> PetFiles { get; set; }
+        [ForeignKey(nameof(PetId))]
+        [InverseProperty(nameof(Pets.Files))]
+        public virtual Pets Pet { get; set; }
     }
 }

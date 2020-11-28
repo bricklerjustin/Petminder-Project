@@ -24,19 +24,36 @@ namespace Petminder_RestApi.Data
             _context.Pets.Add(Pet);
         }
 
-        public IEnumerable<Pets> GetAllUserPets()
+        public IEnumerable<Pets> GetAllUserPets(Guid AccountId)
         {
-            return _context.Pets.ToList();
+            return _context.Pets.Where(p => p.AccountId == AccountId);
         }
 
-        public Pets GetPetById(int Id)
+        public Pets GetPetById(Guid Id, Guid AccountId)
         {
-            return _context.Pets.Where((p) => p.PetId == Id).Single();
+            var dbpetreturn = _context.Pets.Where((p) => p.Id == Id && p.AccountId == AccountId);
+
+            return dbpetreturn.SingleOrDefault();
         }
 
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public void UpdatePet(Pets Pet)
+        {
+            //NOT IMPLMENTED Done by other methods
+        }
+
+        public void DeletePet(Pets Pet)
+        {
+            if (Pet == null)
+            {
+                throw new ArgumentNullException(nameof(Pet));
+            }
+
+            _context.Pets.Remove(Pet);
         }
     }
 }

@@ -8,7 +8,11 @@ namespace Petminder_RestApi.Profiles
     {
         public PetsProfile()
         {
+            //Source -> Target
             CreateMap<Pets, PetReadDto>();
+            CreateMap<PetCreateDto, Pets>();
+            CreateMap<PetUpdateDto, Pets>();
+            CreateMap<Pets, PetUpdateDto>();
         }
     }
 }

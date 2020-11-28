@@ -1,11 +1,17 @@
-using System.Collections.Generic;
+using System;
 using Petminder_RestApi.Models;
 
 namespace Petminder_RestApi.Data
 {
-    interface IUserRepo
+    public interface IUserRepo
     {
-        User GetUserByAuth();
-        IEnumerable<User> GetUsersOnAccount();
+        bool SaveChanges();
+        bool ValidateAccountKey(Guid AccountId);
+        bool ValidateUsernameUnique(string Username);
+
+        void CreateUser(Users User);
+        Users GetUserById(Guid Id);
+        void UpdateUser(Users User);
+        void DeleteUser(Users User);
     }
 }

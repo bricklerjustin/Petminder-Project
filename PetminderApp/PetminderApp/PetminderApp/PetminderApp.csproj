@@ -12,11 +12,14 @@
 
   <ItemGroup>
     <Compile Remove="NewFolder1\**" />
-    <Compile Remove="NewFolder\**" />
+    <Compile Remove="NewFolder2\**" />
+    <Compile Remove="NewFolder3\**" />
     <EmbeddedResource Remove="NewFolder1\**" />
-    <EmbeddedResource Remove="NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder2\**" />
+    <EmbeddedResource Remove="NewFolder3\**" />
     <None Remove="NewFolder1\**" />
-    <None Remove="NewFolder\**" />
+    <None Remove="NewFolder2\**" />
+    <None Remove="NewFolder3\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,42 +31,97 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\2.png" />
+    <None Remove="Images\dog.png" />
+    <None Remove="Images\ExerciseFitBark.png" />
     <None Remove="Images\Logo.png" />
+    <None Remove="Images\PetButton.png" />
+    <None Remove="Images\PetButtonBackground.png" />
+    <None Remove="Images\RemindersButton.png" />
     <None Remove="Images\Screen1LogIn.png" />
     <None Remove="Images\Screen1SignUp.png" />
     <None Remove="Images\Screen1Top.png" />
+    <None Remove="Images\SearchProviders.png" />
     <None Remove="Images\Submit.png" />
+    <None Remove="Images\test.png" />
+    <None Remove="Images\tester.png" />
     <None Remove="Images\TextBoxImage.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Images\ExerciseFitBark.png" />
     <EmbeddedResource Include="Images\Logo.png" />
+    <EmbeddedResource Include="Images\PetButton.png" />
+    <EmbeddedResource Include="Images\RemindersButton.png" />
     <EmbeddedResource Include="Images\Screen1LogIn.png" />
     <EmbeddedResource Include="Images\Screen1SignUp.png" />
     <EmbeddedResource Include="Images\Screen1Top.png" />
+    <EmbeddedResource Include="Images\SearchProviders.png" />
     <EmbeddedResource Include="Images\Submit.png" />
     <EmbeddedResource Include="Images\TextBoxImage.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Shiny.Core" Version="1.2.0.1755" />
+    <PackageReference Include="Shiny.Notifications" Version="1.2.0.1755" />
+    <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.1141" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.41" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="AddPet.xaml">
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\dog.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\AddReminder.xaml.cs">
+      <DependentUpon>AddReminder.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\AddPet.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="EditPet.xaml">
+    <EmbeddedResource Update="Views\EditPet.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="HomeScreen.xaml">
+    <EmbeddedResource Update="Views\Exercise.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="SignIn.xaml">
+    <EmbeddedResource Update="Views\FileList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="SignUp.xaml">
+    <EmbeddedResource Update="Views\HomeScreen.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AddReminder.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PetListModal.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ReminderList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Reminders.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SearchProviders.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SignIn.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SignUp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using System.Net;
 
 namespace PetminderApp.Droid
 {
@@ -19,6 +20,8 @@ namespace PetminderApp.Droid
 
             base.OnCreate(savedInstanceState);
 
+            ServicePointManager.ServerCertificateValidationCallback += (o, cert, chain, errors) => true;
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
@@ -28,6 +31,7 @@ namespace PetminderApp.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            Shiny.AndroidShinyHost.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

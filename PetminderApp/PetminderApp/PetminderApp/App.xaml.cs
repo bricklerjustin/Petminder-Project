@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PetminderApp.Api;
+using Shiny.Notifications;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,10 +13,12 @@ namespace PetminderApp
             InitializeComponent();
 
             MainPage = new NavigationPage(new MainPage());
+
         }
 
         protected override void OnStart()
         {
+
         }
 
         protected override void OnSleep()

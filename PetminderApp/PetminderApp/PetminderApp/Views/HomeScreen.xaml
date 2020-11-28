@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PetminderApp.HomeScreen"
+             xmlns:local="clr-namespace:PetminderApp" >
+
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <Frame Padding="20,40,20,20" CornerRadius="0">
+                <!-- Logo -->
+                <Image Source="{local:ImageResource 
+                       PetminderApp.Images.Logo.png}" 
+                       HeightRequest="85" 
+                       WidthRequest="400" 
+                       Margin="0" />
+            </Frame>
+            <!-- Buttons -->
+            <Frame>
+                <Grid Padding="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="200" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <ImageButton Source="{local:ImageResource 
+                             PetminderApp.Images.PetButton.png}"
+                             BackgroundColor="#2885bf"
+                             Margin="15,15,15,30"
+                             HeightRequest="155"
+                             WidthRequest="155"
+                             Grid.Row="0" 
+                             Grid.Column="0" 
+                             FlexLayout.AlignSelf="Center"                            
+                             FlexLayout.Grow="1"
+                             x:Name="editPet"                    
+                             Aspect="AspectFit">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="1"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="0.8"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+
+                    <ImageButton Source="{local:ImageResource 
+                                 PetminderApp.Images.RemindersButton.png}"
+                                 BackgroundColor="#fdd982"
+                                 Margin="15,15,15,30" 
+                                 HeightRequest="155"
+                                 WidthRequest="155"                                 
+                                 Grid.Row="0" 
+                                 Grid.Column="1" 
+                                 FlexLayout.AlignSelf="Center"                            
+                                 FlexLayout.Grow="1"
+                                 x:Name="reminderEvents"                    
+                                 Aspect="AspectFit">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="1"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="0.8"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+
+                    <ImageButton Source="{local:ImageResource 
+                                 PetminderApp.Images.ExerciseFitBark.png}"
+                                 BackgroundColor="#ff8a5b"
+                                 Margin="15,15,15,30" 
+                                 HeightRequest="155"
+                                 WidthRequest="155"                                 
+                                 Grid.Row="1" 
+                                 Grid.Column="0" 
+                                 FlexLayout.AlignSelf="Center"                            
+                                 FlexLayout.Grow="1"
+                                 x:Name="exerciseFitBark"                    
+                                 Aspect="AspectFit">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="1"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="0.8"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+
+                    <ImageButton Source="{local:ImageResource 
+                                 PetminderApp.Images.SearchProviders.png}"
+                                 BackgroundColor="#95d2ba"
+                                 Margin="15,15,15,30" 
+                                 HeightRequest="155"
+                                 WidthRequest="155"                                 
+                                 Grid.Row="1" 
+                                 Grid.Column="1" 
+                                 FlexLayout.AlignSelf="Center"                            
+                                 FlexLayout.Grow="1"
+                                 x:Name="searchProviders"                    
+                                 Aspect="AspectFit">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="1"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale" Value="0.8"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
