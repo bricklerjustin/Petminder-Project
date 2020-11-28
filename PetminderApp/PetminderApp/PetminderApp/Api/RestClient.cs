@@ -18,7 +18,7 @@ namespace PetminderApp.Api
             clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
             client = new HttpClient(clientHandler);
             client.BaseAddress = new Uri("http://74.140.176.113:3200/");
-            //client.Timeout = TimeSpan.FromMilliseconds(30000);
+            client.Timeout = TimeSpan.FromMilliseconds(30000);
         }
         ~RestClient()
         {
@@ -59,6 +59,72 @@ namespace PetminderApp.Api
                 //httpRequestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", auth);
                 requestMessage.Method = HttpMethod.Post;
                 requestMessage.RequestUri = new Uri(client.BaseAddress.OriginalString + endpoint);
+                requestMessage.Headers.TryAddWithoutValidation("token", auth);
+                requestMessage.Content = new StringContent(body, Encoding.UTF8, "application/json");
+
+                try
+                {
+                    var response = client.SendAsync(requestMessage).Result;
+                    return response;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public async Task<HttpResponseMessage> PostAsync(string endpoint, string request, string auth, string body)
+        {
+            using (HttpRequestMessage requestMessage = new HttpRequestMessage())
+            {
+                //httpRequestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", auth);
+                requestMessage.Method = HttpMethod.Post;
+                requestMessage.RequestUri = new Uri(client.BaseAddress.OriginalString + endpoint);
+                requestMessage.Headers.TryAddWithoutValidation("token", auth);
+                requestMessage.Content = new StringContent(body, Encoding.UTF8, "application/json");
+
+                try
+                {
+                    var response = await client.SendAsync(requestMessage);
+                    return response;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public HttpResponseMessage Put(string endpoint, Guid id, string auth, string body)
+        {
+            using (HttpRequestMessage requestMessage = new HttpRequestMessage())
+            {
+                //httpRequestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", auth);
+                requestMessage.Method = HttpMethod.Put;
+                requestMessage.RequestUri = new Uri(client.BaseAddress.OriginalString + endpoint + $"/{id}");
+                requestMessage.Headers.TryAddWithoutValidation("token", auth);
+                requestMessage.Content = new StringContent(body, Encoding.UTF8, "application/json");
+
+                try
+                {
+                    var response = client.SendAsync(requestMessage).Result;
+                    return response;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public HttpResponseMessage Put(string endpoint, string id, string auth, string body)
+        {
+            using (HttpRequestMessage requestMessage = new HttpRequestMessage())
+            {
+                //httpRequestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", auth);
+                requestMessage.Method = HttpMethod.Put;
+                requestMessage.RequestUri = new Uri(client.BaseAddress.OriginalString + endpoint + $"/{id}");
                 requestMessage.Headers.TryAddWithoutValidation("token", auth);
                 requestMessage.Content = new StringContent(body, Encoding.UTF8, "application/json");
 

@@ -61,6 +61,8 @@ namespace PetminderApp
                     await DisplayAlert("Success", "Account Created", "Ok");
 
                     this.IsBusy = false;
+
+                    UserInfo.LoggedIn = true;
                     Navigation.InsertPageBefore(new AddPet(), this);
                     await Navigation.PopAsync();
                     return;

@@ -9,6 +9,7 @@ namespace PetminderApp.Api
         public static string Username { get; set; }
         public static string Token { get; set; }
         public static Guid AccountId { get; set; }
+        public static bool LoggedIn { get; set; }
 
     }
 }

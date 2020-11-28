@@ -2,6 +2,7 @@
 using PetminderApp.Api;
 using PetminderApp.Api.Api_Models;
 using PetminderApp.Files;
+using Plugin.LocalNotifications;
 using System;
 using System.Collections.Generic;
 
@@ -13,18 +14,15 @@ namespace PetminderApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReminderList : ContentPage
     {
+        private AddReminder _AddReminderModal;
         public IList<ReminderReadModel> Reminders { get; set; }
         public ReminderList()
         {
             InitializeComponent();
 
-            ReminderFile file = new ReminderFile(DefaultFileNames.ReminderFileName);
-            var ReminderReturn = GetReminderList();
-
-            if (ReminderReturn != null)
-            {
-                Reminders = ReminderReturn;          
-            }
+            AppDataReadWrite file = new AppDataReadWrite(DefaultFileNames.ReminderFileName);
+            
+            RefreshListView();
 
             BindingContext = this;
         }
@@ -41,8 +39,7 @@ namespace PetminderApp.Views
                 client.Delete("api/reminders", UserInfo.Token, reminderModel.Id);
 
                 //Refresh List
-                var reminderList = GetReminderList();
-                Reminders = reminderList;
+                RefreshListView();
             }
             catch
             {
@@ -71,13 +68,42 @@ namespace PetminderApp.Views
 
         public void On_ReminderAdd(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new AddReminder());
+            ShowReminderModalPage(null);
         }
 
         public void On_ReminderEdit(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new AddReminder());
+            var menuItem = sender as MenuItem;
+            var contextItem = menuItem.BindingContext;
+            var reminderModel = contextItem as ReminderReadModel;
+            ShowReminderModalPage(reminderModel);
         }
 
+        private void RefreshListView()
+        {
+            var reminderList = GetReminderList();
+            if (reminderList != null)
+            {
+                Reminders = reminderList;
+                ReminderListview.ItemsSource = null;
+                ReminderListview.ItemsSource = Reminders;
+            }
+        }
+
+        private async void ShowReminderModalPage(ReminderReadModel Reminder)
+        {
+            //Add handler for modal return
+            Application.Current.ModalPopping += HandleModalPopping;
+            _AddReminderModal = new AddReminder(Reminder);
+            await Navigation.PushModalAsync(_AddReminderModal);
+        }
+
+        private void HandleModalPopping(object sender, ModalPoppingEventArgs e)
+        {
+            if (e.Modal == _AddReminderModal)
+            {
+                RefreshListView();
+            }
+        }
     }
 }

@@ -26,17 +26,8 @@ namespace PetminderApp
                 Pets = petsReturn;
             }
 
-            BindingContext = this;
-            
+            BindingContext = this;        
         }
-
-        // Class that brings up pets added and their corresponding image downloaded
-        //public class Pet
-        //{
-        //    public string Name { get; set; }
-        //    public Image Image { get; set; }
-        //    public object ImageSource { get; internal set; }
-        //}
 
         private List<PetReadModel> GetPetList()
         {
