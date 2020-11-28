@@ -1,17 +1,101 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:PetminderApp"            
              x:Class="PetminderApp.Views.Exercise">
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="lblStopwatch" FontSize="50"
+        <StackLayout Padding="30" Spacing="0">
+            <Label x:Name="lblStopwatch"
+                   FontSize="50"
                    HorizontalOptions="CenterAndExpand" 
                    VerticalOptions="CenterAndExpand">
             </Label>
-            <Button x:Name="btnStart" Clicked="btnStart_Clicked" Text="Start"></Button>
-            <Button x:Name="btnPause" Clicked="btnPause_Clicked" Text="Pause"></Button>
-            <Button x:Name="btnStop"  Clicked="btnStop_Clicked" Text="Stop"></Button>
-            
+
+
+
+            <ImageButton Source="{local:ImageResource
+                PetminderApp.Images.Start.png}" 
+                BackgroundColor="Transparent"         
+                HeightRequest="70"
+                FlexLayout.AlignSelf="Center"
+                FlexLayout.Grow="1"
+                x:Name="btnStart" 
+                Clicked="btnStart_Clicked"
+                Aspect="AspectFit">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+
+            <ImageButton Source="{local:ImageResource
+                PetminderApp.Images.Pause.png}" 
+                BackgroundColor="Transparent"         
+                HeightRequest="70"
+                FlexLayout.AlignSelf="Center"
+                FlexLayout.Grow="1"
+                x:Name="btnPause" 
+                Clicked="btnPause_Clicked"
+                Aspect="AspectFit">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+
+            <ImageButton Source="{local:ImageResource
+                PetminderApp.Images.Stop.png}" 
+                BackgroundColor="Transparent"         
+                HeightRequest="70"
+                FlexLayout.AlignSelf="Center"
+                FlexLayout.Grow="1"
+                x:Name="btnStop" 
+                Clicked="btnStop_Clicked"
+                Aspect="AspectFit">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+
+
+
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
