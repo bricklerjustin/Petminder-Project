@@ -3,6 +3,7 @@ using PetminderApp.Api;
 using PetminderApp.Api.Api_Models;
 using PetminderApp.Files;
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,9 +13,10 @@ namespace PetminderApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddReminder : ContentPage
     {
-        private Guid PetId { get; set; }
+        private bool _update;
+        private Guid id;
 
-        public AddReminder()
+        public AddReminder(ReminderReadModel reminderModel)
         {
             InitializeComponent();
 
@@ -39,6 +41,16 @@ namespace PetminderApp.Views
             //PetId = pet.Id;
 
             SetFrequencyVisible();
+
+            if (reminderModel != null)
+            {
+                _update = true;
+                Name.Text = reminderModel.Name;
+                Message.Text = reminderModel.Message;
+                Repeat.IsToggled = reminderModel.Repeat;
+                TypePicker.SelectedItem = reminderModel.Type;
+                id = reminderModel.Id;
+            }
         }
 
         private void Repeat_OnToggled(object sender, ToggledEventArgs e)
@@ -49,6 +61,7 @@ namespace PetminderApp.Views
         private async void SubmitReminder_Clicked(object sender, EventArgs e)
         {
             RestClient client = new RestClient();
+            HttpResponseMessage response = new HttpResponseMessage();
 
             ReminderCreateModel reminderModel = new ReminderCreateModel();
             reminderModel.Name = Name.Text;
@@ -74,12 +87,20 @@ namespace PetminderApp.Views
             }
 
             var body = JsonConvert.SerializeObject(reminderModel);
-            var response = client.Post("api/reminders", "", UserInfo.Token, body);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.Created)
+            if (_update)
+            {
+                response = client.Put("api/reminders", id, UserInfo.Token, body);
+            }
+            else
+            {
+                response = client.Post("api/reminders", "", UserInfo.Token, body);
+            }
+
+            if (response.StatusCode == System.Net.HttpStatusCode.Created || response.StatusCode == System.Net.HttpStatusCode.NoContent)
             {
                 //Save Locally Here
-                ReminderFile file = new ReminderFile("Reminders.txt");
+                AppDataReadWrite file = new AppDataReadWrite("Reminders.txt");
 
                 var reminderList = client.Get("api/reminders", UserInfo.Token);
                 file.WriteStringToFile(reminderList.Content.ReadAsStringAsync().Result);
@@ -88,7 +109,14 @@ namespace PetminderApp.Views
             }
             else
             {
-                await DisplayAlert("Creation Error", "Please try again", "Ok");
+                if (_update)
+                {
+                    await DisplayAlert("Update Error", "Please try again", "Ok");
+                }
+                else
+                {
+                    await DisplayAlert("Creation Error", "Please try again", "Ok");
+                }
             }
 
         }

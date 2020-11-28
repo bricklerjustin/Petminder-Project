@@ -5,10 +5,10 @@ using System.Text;
 
 namespace PetminderApp.Files
 {
-    public class ReminderFile
+    public class AppDataReadWrite
     {
         private string _fileName;
-        public ReminderFile(string FileName)
+        public AppDataReadWrite(string FileName)
         {
             _fileName = FileName;
             _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), _fileName);

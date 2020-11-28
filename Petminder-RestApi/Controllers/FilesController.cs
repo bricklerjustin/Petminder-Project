@@ -63,9 +63,12 @@ namespace Petminder_RestApi.Controllers
                 return ValidationProblem();
             }
 
-            _repository.CreateFile(fileModel);
-            _repository.SaveChanges();
             _data.CreateFileData(fileDataModel);
+            _repository.SaveChanges();
+
+            fileModel.DataId = fileDataModel.Id;
+
+            _repository.CreateFile(fileModel);
             _repository.SaveChanges();
 
             var fileReadDto = _mapper.Map<FileReadDto>(fileModel);
@@ -89,12 +92,14 @@ namespace Petminder_RestApi.Controllers
                 return Unauthorized();
             }
 
-            if(_repository.GetFileById(id, accountModel.Id) == null)
+            var fileModel = _repository.GetFileById(id, accountModel.Id);
+
+            if (fileModel == null)
             {
                 return Unauthorized();
             }
 
-            var filedata = _data.GetFileDataById(id);
+            var filedata = _data.GetFileDataById(fileModel.DataId);
 
             return Ok(filedata.Data);
         }
