@@ -22,7 +22,6 @@ namespace PetminderApp.Views
         public IList<FileReadModel> Files { get; set; }
         public FileList(Guid petId)
         {
-
             InitializeComponent();
 
             this.petId = petId;

@@ -18,13 +18,34 @@ namespace PetminderApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddPet : ContentPage
     {
-        public AddPet()
+        private PetReadModel _petModel;
+        private Page _returnPage;
+
+        public AddPet(PetReadModel PetModel, Page ReturnPage)
         {
             InitializeComponent();
 
             submitPet.Clicked += SubmitPet_Clicked;
-            uploadPet.Clicked += UploadPet_Clicked;
+            this._petModel = PetModel;
+            this._returnPage = ReturnPage;
 
+            if (_petModel != null)
+            {
+                PetName.Text = _petModel.Name;
+                Weight.Text = _petModel.Weight;
+                Type.Text = _petModel.Type;
+                Breed.Text = _petModel.Breed;
+                Age.Text = _petModel.Age.ToString();
+            }
+
+            if (_returnPage.GetType() == typeof(HomeScreen))
+            {
+                NavigationPage.SetHasNavigationBar(this, false);
+            }
+            else
+            {
+                NavigationPage.SetHasNavigationBar(this, true);
+            }
         }
 
         private async void SubmitPet_Clicked(object sender, EventArgs e)
@@ -44,47 +65,48 @@ namespace PetminderApp
             }
 
             pet.Age = _age;
-            var response = client.Post("api/pets", "", UserInfo.Token, JsonConvert.SerializeObject(pet));
 
-            if (response.StatusCode == System.Net.HttpStatusCode.Created)
+            //If update pet
+            if (_petModel != null)
             {
-                var another = await DisplayAlert("", "Would you like to add another pet", "Yes", "No");
-                if (another)
+                var response = client.Put("api/pets", _petModel.Id, UserInfo.Token, JsonConvert.SerializeObject(pet));
+
+                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                 {
-                    Navigation.InsertPageBefore(new AddPet(), this);
                     await Navigation.PopAsync();
                     return;
                 }
-                else
+
+                await DisplayAlert("Update Error", "", "Ok");
+            }
+            else
+            {
+                var response = client.Post("api/pets", "", UserInfo.Token, JsonConvert.SerializeObject(pet));
+
+                if (response.StatusCode == System.Net.HttpStatusCode.Created && _returnPage.GetType() == typeof(HomeScreen))
                 {
-                    Navigation.InsertPageBefore(new HomeScreen(), this);
-                    await Navigation.PopAsync();
+                    var another = await DisplayAlert("", "Would you like to add another pet", "Yes", "No");
+                    if (another)
+                    {
+                        Navigation.InsertPageBefore(new AddPet(null, _returnPage), this);
+                        await Navigation.PopAsync();
+                        return;
+                    }
+                    else
+                    {
+                        Navigation.InsertPageBefore(new HomeScreen(), this);
+                        await Navigation.PopAsync();
+                        return;
+                    }
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.Created)
+                {
+                    await Navigation.PopModalAsync();
                     return;
                 }
-            }
 
-            await DisplayAlert("Creation Error", "", "Ok");
-        }
-        private async void UploadPet_Clicked(object sender, EventArgs e)
-        {
-
-            try
-            {
-
-                FileData filedata = await CrossFilePicker.Current.PickFile();
-                // the data Array of the file will be found in filedata.DataArray 
-                // file name will be found in filedata.FileName;
-                // etc etc.
-
-            }
-            catch (Exception)
-            {
-            }
-
-        }
-        private async void AddAnotherPet_Tapped(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddPet());
+                await DisplayAlert("Creation Error", "", "Ok");
+            }         
         }
     }
 }

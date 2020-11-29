@@ -53,6 +53,18 @@ namespace Petminder_RestApi.Data
                 throw new ArgumentNullException(nameof(Pet));
             }
 
+            var files = _context.Files.Where((p) => p.PetId == Pet.Id).ToList();
+            Filedata filedata = null;
+
+            foreach (Files file in files)
+            {
+                filedata = _context.FileData.FirstOrDefault((p) => p.Id == file.DataId);
+                if (filedata != null)
+                {
+                    _context.FileData.Remove(filedata);
+                }
+            }
+
             _context.Pets.Remove(Pet);
         }
     }
