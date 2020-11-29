@@ -11,7 +11,7 @@ namespace PetminderApp.Views
         Stopwatch stopwatch;
         public Exercise()
         {
-            InitializeComponent();
+            InitializeComponent(); 
             stopwatch = new Stopwatch();
 
             lblStopwatch.Text = "00:00:00";

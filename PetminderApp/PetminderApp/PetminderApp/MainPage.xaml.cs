@@ -1,4 +1,4 @@
-﻿using PetminderApp.Api;
+﻿ using PetminderApp.Api;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,12 +20,13 @@ namespace PetminderApp
             if (UserInfo.LoggedIn)
             {
                 Navigation.PushAsync(new HomeScreen());
+                
             }
 
             signUp.Clicked += SignUp_Clicked;
             signIn.Clicked += SignIn_Clicked;
 
-           // NavigationPage.SetHasNavigationBar(this, false);
+            NavigationPage.SetHasNavigationBar(this, false);
 
         }
 
@@ -39,7 +40,7 @@ namespace PetminderApp
             await Navigation.PushAsync(new SignUp());
         }
 
-        
 
-        }
+
+    }
 }
