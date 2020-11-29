@@ -29,8 +29,6 @@ namespace PetminderApp
             // NavigationPage.SetHasNavigationBar(this, false);
             ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.FromHex("#ffffff");
             ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.FromHex("#0778B6");
-
-
         }
 
         private async void EditPet_Clicked(object sender, System.EventArgs e)
@@ -40,7 +38,7 @@ namespace PetminderApp
 
         private async void ReminderEvents_Clicked(object sender, System.EventArgs e)
         {
-            await Navigation.PushAsync(new FileList(new Guid("D1BAEBBD-2199-440B-9727-08D8942B76A7")));
+            await Navigation.PushAsync(new ReminderList());
         }
 
         private async void ExerciseFitBark_Clicked(object sender, System.EventArgs e)
