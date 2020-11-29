@@ -1,5 +1,4 @@
 ﻿using PetminderApp.Api;
-using Shiny.Notifications;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

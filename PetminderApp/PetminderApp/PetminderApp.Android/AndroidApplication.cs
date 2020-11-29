@@ -10,8 +10,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-using Shiny;
-
 namespace PetminderApp.Droid
 {
     [Application]
@@ -24,9 +22,6 @@ namespace PetminderApp.Droid
         public override void OnCreate()
         {
             base.OnCreate();
-            Shiny.AndroidShinyHost.Init(this, new Startup(), services => {
-
-            });
         }
     }
 

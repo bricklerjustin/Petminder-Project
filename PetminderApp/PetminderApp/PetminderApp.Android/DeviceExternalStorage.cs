@@ -23,8 +23,7 @@ namespace PetminderApp.Droid
         }
 
         public bool SaveFile(FileData file)
-        {
-            
+        {        
             throw new NotImplementedException();
         }
     }
