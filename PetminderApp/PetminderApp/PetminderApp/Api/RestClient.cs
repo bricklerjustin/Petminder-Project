@@ -154,7 +154,7 @@ namespace PetminderApp.Api
                     var response = client.SendAsync(requestMessage).Result;
                     return response;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return null;
                 }

@@ -22,8 +22,8 @@
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.RowSpan="2" Grid.Row="0" Grid.Column="0" Source="{Binding Image}"></Image>
-                                <Label Grid.Row ="1" Grid.Column="1" Text="{Binding ImageUrl}" ></Label>
+                              
+                                <Label Grid.Row ="1" Grid.Column="1" Text="{Binding Name}" ></Label>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

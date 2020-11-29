@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PetminderApp.Views.ReminderList">
     <ContentPage.ToolbarItems>
-        <ToolbarItem
-            
-            Text="Add   "
+        <ToolbarItem  
+            Text="Add"
             Order="Primary"
             Priority="0"
             Clicked="On_ReminderAdd"
@@ -13,20 +12,28 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout Spacing="0" Padding="15,0,15,0">
-            <ListView HasUnevenRows="False" x:Name="ReminderListview">
+        <StackLayout  Padding="10,10,10,10" Spacing="0">
+            <ListView HasUnevenRows="False" 
+                      x:Name="ReminderListview">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
-                                <MenuItem Text="Remove" Clicked="On_ReminderDelete" CommandParameter="{Binding .}"></MenuItem>
-                                <MenuItem Text="Edit" Clicked="On_ReminderEdit" CommandParameter="{Binding .}"></MenuItem>
+                                <MenuItem Text="Remove" 
+                                          Clicked="On_ReminderDelete" 
+                                          CommandParameter="{Binding .}">
+                                </MenuItem>
+                                <MenuItem Text="Edit" 
+                                          Clicked="On_ReminderEdit" 
+                                          CommandParameter="{Binding .}">
+                                </MenuItem>
                             </ViewCell.ContextActions>
                             
                             <ViewCell.View>
                                 <Grid Padding="10" RowSpacing="0">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto">
+                                        </RowDefinition>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>

@@ -23,8 +23,7 @@ namespace PetminderApp
             InitializeComponent();
 
             submitPet.Clicked += SubmitPet_Clicked;
-            uploadPet.Clicked += UploadPet_Clicked;
-
+           
         }
 
         private async void SubmitPet_Clicked(object sender, EventArgs e)
