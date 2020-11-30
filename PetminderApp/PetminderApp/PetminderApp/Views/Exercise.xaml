@@ -14,6 +14,11 @@
                    HorizontalOptions="CenterAndExpand" 
                    VerticalOptions="CenterAndExpand">
             </Label>
+            <Label x:Name="lblDistance"
+                   FontSize="50"
+                   HorizontalOptions="CenterAndExpand" 
+                   VerticalOptions="CenterAndExpand">
+            </Label>
 
 
 

@@ -2,6 +2,9 @@
 using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
+using System.Threading.Tasks;
+using Plugin.Geolocator;
 
 namespace PetminderApp.Views
 {
@@ -9,15 +12,18 @@ namespace PetminderApp.Views
     public partial class Exercise : ContentPage
     {
         Stopwatch stopwatch;
+        Boolean stopGeo = false;
+        double totalDistance = 0;
         public Exercise()
         {
-            InitializeComponent(); 
+            InitializeComponent();
             stopwatch = new Stopwatch();
 
             lblStopwatch.Text = "00:00:00";
+            lblDistance.Text = "0.00 miles walked";
         }
 
-        private void btnStart_Clicked(object sender, EventArgs e)
+        public void btnStart_Clicked(object sender, EventArgs e)
         {
             stopwatch.Start();
 
@@ -27,21 +33,44 @@ namespace PetminderApp.Views
                 return true;
             }
             );
-
-
+            
+            stopGeo = false;
+            RetrieveLocation();           
         }
 
-        private void btnStop_Clicked(object sender, EventArgs e)
+        public void btnStop_Clicked(object sender, EventArgs e)
         {
             stopwatch.Reset();
+            stopGeo = true;
+            totalDistance = 0;
+            lblDistance.Text = "0.00 miles walked";
         }
 
-        private void btnPause_Clicked(object sender, EventArgs e)
+        public void btnPause_Clicked(object sender, EventArgs e)
         {
             stopwatch.Stop();
+            stopGeo = true;
         }
 
-        
+        public async Task RetrieveLocation()
+        {
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 20;
+            //initialize point A
+            var positionA = await locator.GetPositionAsync();
+            do {
+                //wait 30 sec for point B
+                await Task.Delay(30000);
+                //get new position
+                var positionB = await locator.GetPositionAsync();
+                Xamarin.Essentials.Location FromLocA = new Xamarin.Essentials.Location(positionA.Longitude, positionA.Latitude);
+                Xamarin.Essentials.Location ToLocB = new Xamarin.Essentials.Location(positionB.Longitude, positionB.Latitude);
+                //running total of gps distances
+                totalDistance += LocationExtensions.CalculateDistance(FromLocA, ToLocB, DistanceUnits.Miles);
+                //set point A to point B to collect new distance
+                positionA = positionB;
+                lblDistance.Text = totalDistance.ToString("#.##") + " miles walked";
+            } while (stopGeo == false);            
+        }
     }
-
 }
