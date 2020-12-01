@@ -59,8 +59,9 @@ namespace PetminderApp.Views
             //initialize point A
             var positionA = await locator.GetPositionAsync();
             do {
-                //wait 30 sec for point B
-                await Task.Delay(30000);
+                if (stopGeo == false)
+                //wait 10 sec for point B
+                await Task.Delay(10000);
                 //get new position
                 var positionB = await locator.GetPositionAsync();
                 Xamarin.Essentials.Location FromLocA = new Xamarin.Essentials.Location(positionA.Longitude, positionA.Latitude);
@@ -69,7 +70,15 @@ namespace PetminderApp.Views
                 totalDistance += LocationExtensions.CalculateDistance(FromLocA, ToLocB, DistanceUnits.Miles);
                 //set point A to point B to collect new distance
                 positionA = positionB;
-                lblDistance.Text = totalDistance.ToString("#.##") + " miles walked";
+                if (totalDistance == 0)
+                {
+                    lblDistance.Text = "0.00 miles walked";
+                }
+                else
+                {
+                    lblDistance.Text = totalDistance.ToString("#.##") + " miles walked";
+                }
+                
             } while (stopGeo == false);            
         }
 
