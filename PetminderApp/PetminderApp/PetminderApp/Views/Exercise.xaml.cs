@@ -59,7 +59,6 @@ namespace PetminderApp.Views
             //initialize point A
             var positionA = await locator.GetPositionAsync();
             do {
-                if (stopGeo == false)
                 //wait 10 sec for point B
                 await Task.Delay(10000);
                 //get new position
