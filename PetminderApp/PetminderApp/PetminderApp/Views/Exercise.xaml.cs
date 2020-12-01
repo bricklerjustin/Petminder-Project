@@ -17,13 +17,13 @@ namespace PetminderApp.Views
         public Exercise()
         {
             InitializeComponent();
+            Task<PermissionStatus> task = CheckAndRequestLocationPermission();
             stopwatch = new Stopwatch();
-
             lblStopwatch.Text = "00:00:00";
             lblDistance.Text = "0.00 miles walked";
         }
 
-        public void btnStart_Clicked(object sender, EventArgs e)
+        public async void btnStart_Clicked(object sender, EventArgs e)
         {
             stopwatch.Start();
 
@@ -35,7 +35,7 @@ namespace PetminderApp.Views
             );
             
             stopGeo = false;
-            RetrieveLocation();           
+            await RetrieveLocation();           
         }
 
         public void btnStop_Clicked(object sender, EventArgs e)
@@ -71,6 +71,26 @@ namespace PetminderApp.Views
                 positionA = positionB;
                 lblDistance.Text = totalDistance.ToString("#.##") + " miles walked";
             } while (stopGeo == false);            
+        }
+
+        public async Task<PermissionStatus> CheckAndRequestLocationPermission()
+        {
+            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+
+            if (status == PermissionStatus.Granted)
+                return status;
+
+
+            if (status == PermissionStatus.Denied && DeviceInfo.Platform == DevicePlatform.iOS)
+            {
+                // Prompt the user to turn on in settings
+                // On iOS once a permission has been denied it may not be requested again from the application
+                return status;
+            }
+
+            status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+
+            return status;
         }
     }
 }
