@@ -5,6 +5,12 @@
              xmlns:local="clr-namespace:PetminderApp">
     <ContentPage.Content>
         <StackLayout Padding="25" Spacing="5">
+            <ActivityIndicator
+                x:Name="activityIndicator"
+                IsRunning="False"
+                Color="{StaticResource MainBlue}"
+                IsVisible="False">
+            </ActivityIndicator>
             <Label Text="Reminder Name"
                 VerticalOptions="Start" 
                 HorizontalOptions="StartAndExpand"

@@ -93,62 +93,67 @@ namespace PetminderApp.Views
                 reminderModel.Frequency = Frequency.SelectedItem.ToString();
             }
 
-            var body = JsonConvert.SerializeObject(reminderModel);
+            ActivityIndicatorToggle(true);
 
-            if (_update)
+            Device.BeginInvokeOnMainThread(async () =>
             {
-                response = client.Put("api/reminders", id, UserInfo.Token, body);
-            }
-            else
-            {
-                response = client.Post("api/reminders", "", UserInfo.Token, body);
-            }
+                var body = JsonConvert.SerializeObject(reminderModel);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.Created)
-            {
-                ReminderReadModel createdReminder = JsonConvert.DeserializeObject<ReminderReadModel>(response.Content.ReadAsStringAsync().Result);
-                if (reminderModel.Repeat == false)
+                if (_update)
                 {
-                    await PetminderApp.Reminders.Reminders.AddReminderToCalendar(createdReminder);
+                    response = client.Put("api/reminders", id, UserInfo.Token, body);
                 }
                 else
                 {
-                    await PetminderApp.Reminders.Reminders.AddRepeatingReminderToCalendar(createdReminder);
+                    response = client.Post("api/reminders", "", UserInfo.Token, body);
                 }
-                await Navigation.PopModalAsync();
-            }
-            else if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-            {
-                var readResponse = client.Get($"api/reminders/{id}", UserInfo.Token);
 
-                if (readResponse.IsSuccessStatusCode)
+                if (response.StatusCode == System.Net.HttpStatusCode.Created)
                 {
-                    var updatedReminder = JsonConvert.DeserializeObject<ReminderReadModel>(readResponse.Content.ReadAsStringAsync().Result);
-                    
-                    if (updatedReminder.Repeat == false)
+                    ReminderReadModel createdReminder = JsonConvert.DeserializeObject<ReminderReadModel>(response.Content.ReadAsStringAsync().Result);
+                    if (reminderModel.Repeat == false)
                     {
-                        PetminderApp.Reminders.Reminders.DeleteReminder(updatedReminder);
-                        await PetminderApp.Reminders.Reminders.AddReminderToCalendar(updatedReminder);
+                        await PetminderApp.Reminders.Reminders.AddReminderToCalendar(createdReminder);
                     }
                     else
                     {
-                        PetminderApp.Reminders.Reminders.DeleteReminder(updatedReminder);
-                        await PetminderApp.Reminders.Reminders.AddRepeatingReminderToCalendar(updatedReminder);
+                        await PetminderApp.Reminders.Reminders.AddRepeatingReminderToCalendar(createdReminder);
                     }
+                    await Navigation.PopModalAsync();
                 }
-                await Navigation.PopModalAsync();
-            }
-            else
-            {
-                if (_update)
+                else if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                 {
-                    await DisplayAlert("Update Error", "Please try again", "Ok");
+                    var readResponse = client.Get($"api/reminders/{id}", UserInfo.Token);
+
+                    if (readResponse.IsSuccessStatusCode)
+                    {
+                        var updatedReminder = JsonConvert.DeserializeObject<ReminderReadModel>(readResponse.Content.ReadAsStringAsync().Result);
+
+                        if (updatedReminder.Repeat == false)
+                        {
+                            await PetminderApp.Reminders.Reminders.DeleteReminder(updatedReminder);
+                            await PetminderApp.Reminders.Reminders.AddReminderToCalendar(updatedReminder);
+                        }
+                        else
+                        {
+                            await PetminderApp.Reminders.Reminders.DeleteReminder(updatedReminder);
+                            await PetminderApp.Reminders.Reminders.AddRepeatingReminderToCalendar(updatedReminder);
+                        }
+                    }
+                    await Navigation.PopModalAsync();
                 }
                 else
                 {
-                    await DisplayAlert("Creation Error", "Please try again", "Ok");
+                    if (_update)
+                    {
+                        await DisplayAlert("Update Error", "Please try again", "Ok");
+                    }
+                    else
+                    {
+                        await DisplayAlert("Creation Error", "Please try again", "Ok");
+                    }
                 }
-            }
+            });
         }
 
         private void SetFrequencyVisible()
@@ -170,6 +175,12 @@ namespace PetminderApp.Views
         {
             await DisplayAlert("Entry Issue", $"The field '{field}' cannot be empty", "Ok");
             return true;
+        }
+
+        private void ActivityIndicatorToggle(bool toggle)
+        {
+            activityIndicator.IsVisible = toggle;
+            activityIndicator.IsRunning = toggle;
         }
     }
 }
