@@ -27,7 +27,7 @@
                                    WidthRequest="250"
                                    HeightRequest="40"
                                    FontSize="18"
-                                   ReturnType="Search" />
+                                   ReturnType="Done" />
             </Frame>
             <!-- Password TextBox -->
             <Frame CornerRadius="8" 
@@ -45,7 +45,7 @@
                                        IsSpellCheckEnabled="false"
                                        IsTextPredictionEnabled="false"
                                        IsPassword="true"
-                                       ReturnType="Search" />
+                                       ReturnType="Done" />
             </Frame>
             <!-- Sign Up Button -->
             <ImageButton Source="{local:ImageResource

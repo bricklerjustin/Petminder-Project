@@ -31,7 +31,7 @@ namespace PetminderApp
 
             RestClient restClient = new RestClient();
 
-            UserInfo.Username = Email.Text.ToLower();
+            UserInfo.Username = (!string.IsNullOrEmpty(Email.Text)) ? Email.Text.ToLower() : "";
 
             var response = restClient.Login("api/authenticate", UserInfo.Username, Password.Text);
 
