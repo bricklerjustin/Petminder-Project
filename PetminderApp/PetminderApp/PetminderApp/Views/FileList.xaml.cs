@@ -161,13 +161,7 @@ namespace PetminderApp.Views
                 //ERROR
             }
 
-            foreach (FileReadModel obj in files)
-            {
-                if (obj.PetId != petId)
-                {
-                    files.Remove(obj);
-                }
-            }
+            files.RemoveAll(p => p.PetId != petId);
 
             return files;
         }
