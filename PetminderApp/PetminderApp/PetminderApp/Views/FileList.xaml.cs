@@ -283,6 +283,8 @@ namespace PetminderApp.Views
                     return "image/jpeg";
                 case ".png":
                     return "image/png";
+                case ".jpeg"
+                    return "image/jpeg";
                 default:
                     return "application/pdf";
             }
