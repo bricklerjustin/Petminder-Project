@@ -25,10 +25,12 @@ namespace PetminderApp.Reminders
             }
 
             var reminders = GetRemindersList();
-            CleanCalendarAndLocalStorage(reminders);
+            await CleanCalendarAndLocalStorage(reminders);
             CleanUpFinishedReminders(reminders);
-            AddMissingReminders(reminders);
+            await AddMissingReminders(reminders);
+
         }
+
 
         private static List<ReminderReadModel> GetRemindersList()
         {
@@ -53,7 +55,7 @@ namespace PetminderApp.Reminders
         }
 
         //This code is going to be insane pls no
-        public static async void AddMissingReminders(List<ReminderReadModel> reminders)
+        public static async Task<bool> AddMissingReminders(List<ReminderReadModel> reminders)
         {
             var calendar = await CheckCalendarExistanceAndCreation("Petminder", "Petminder");
 
@@ -77,6 +79,8 @@ namespace PetminderApp.Reminders
                     }
                 }
             }
+
+            return true;
         }
 
         public static async Task<bool> AddRepeatingReminderToCalendar(ReminderReadModel reminderModel)
@@ -214,7 +218,7 @@ namespace PetminderApp.Reminders
         private static async Task<bool> CheckPermissions()
         {
             var readPermissions = await Xamarin.Essentials.Permissions.RequestAsync<Permissions.CalendarRead>();
-            var writePermissions = await Xamarin.Essentials.Permissions.RequestAsync<Permissions.CalendarWrite>();
+            var writePermissions = await Xamarin.Essentials.Permissions.RequestAsync<Permissions.CalendarWrite>(); 
 
             if (readPermissions == PermissionStatus.Granted && writePermissions == PermissionStatus.Granted)
             {
@@ -255,7 +259,7 @@ namespace PetminderApp.Reminders
         }
 
         //General Delete Reminder Event
-        public static async void DeleteReminder(ReminderReadModel reminderModel)
+        public static async Task<bool> DeleteReminder(ReminderReadModel reminderModel)
         {
             CalendarEvent calendarEvent;
             var calendar = await CheckCalendarExistanceAndCreation("Petminder", "Petminder");
@@ -278,19 +282,27 @@ namespace PetminderApp.Reminders
                     foreach (string externalId in reminderToDelete.calendarIds)
                     {
                         calendarEvent = await CrossCalendars.Current.GetEventByIdAsync(externalId);
-                        await CrossCalendars.Current.DeleteEventAsync(calendar, calendarEvent);
+                        if (calendarEvent != null)
+                        {
+                            await CrossCalendars.Current.DeleteEventAsync(calendar, calendarEvent);
+                        }
                     }
                 }
             }
+
+            return true;
         }
 
         //This cleans up any events that get missed by other delete processes.
         //Needed in case other delete processes are intreruppted and dont restard. ie app is closed
-        public static async void CleanCalendarAndLocalStorage(List<ReminderReadModel> reminders)
+        public static async Task<bool> CleanCalendarAndLocalStorage(List<ReminderReadModel> reminders)
         {
             if (reminders != null)
             {
+                //Get Calendar and all events on it
                 var calendar = await CheckCalendarExistanceAndCreation("Petminder", "Petminder");
+                var calendarEvents = await CrossCalendars.Current.GetEventsAsync(calendar, DateTime.MinValue, DateTime.MaxValue);
+                var listCalendarEvents = calendarEvents.ToList<CalendarEvent>();
 
                 AppDataReadWrite dataWriter = new AppDataReadWrite("Reminders.json");
                 var strLocalReminders = dataWriter.ReadStringFromFile();
@@ -302,42 +314,63 @@ namespace PetminderApp.Reminders
                 {
                     foreach (LocalReminderModel localReminder in localReminders)
                     {
-                        var reminder = reminders.FirstOrDefault(p => p.Id == localReminder.databaseId);
+                        var exists = await CrossCalendars.Current.GetEventByIdAsync(localReminder.calendarIds.First());
 
-                        if (reminder == null)
+                        if (exists == null)
                         {
                             localReminder.toBeRemoved = true;
+                        }
+                        else
+                        {
+                            var reminder = reminders.FirstOrDefault(p => p.Id == localReminder.databaseId);
+
+                            if (reminder == null)
+                            {
+                                localReminder.toBeRemoved = true;
+                            }
                         }
                     }
 
                     //Remove bad data and write bad to local storage
                     localReminders.RemoveAll(p => p.toBeRemoved == true);
                     dataWriter.WriteStringToFile(JsonConvert.SerializeObject(localReminders));
-                }
 
-                var calendarEvents = await CrossCalendars.Current.GetEventsAsync(calendar, DateTime.MinValue, DateTime.MaxValue);
-                var listCalendarEvents = calendarEvents.ToList<CalendarEvent>();
-                List<string> validExternalIds = new List<string>();
-                
-                //Combine all valid calendar events into one list
-                foreach (var localreminder in localReminders)
-                {
-                    validExternalIds.InsertRange(0, localreminder.calendarIds);
-                }
 
-                //Loop through list
-                foreach (var validId in validExternalIds)
-                {
-                    //Remove if valid
-                    listCalendarEvents.RemoveAll(p => p.ExternalID == validId);
-                }
 
-                //Clean up calendar
-                foreach (var listCalendarEvent in listCalendarEvents)
+                    List<string> validExternalIds = new List<string>();
+
+                    //Combine all valid calendar events into one list
+                    foreach (var localreminder in localReminders)
+                    {
+                        validExternalIds.InsertRange(0, localreminder.calendarIds);
+                    }
+
+                    //Loop through list
+                    foreach (var validId in validExternalIds)
+                    {
+                        //Remove if valid
+                        listCalendarEvents.RemoveAll(p => p.ExternalID == validId);
+                    }
+
+                    //Clean up calendar
+                    foreach (var listCalendarEvent in listCalendarEvents)
+                    {
+                        await CrossCalendars.Current.DeleteEventAsync(calendar, listCalendarEvent);
+                    }
+                }
+                else
                 {
-                    await CrossCalendars.Current.DeleteEventAsync(calendar, listCalendarEvent);
+                    if (listCalendarEvents.Count > 0)
+                    {
+                        foreach (CalendarEvent calendarEvent in listCalendarEvents)
+                        {
+                            await CrossCalendars.Current.DeleteEventAsync(calendar, calendarEvent);
+                        }
+                    }
                 }
             }
+
+            return true;
         }
     }
 
