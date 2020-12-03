@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using PetminderApp.Api;
 using PetminderApp.Api.Api_Models;
+using PetminderApp.Files;
 using PetminderApp.Models;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
@@ -51,8 +52,6 @@ namespace PetminderApp.Views
 
                     ActivityIndicatorToggle(false);
                 });
-
-
             }      
         }
         public void On_FileDelete(object sender, EventArgs e)
@@ -87,7 +86,11 @@ namespace PetminderApp.Views
 
             Device.BeginInvokeOnMainThread(async () =>
             {
-                await RenameFile(fileModel.Id);
+                var response = await RenameFile(fileModel.Id);
+                if (!string.IsNullOrEmpty(response))
+                {
+                    await DisplayAlert("Error", response, "Ok");
+                }
                 RunRefreshWork();
                 ActivityIndicatorToggle(false);
             });
@@ -118,8 +121,13 @@ namespace PetminderApp.Views
 
             ActivityIndicatorToggle(false);
             var newName = await DisplayPromptAsync("Rename", "Enter new name");
-            ActivityIndicatorToggle(true);
 
+            if (newName.IndexOf('.') != -1)
+            {
+                return "Please do not include file type in name";
+            }
+
+            ActivityIndicatorToggle(true);
             if (!string.IsNullOrEmpty(newName))
             {
                 fileUpdateModel.Name = newName;
@@ -177,14 +185,16 @@ namespace PetminderApp.Views
                 return "File to large. File must be under 50MB";
             }
 
-            var fileTypeIndex = fileName.LastIndexOf('.');
-            if (fileTypeIndex != -1)
+            string name = "";
+            string type = "";
+
+            var valid = SeperateTypeAndName(fileName, ref name, ref type);
+            if (valid)
             {
-                var fileType = fileName.Substring(fileTypeIndex + 1);
-                fileCreateModel.Type = fileType;
+                fileCreateModel.Type = type;
                 fileCreateModel.AccountId = UserInfo.AccountId;
                 fileCreateModel.Data = Convert.ToBase64String(dataToUpload);
-                fileCreateModel.Name = fileName;
+                fileCreateModel.Name = name;
                 fileCreateModel.PetId = petId;
 
                 var response = await client.PostAsync("api/files", "", UserInfo.Token, JsonConvert.SerializeObject(fileCreateModel));
@@ -199,7 +209,22 @@ namespace PetminderApp.Views
                 }
             }
 
-            return "File name doesn't contain type";
+            return "File does not contain type or file name is invlaid";
+        }
+
+        private bool SeperateTypeAndName(string Input, ref string Name, ref string Type)
+        {
+            var typeIndex = Input.LastIndexOf('.');
+            var typeIndexFirst = Input.IndexOf('.');
+
+            if (typeIndex != -1 && typeIndex == typeIndexFirst)
+            {
+                Type = Input.Substring(typeIndex);
+                Name = Input.Remove(typeIndex);
+                return true;
+            }
+
+            return false;
         }
 
         private void ActivityIndicatorToggle(bool toggle)
@@ -217,14 +242,19 @@ namespace PetminderApp.Views
             return data.Content.ReadAsStringAsync().Result;
         }
 
-        private void FileSaveProcess(FileReadModel fileModel)
+        private async void FileSaveProcess(FileReadModel fileModel)
         {    
             var data = FileDataDownload(fileModel.Id);
             var bytesData = Convert.FromBase64String(data);
 
             if (Device.RuntimePlatform == Device.Android)
             {
-                File.WriteAllBytes(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), fileModel.Name), bytesData);
+                IDeviceExternalStorage service = DependencyService.Get<IDeviceExternalStorage>();
+                var granted = await service.CheckStoragePermission();
+                if (granted)
+                {
+                    service.SaveFile(fileModel.Name, bytesData, fileModel.Type, GetMimeType(fileModel.Type));
+                }
             }
         }
 
@@ -241,7 +271,6 @@ namespace PetminderApp.Views
                 {
                     FileSaveProcess(fileModel);
                     ActivityIndicatorToggle(false);
-                    await DisplayAlert("Complete", $"Download of {fileModel.Name} complete", "Ok");
                 });
             }
             catch
@@ -250,6 +279,19 @@ namespace PetminderApp.Views
             }
 
             ActivityIndicatorToggle(false);
+        }
+
+        private string GetMimeType(string Type)
+        {
+            switch(Type)
+            {
+                case ".jpg":
+                    return "image/jpeg";
+                case ".png":
+                    return "image/png";
+                default:
+                    return "application/pdf";
+            }
         }
 
     }

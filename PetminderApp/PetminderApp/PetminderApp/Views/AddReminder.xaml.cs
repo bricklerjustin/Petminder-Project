@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using PetminderApp.Reminders;
 
 namespace PetminderApp.Views
 {
@@ -32,6 +33,7 @@ namespace PetminderApp.Views
             TypePicker.Items.Add("Appointment");
             TypePicker.Items.Add("Medicine");
             TypePicker.Items.Add("Exercise");
+            TypePicker.Items.Add("Other");
             TypePicker.SelectedIndex = 0;
 
             Frequency.Items.Add("Daily");
@@ -49,6 +51,8 @@ namespace PetminderApp.Views
                 Message.Text = reminderModel.Message;
                 Repeat.IsToggled = reminderModel.Repeat;
                 TypePicker.SelectedItem = reminderModel.Type;
+                StartDate.Date = reminderModel.StartDate;
+                Time.Time = reminderModel.TimeLocal.TimeOfDay;
                 id = reminderModel.Id;
             }
         }
@@ -69,16 +73,19 @@ namespace PetminderApp.Views
             reminderModel.Repeat = Repeat.IsToggled;
             reminderModel.AccountId = UserInfo.AccountId;
             reminderModel.Complete = false;
-            reminderModel.Type = TypePicker.SelectedItem.ToString(); //Since the object is just a string this is ok
-
+            reminderModel.Type = TypePicker.SelectedItem.ToString(); //Since this object is just a string this is ok
+            reminderModel.StartDate = StartDate.Date;
+            reminderModel.Time = DateTime.Today.ToLocalTime() + Time.Time; //Converting to local to add time offset
 
             if (string.IsNullOrEmpty(reminderModel.Name))
             {
                 await ValidationAlert(nameof(Name));
+                return;
             }
             if (string.IsNullOrEmpty(reminderModel.Message))
             {
                 await ValidationAlert(nameof(Message));
+                return;
             }
 
             if (reminderModel.Repeat)
@@ -97,14 +104,38 @@ namespace PetminderApp.Views
                 response = client.Post("api/reminders", "", UserInfo.Token, body);
             }
 
-            if (response.StatusCode == System.Net.HttpStatusCode.Created || response.StatusCode == System.Net.HttpStatusCode.NoContent)
+            if (response.StatusCode == System.Net.HttpStatusCode.Created)
             {
-                //Save Locally Here
-                AppDataReadWrite file = new AppDataReadWrite("Reminders.txt");
+                ReminderReadModel createdReminder = JsonConvert.DeserializeObject<ReminderReadModel>(response.Content.ReadAsStringAsync().Result);
+                if (reminderModel.Repeat == false)
+                {
+                    await PetminderApp.Reminders.Reminders.AddReminderToCalendar(createdReminder);
+                }
+                else
+                {
+                    await PetminderApp.Reminders.Reminders.AddRepeatingReminderToCalendar(createdReminder);
+                }
+                await Navigation.PopModalAsync();
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+            {
+                var readResponse = client.Get($"api/reminders/{id}", UserInfo.Token);
 
-                var reminderList = client.Get("api/reminders", UserInfo.Token);
-                file.WriteStringToFile(reminderList.Content.ReadAsStringAsync().Result);
-
+                if (readResponse.IsSuccessStatusCode)
+                {
+                    var updatedReminder = JsonConvert.DeserializeObject<ReminderReadModel>(readResponse.Content.ReadAsStringAsync().Result);
+                    
+                    if (updatedReminder.Repeat == false)
+                    {
+                        PetminderApp.Reminders.Reminders.DeleteReminder(updatedReminder);
+                        await PetminderApp.Reminders.Reminders.AddReminderToCalendar(updatedReminder);
+                    }
+                    else
+                    {
+                        PetminderApp.Reminders.Reminders.DeleteReminder(updatedReminder);
+                        await PetminderApp.Reminders.Reminders.AddRepeatingReminderToCalendar(updatedReminder);
+                    }
+                }
                 await Navigation.PopModalAsync();
             }
             else
@@ -118,8 +149,8 @@ namespace PetminderApp.Views
                     await DisplayAlert("Creation Error", "Please try again", "Ok");
                 }
             }
-
         }
+
         private void SetFrequencyVisible()
         {
             if (Repeat.IsToggled == true)

@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PetminderApp.Api;
 using PetminderApp.Api.Api_Models;
-using PetminderApp.Files;
-using Plugin.LocalNotifications;
 using System;
 using System.Collections.Generic;
 
@@ -19,12 +17,12 @@ namespace PetminderApp.Views
         public ReminderList()
         {
             InitializeComponent();
-
-            AppDataReadWrite file = new AppDataReadWrite(DefaultFileNames.ReminderFileName);
             
             RefreshListView();
 
             BindingContext = this;
+
+            PetminderApp.Reminders.Reminders.CalendarSyncProcess();
         }
 
         public void On_ReminderDelete(object sender, EventArgs e)
@@ -37,6 +35,7 @@ namespace PetminderApp.Views
             try
             {
                 client.Delete("api/reminders", UserInfo.Token, reminderModel.Id);
+                PetminderApp.Reminders.Reminders.DeleteReminder(reminderModel);
 
                 //Refresh List
                 RefreshListView();

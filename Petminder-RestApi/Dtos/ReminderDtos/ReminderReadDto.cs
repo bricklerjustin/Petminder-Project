@@ -12,5 +12,7 @@ namespace Petminder_RestApi.Dtos
         public Guid AccountId { get; set; }
         public string Frequency {get; set;}
         public string Type {get; set;}
+        public DateTime? StartDate { get; set; }
+        public DateTime? Time { get; set; }
     }
 }

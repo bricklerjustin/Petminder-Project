@@ -108,7 +108,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Notifications\" />
-    <Folder Include="Resources\drawable\" />
     <Folder Include="SuaveControls\MaterialForms\Android\" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +115,9 @@
       <Project>{5CDA5BEB-6A41-444D-8781-1370DFA1F27D}</Project>
       <Name>PetminderApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

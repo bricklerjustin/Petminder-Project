@@ -16,5 +16,6 @@ namespace PetminderApp.Api.Api_Models
         public string Type { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime Time { get; set; }
+        public DateTime TimeLocal { get => Time.ToLocalTime();}
     }
 }

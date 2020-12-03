@@ -26,8 +26,14 @@ namespace Petminder_RestApi.Models
         [Column("account_id")]
         public Guid AccountId { get; set; }
         [Column("frequency")]
+        [StringLength(250)]
         public string Frequency { get; set; }
         [Column("type")]
+        [StringLength(250)]
         public string Type { get; set; }
+        [Column("start_date", TypeName = "datetime")]
+        public DateTime? StartDate { get; set; }
+        [Column("time", TypeName = "datetime")]
+        public DateTime? Time { get; set; }
     }
 }

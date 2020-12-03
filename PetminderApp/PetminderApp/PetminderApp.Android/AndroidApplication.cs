@@ -12,18 +12,5 @@ using Android.Widget;
 
 namespace PetminderApp.Droid
 {
-    [Application]
-    public class AndroidApplication : Application
-    {
-        public AndroidApplication(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer)
-        {
-        }
-
-        public override void OnCreate()
-        {
-            base.OnCreate();
-        }
-    }
-
 
 }

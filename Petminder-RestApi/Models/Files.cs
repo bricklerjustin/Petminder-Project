@@ -23,7 +23,6 @@ namespace Petminder_RestApi.Models
         [Column("name")]
         [StringLength(500)]
         public string Name { get; set; }
-        [Required]
         [Column("data_id")]
         public Guid DataId { get; set; }
 
