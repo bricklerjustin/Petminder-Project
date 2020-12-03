@@ -13,8 +13,22 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout  Padding="10,10,10,10" Spacing="0">
+            <ActivityIndicator
+                x:Name="activityIndicator"
+                IsRunning="False"
+                Color="{StaticResource MainBlue}"
+                IsVisible="False">
+            </ActivityIndicator>
             <ListView HasUnevenRows="False" 
-                      x:Name="ReminderListview">
+                      x:Name="ReminderListview"
+                      IsGroupingEnabled="True"
+                      GroupDisplayBinding="{Binding LongName}">
+                <!--<ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Type}">
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>-->
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -28,9 +42,10 @@
                                           CommandParameter="{Binding .}">
                                 </MenuItem>
                             </ViewCell.ContextActions>
-                            
+
                             <ViewCell.View>
-                                <Grid Padding="10" RowSpacing="0">
+                                <Label Text="{Binding Name}"></Label>
+                                <!--<Grid Padding="10" RowSpacing="0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto">
                                         </RowDefinition>
@@ -41,7 +56,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0" Text="{Binding Name}"></Label>
                                     <Label Grid.Column="1" Text="{Binding Message}"></Label>
-                                </Grid>
+                                </Grid>-->
                             </ViewCell.View>
                         </ViewCell>
                     </DataTemplate>

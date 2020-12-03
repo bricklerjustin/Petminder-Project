@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
 using PetminderApp.Api;
 using PetminderApp.Api.Api_Models;
+using PetminderApp.Models.ListViewGroups;
 using System;
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,15 +16,17 @@ namespace PetminderApp.Views
     {
         private AddReminder _AddReminderModal;
         public IList<ReminderReadModel> Reminders { get; set; }
+        private ObservableCollection<ReminderGrouped> grouped { get; set; }
         public ReminderList()
         {
             InitializeComponent();
-            
+
+            PetminderApp.Reminders.Reminders.CalendarSyncProcess();
+
             RefreshListView();
 
             BindingContext = this;
 
-            PetminderApp.Reminders.Reminders.CalendarSyncProcess();
         }
 
         public void On_ReminderDelete(object sender, EventArgs e)
@@ -83,9 +87,24 @@ namespace PetminderApp.Views
             var reminderList = GetReminderList();
             if (reminderList != null)
             {
+                grouped = new ObservableCollection<ReminderGrouped>();
+                ReminderGrouped group = new ReminderGrouped();
+
+                foreach (string type in reminderList.Select(x => x.Type).Distinct())
+                {
+                    group = new ReminderGrouped() { LongName = type, ShortName = type };
+
+                    foreach (ReminderReadModel reminder in reminderList.Where(p => p.Type == type))
+                    {
+                        group.Add(reminder);
+                    }
+
+                    grouped.Add(group);
+                }
+
                 Reminders = reminderList;
                 ReminderListview.ItemsSource = null;
-                ReminderListview.ItemsSource = Reminders;
+                ReminderListview.ItemsSource = grouped;
             }
         }
 
@@ -103,6 +122,26 @@ namespace PetminderApp.Views
             {
                 RefreshListView();
             }
+        }
+
+        private void ActivityIndicatorToggle(bool toggle)
+        {
+            activityIndicator.IsVisible = toggle;
+            activityIndicator.IsRunning = toggle;
+        }
+
+        public class GroupedReminderList
+        {
+            public string Title { get; set; }
+            public string ShortName { get; set; } //will be used for jump lists
+            public string Subtitle { get; set; }
+            private GroupedReminderList(string title, string shortName)
+            {
+                Title = title;
+                ShortName = shortName;
+            }
+
+            public static IList<GroupedReminderList> All { private set; get; }
         }
     }
 }
