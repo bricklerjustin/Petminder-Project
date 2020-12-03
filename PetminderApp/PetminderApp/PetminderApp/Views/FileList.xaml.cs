@@ -1,5 +1,4 @@
-﻿
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PetminderApp.Api;
 using PetminderApp.Api.Api_Models;
 using PetminderApp.Files;
@@ -283,7 +282,7 @@ namespace PetminderApp.Views
                     return "image/jpeg";
                 case ".png":
                     return "image/png";
-                case ".jpeg"
+                case ".jpeg":
                     return "image/jpeg";
                 default:
                     return "application/pdf";
