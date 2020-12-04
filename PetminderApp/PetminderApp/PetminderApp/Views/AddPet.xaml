@@ -14,7 +14,7 @@
             <Frame CornerRadius="8" 
                        BorderColor="#CBEAF7"
                        Padding="0,0,0,0"
-                       Margin="20,50,20,9">
+                       Margin="20,90,20,9">
                 <local:CustomEntry PlaceholderColor="#B6B6B6"
                                        x:Name="PetName"
                                        Placeholder="Pet Name"
@@ -28,7 +28,7 @@
             <Frame CornerRadius="8" 
                        BorderColor="#CBEAF7"
                        Padding="0,0,0,0"
-                       Margin="20,3,20,9">
+                       Margin="20,6,20,9">
                 <local:CustomEntry PlaceholderColor="#B6B6B6"
                                        x:Name="Weight"
                                        Placeholder="Weight"
@@ -42,7 +42,7 @@
             <Frame CornerRadius="8" 
                        BorderColor="#CBEAF7"
                        Padding="0,0,0,0"
-                       Margin="20,3,20,9">
+                       Margin="20,6,20,9">
                 <local:CustomEntry PlaceholderColor="#B6B6B6"
                                        x:Name="Gender"
                                        Placeholder="Gender"
@@ -56,7 +56,7 @@
             <Frame CornerRadius="8" 
                        BorderColor="#CBEAF7"
                        Padding="0,0,0,0"
-                       Margin="20,3,20,9">
+                       Margin="20,6,20,9">
                 <local:CustomEntry PlaceholderColor="#B6B6B6"
                                        x:Name="Age"
                                        Placeholder="Age"
@@ -70,7 +70,7 @@
             <Frame CornerRadius="8" 
                        BorderColor="#CBEAF7" 
                        Padding="0,0,0,0"
-                       Margin="20,3,20,9">
+                       Margin="20,6,20,9">
                 <local:CustomEntry PlaceholderColor="#B6B6B6"
                                        x:Name="Type"
                                        Placeholder="Species"
@@ -84,7 +84,7 @@
             <Frame CornerRadius="8" 
                        BorderColor="#CBEAF7" 
                        Padding="0,0,0,0"
-                       Margin="20,3,20,9">
+                       Margin="20,6,20,30">
                 <local:CustomEntry PlaceholderColor="#B6B6B6"
                                        x:Name="Breed"
                                        Placeholder="Breed"
@@ -94,6 +94,9 @@
                                        FontSize="18"
                                        ReturnType="Search" />
             </Frame>
+            <!-- Upload Pet Photo 
+            removed we may add later-->
+
             <!-- Submit Button -->
             <ImageButton Source="{local:ImageResource
                 PetminderApp.Images.Submit.png}" 
@@ -118,22 +121,6 @@
                     </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
             </ImageButton>
-
-            <!-- Tap the Submit button, popup window (model) Would you like to add another pet/ Yes then 
-                brings you back to this form cleared.  If no then move to the home form. 
-                <Label Text="Add Another Pet"                           
-                       HorizontalTextAlignment="Center"
-                       Margin="5,20,5,5"
-                       FontSize="16"
-                       TextColor="#ff634d"
-                       x:Name="addPet">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="AddAnotherPet_Tapped">
-                        </TapGestureRecognizer>
-                    </Label.GestureRecognizers>
-                </Label>  -->
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

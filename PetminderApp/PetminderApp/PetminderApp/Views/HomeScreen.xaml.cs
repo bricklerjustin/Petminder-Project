@@ -27,8 +27,7 @@ namespace PetminderApp
 
 
             // NavigationPage.SetHasNavigationBar(this, false);
-            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.FromHex("#ffffff");
-            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.FromHex("#0778B6");
+
         }
 
         private async void EditPet_Clicked(object sender, System.EventArgs e)

@@ -28,7 +28,8 @@ namespace PetminderApp
             signIn.Clicked += SignIn_Clicked;
 
             NavigationPage.SetHasNavigationBar(this, false);
-
+           // ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.FromHex("#2196f3");
+           // ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.FromHex("#ffffff");
         }
 
         private async void SignIn_Clicked(object sender, EventArgs e)

@@ -57,14 +57,23 @@ namespace PetminderApp
             pet.Type = Type.Text;
             pet.Breed = Breed.Text;
             pet.AccountId = UserInfo.AccountId;
-            
+
+
+
+            // Age
             if (!int.TryParse(Age.Text, out int _age))
             {
                 await DisplayAlert("Input Error", "Age must be a whole number", "Ok");
                 return;
             }
-
             pet.Age = _age;
+
+            // Species
+
+
+            // Breed
+
+
 
             //If update pet
             if (_petModel != null)
