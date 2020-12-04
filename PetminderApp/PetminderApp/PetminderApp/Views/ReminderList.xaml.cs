@@ -23,13 +23,11 @@ namespace PetminderApp.Views
 
             PetminderApp.Reminders.Reminders.CalendarSyncProcess();
 
-            RefreshListView();
-
             BindingContext = this;
 
         }
 
-        public void On_ReminderDelete(object sender, EventArgs e)
+        public async void On_ReminderDelete(object sender, EventArgs e)
         {
             RestClient client = new RestClient();
             MenuItem menuItem = sender as MenuItem;
@@ -39,7 +37,7 @@ namespace PetminderApp.Views
             try
             {
                 client.Delete("api/reminders", UserInfo.Token, reminderModel.Id);
-                PetminderApp.Reminders.Reminders.DeleteReminder(reminderModel);
+                await PetminderApp.Reminders.Reminders.DeleteReminder(reminderModel);
 
                 //Refresh List
                 RefreshListView();
@@ -142,6 +140,12 @@ namespace PetminderApp.Views
             }
 
             public static IList<GroupedReminderList> All { private set; get; }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            RefreshListView();
         }
     }
 }

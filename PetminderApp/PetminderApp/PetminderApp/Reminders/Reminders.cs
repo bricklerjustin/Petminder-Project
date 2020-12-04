@@ -66,16 +66,19 @@ namespace PetminderApp.Reminders
 
             foreach (var reminder in reminders)
             {
-                var exists = localReminders.FirstOrDefault(p => p.databaseId == reminder.Id);
-                if (exists == null)
+                if (localReminders != null)
                 {
-                    if (reminder.Repeat)
+                    var exists = localReminders.FirstOrDefault(p => p.databaseId == reminder.Id);
+                    if (exists == null)
                     {
-                        await AddRepeatingReminderToCalendar(reminder);
-                    }
-                    else
-                    {
-                        await AddReminderToCalendar(reminder);
+                        if (reminder.Repeat)
+                        {
+                            await AddRepeatingReminderToCalendar(reminder);
+                        }
+                        else
+                        {
+                            await AddReminderToCalendar(reminder);
+                        }
                     }
                 }
             }
