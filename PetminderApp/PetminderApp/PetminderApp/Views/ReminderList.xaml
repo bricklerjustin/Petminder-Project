@@ -4,7 +4,7 @@
              x:Class="PetminderApp.Views.ReminderList">
     <ContentPage.ToolbarItems>
         <ToolbarItem  
-            Text="Add"
+            Text="Add/Update"
             Order="Primary"
             Priority="0"
             Clicked="On_ReminderAdd"
