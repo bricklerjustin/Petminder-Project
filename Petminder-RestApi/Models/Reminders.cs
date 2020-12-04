@@ -35,5 +35,7 @@ namespace Petminder_RestApi.Models
         public DateTime? StartDate { get; set; }
         [Column("time", TypeName = "datetime")]
         public DateTime? Time { get; set; }
+        [Column("end_date", TypeName = "datetime")]
+        public DateTime? EndDate { get; set; }
     }
 }

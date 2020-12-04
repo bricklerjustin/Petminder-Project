@@ -52,6 +52,7 @@ namespace Petminder_RestApi
             services.AddScoped<IFileRepo, SqlFileRepo>();
             services.AddScoped<IFileDataRepo, SqlFileDataRepo>();
             services.AddScoped<IReminderRepo, SqlReminderRepo>();
+            services.AddScoped<IExerciseRepo, SqlExerciseRepo>();
 
             services.AddSwaggerGen(c =>
             {           
