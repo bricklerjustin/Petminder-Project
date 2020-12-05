@@ -42,7 +42,7 @@ namespace PetminderApp
 
         private async void ExerciseFitBark_Clicked(object sender, System.EventArgs e)
         {
-            await Navigation.PushAsync(new Exercise());
+            await Navigation.PushAsync(new ExerciseMain());
         }
 
         private async void SearchProviders_Clicked(object sender, System.EventArgs e)

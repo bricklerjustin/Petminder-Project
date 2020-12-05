@@ -11,5 +11,7 @@ namespace Petminder_RestApi.Dtos
         public double? Distance { get; set; }
         public TimeSpan? Time { get; set; }
         public DateTime? EntryDate { get; set; }
+        public string Name {get; set;}
+        public string Um { get; set; }
     }
 }

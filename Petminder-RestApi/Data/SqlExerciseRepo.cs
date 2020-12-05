@@ -16,12 +16,36 @@ namespace Petminder_RestApi.Data
 
         public IEnumerable<Exercises> GetAllPetExercises(Guid PetId, Guid AccountId)
         {
-            return _context.Exercises.Where(p => p.PetId == PetId && p.AccountId == AccountId);
+            return _context.Exercises.Join(_context.Pets,
+            e => e.PetId,
+            p => p.Id,
+            (e, p) => new Exercises
+            {Id = e.Id,
+            PetId = e.PetId,
+            AccountId = e.AccountId,
+            Distance = e.Distance,
+            Time = e.Time,
+            EntryDate = e.EntryDate,
+            Um = e.Um,
+            Name = p.Name}
+            ).Where(p => p.PetId == PetId && p.AccountId == AccountId);
         }
 
         public IEnumerable<Exercises> GetAllExercises(Guid AccountId)
         {
-            return _context.Exercises.Where(p => p.AccountId == AccountId);
+            return _context.Exercises.Join(_context.Pets,
+            e => e.PetId,
+            p => p.Id,
+            (e, p) => new Exercises
+            {Id = e.Id,
+            PetId = e.PetId,
+            AccountId = e.AccountId,
+            Distance = e.Distance,
+            Time = e.Time,
+            EntryDate = e.EntryDate,
+            Um = e.Um,
+            Name = p.Name}
+            ).Where(p => p.AccountId == AccountId);
         }
 
         public Exercises GetExerciseById(Guid id, Guid AccountId)

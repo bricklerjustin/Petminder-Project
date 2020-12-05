@@ -10,6 +10,7 @@ namespace Petminder_RestApi.Models
     {
         public Pets()
         {
+            Exercises = new HashSet<Exercises>();
             Files = new HashSet<Files>();
         }
 
@@ -37,6 +38,8 @@ namespace Petminder_RestApi.Models
         [ForeignKey(nameof(AccountId))]
         [InverseProperty(nameof(Accounts.Pets))]
         public virtual Accounts Account { get; set; }
+        [InverseProperty("Pet")]
+        public virtual ICollection<Exercises> Exercises { get; set; }
         [InverseProperty("Pet")]
         public virtual ICollection<Files> Files { get; set; }
     }

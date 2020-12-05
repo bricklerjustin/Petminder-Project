@@ -6,6 +6,7 @@ using Petminder_RestApi.Models;
 using Petminder_RestApi.Dtos;
 using System;
 using Microsoft.AspNetCore.JsonPatch;
+using System.Linq;
 
 namespace Petminder_RestApi.Controllers
 {
@@ -17,8 +18,9 @@ namespace Petminder_RestApi.Controllers
         private readonly IExerciseRepo _repository;
         private readonly IMapper _mapper;
         private readonly IAuthenticateRepo _validate;
+        private readonly IPetRepo _petRepo;
 
-        public ExerciseController(IExerciseRepo repository, IMapper mapper, IAuthenticateRepo validate)
+        public ExerciseController(IExerciseRepo repository, IMapper mapper, IAuthenticateRepo validate, IPetRepo petRepo)
         {
             _repository = repository;
             _mapper = mapper;
@@ -64,13 +66,9 @@ namespace Petminder_RestApi.Controllers
                 return Unauthorized();
             }
 
-            var Exercise = _repository.GetAllExercises(accountModel.Id);
-            if (Exercise != null)
-            {
-                return Ok(_mapper.Map<ExerciseReadDto>(Exercise));
-            }
+            var ExerciseItems = _repository.GetAllExercises(accountModel.Id);
 
-            return NotFound();           
+            return Ok(_mapper.Map<IEnumerable<ExerciseReadDto>>(ExerciseItems));          
         }
 
         //POST api/exercise

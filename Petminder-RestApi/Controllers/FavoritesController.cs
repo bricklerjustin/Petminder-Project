@@ -49,7 +49,7 @@ namespace Petminder_RestApi.Controllers
 
         //GET api/favorite
         [HttpGet("{Id}")]
-        public ActionResult <IEnumerable<ExerciseReadDto>> GetFavoriteById(Guid Id)
+        public ActionResult <FavoriteReadDto> GetFavoriteById(Guid Id)
         {
             if (!Request.Headers.ContainsKey("token"))
             {
@@ -64,10 +64,10 @@ namespace Petminder_RestApi.Controllers
                 return Unauthorized();
             }
 
-            var Exercise = _repository.GetFavoiteById(Id, accountModel.Id);
-            if (Exercise != null)
+            var Favorite = _repository.GetFavoiteById(Id, accountModel.Id);
+            if (Favorite != null)
             {
-                return Ok(_mapper.Map<ExerciseReadDto>(Exercise));
+                return Ok(_mapper.Map<FavoriteReadDto>(Favorite));
             }
 
             return NotFound();           
@@ -75,27 +75,27 @@ namespace Petminder_RestApi.Controllers
 
         //POST api/favorite
         [HttpPost]
-        public ActionResult <ExerciseReadDto> CreateFavorite(ExerciseUpdateCreateBaseDto exerciseUpdateCreate)
+        public ActionResult <FavoriteReadDto> CreateFavorite(FavoriteUpdateCreateBaseDto favoriteUpdateCreate)
         {
-            var exerciseModel = _mapper.Map<Exercises>(exerciseUpdateCreate);
+            var favoriteModel = _mapper.Map<Favorites>(favoriteUpdateCreate);
 
-            if(_validate.GetAccountById(exerciseModel.AccountId) == null)
+            if(_validate.GetAccountById(favoriteModel.AccountId) == null)
             {
-                ModelState.AddModelError("accountId", $"The account with key: {exerciseModel.AccountId}, does not exist");
+                ModelState.AddModelError("accountId", $"The account with key: {favoriteModel.AccountId}, does not exist");
                 return ValidationProblem();
             }
 
-            _repository.CreateExercise(exerciseModel);
+            _repository.CreateFavorite(favoriteModel);
             _repository.SaveChanges();
 
-            var exerciseReadDto = _mapper.Map<ExerciseReadDto>(exerciseModel);
+            var favoriteReadDto = _mapper.Map<FavoriteReadDto>(favoriteModel);
 
-            return CreatedAtAction(nameof(CreateExercise), new {id = exerciseReadDto.Id}, exerciseReadDto);
+            return CreatedAtAction(nameof(favoriteModel), new {id = favoriteReadDto.Id}, favoriteReadDto);
         }
 
         //PUT api/favorite/{id}
         [HttpPut("{id}")]
-        public ActionResult UpdatePet(Guid id, ExerciseUpdateCreateBaseDto exerciseUpdateDto)
+        public ActionResult UpdateFavorite(Guid id, FavoriteUpdateCreateBaseDto favoriteUpdateDto)
         {
             if (!Request.Headers.ContainsKey("token"))
             {
@@ -110,15 +110,15 @@ namespace Petminder_RestApi.Controllers
                 return Unauthorized();
             }
 
-            var exerciseModelFromRepo = _repository.GetExerciseById(id, accountModel.Id);
-            if(exerciseModelFromRepo == null)
+            var favoriteModelFromRepo = _repository.GetFavoiteById(id, accountModel.Id);
+            if(favoriteModelFromRepo == null)
             {
                 return NotFound();
             }
             
-            _mapper.Map(exerciseUpdateDto, exerciseModelFromRepo);
+            _mapper.Map(favoriteUpdateDto, favoriteModelFromRepo);
             
-            _repository.UpdateExercise(exerciseModelFromRepo);
+            _repository.UpdateFavorite(favoriteModelFromRepo);
 
             _repository.SaveChanges();
 
@@ -127,7 +127,7 @@ namespace Petminder_RestApi.Controllers
 
         //DELETE api/favorite/{id}
         [HttpDelete("{id}")]
-        public ActionResult DeleteExercise(Guid id)
+        public ActionResult DeleteFavorite(Guid id)
         {
             if (!Request.Headers.ContainsKey("token"))
             {
@@ -142,13 +142,13 @@ namespace Petminder_RestApi.Controllers
                 return Unauthorized();
             }
 
-            var exerciseModelFromRepo = _repository.GetExerciseById(id, accountModel.Id);
-            if(exerciseModelFromRepo == null)
+            var favoriteModelFromRepo = _repository.GetFavoiteById(id, accountModel.Id);
+            if(favoriteModelFromRepo == null)
             {
                 return NotFound();
             }
 
-            _repository.DeleteExercise(exerciseModelFromRepo);
+            _repository.DeleteFavorite(favoriteModelFromRepo);
             _repository.SaveChanges();
 
             return NoContent();

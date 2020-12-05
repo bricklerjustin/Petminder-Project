@@ -8,6 +8,7 @@ namespace Petminder_RestApi.Models
     [Table("favorites")]
     public partial class Favorites
     {
+        [Key]
         [Column("id")]
         public Guid Id { get; set; }
         [Column("account_id")]

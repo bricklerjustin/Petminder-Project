@@ -5,6 +5,10 @@ using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
 using Plugin.Geolocator;
+using PetminderApp.Api.Api_Models;
+using System.Collections.Generic;
+using PetminderApp.Api;
+using Newtonsoft.Json;
 
 namespace PetminderApp.Views
 {
@@ -14,9 +18,13 @@ namespace PetminderApp.Views
         Stopwatch stopwatch;
         Boolean stopGeo = false;
         double totalDistance = 0;
-        public Exercise()
+        private readonly List<Guid> _pets;
+
+        public Exercise(List<Guid> pets)
         {
             InitializeComponent();
+            _pets = pets;
+
             Task<PermissionStatus> task = CheckAndRequestLocationPermission();
             stopwatch = new Stopwatch();
             lblStopwatch.Text = "00:00:00";
@@ -38,12 +46,39 @@ namespace PetminderApp.Views
             await RetrieveLocation();           
         }
 
-        public void btnStop_Clicked(object sender, EventArgs e)
+        public async void btnStop_Clicked(object sender, EventArgs e)
         {
+            double distanceToPost = totalDistance;
+            TimeSpan elapsedToPost = stopwatch.Elapsed; 
             stopwatch.Reset();
             stopGeo = true;
             totalDistance = 0;
             lblDistance.Text = "0.00 miles walked";
+
+            var save = await DisplayAlert("Save", "Would you like to save this exercise", "Yes", "No");
+
+            if (save)
+            {
+                RestClient client = new RestClient();
+                ExerciseCreateUpdateModel exerciseCreate;
+                foreach (Guid pet in _pets)
+                {
+                    exerciseCreate = new ExerciseCreateUpdateModel();
+                    exerciseCreate.AccountId = UserInfo.AccountId;
+                    exerciseCreate.Distance = distanceToPost;
+                    exerciseCreate.Time = elapsedToPost;
+                    exerciseCreate.Um = "Mi";
+                    exerciseCreate.PetId = pet;
+                    exerciseCreate.EntryDate = DateTime.Now;
+
+                    var response = client.Post("api/exercise", "", UserInfo.Token, JsonConvert.SerializeObject(exerciseCreate));
+
+                    if (response.StatusCode != System.Net.HttpStatusCode.Created)
+                    {
+                        await DisplayAlert("Error", "The was an error uploading pet data", "Ok");
+                    }
+                }
+            }
         }
 
         public void btnPause_Clicked(object sender, EventArgs e)
@@ -99,6 +134,13 @@ namespace PetminderApp.Views
             status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
 
             return status;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            Navigation.InsertPageBefore(new ExerciseMain(), this);
         }
     }
 }

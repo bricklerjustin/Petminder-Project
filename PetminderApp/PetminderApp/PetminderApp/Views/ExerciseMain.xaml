@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PetminderApp.Views.ExerciseMain"
+             xmlns:local="clr-namespace:PetminderApp">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <TableView
+                x:Name="PetTableView"
+                HasUnevenRows="True"
+                Intent="Data"
+                >
+                <TableRoot>
+                    <TableSection
+                        x:Name="PetSection">
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    Text="Pet Name"
+                                    TextColor="Black"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    HorizontalOptions="StartAndExpand">
+                                </Label>
+                                <Label
+                                    Text="Total Distance"
+                                    TextColor="Black"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="CenterAndExpand"
+                                    >
+                                </Label>
+                                <Label
+                                    Text="Total Time"
+                                    TextColor="Black"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="CenterAndExpand"
+                                    >
+                                </Label>
+                                <Label
+                                    Text="Select"
+                                    TextColor="Black"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="End"
+                                    >
+                                </Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+
+            <ImageButton Source="{local:ImageResource
+                PetminderApp.Images.Submit.png}" 
+                BackgroundColor="Transparent"         
+                HeightRequest="75"
+                FlexLayout.AlignSelf="Center"
+                FlexLayout.Grow="1"
+                x:Name="gotoExerciseTimer"                    
+                Aspect="AspectFit"
+                VerticalOptions="EndAndExpand"
+                Clicked="gotoExerciseTimer_Clicked">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

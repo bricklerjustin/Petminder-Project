@@ -6,13 +6,13 @@ namespace Petminder_RestApi.Profiles
 {
     public class FavoriteProfile : Profile
     {
-        public ExerciseProfile()
+        public FavoriteProfile()
         {
             //Source -> Target
-            CreateMap<Favorite, FavoriteReadDto>();
-            CreateMap<FavoriteReadDto, Favorite>();
-            CreateMap<Favorite, FavoriteUpdateCreateBaseDto>();
-            CreateMap<FavoriteUpdateCreateBaseDto, Favorite>();
+            CreateMap<Favorites, FavoriteReadDto>();
+            CreateMap<FavoriteReadDto, Favorites>();
+            CreateMap<Favorites, FavoriteUpdateCreateBaseDto>();
+            CreateMap<FavoriteUpdateCreateBaseDto, Favorites>();
         }
     }
 }
