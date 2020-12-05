@@ -16,5 +16,7 @@ namespace Petminder_RestApi.Data
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Files> Files { get; set; }
         public virtual DbSet<Filedata> FileData { get; set; }
+        public virtual DbSet<Exercises> Exercises { get; set; }
+        public virtual DbSet<Favorites> Favorites { get; set; }
     }
 }
