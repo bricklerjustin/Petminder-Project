@@ -23,8 +23,9 @@ namespace PetminderApp.Views
             //_selectedPets = new List<Guid>();
 
             List<ExerciseReadModel> exercises = new List<ExerciseReadModel>();
-            List<StackLayout> layouts = new List<StackLayout>();
+            List<Grid> layouts = new List<Grid>();
             _pets = new List<PetReadModel>();
+            int i = 0;
 
             InitializeComponent();
 
@@ -35,16 +36,21 @@ namespace PetminderApp.Views
             {
                 double time = 0;
                 double distance = 0;
+                double timeHours = 0;
+                string timeUnit = "";
 
                 foreach (var pet in _pets)
                 {
                     time = 0;
                     distance = 0;
+                    timeHours = 0;
+                    timeUnit = "Min"; ;
                     var timeEntries = exercises.Where(p => p.PetId == pet.Id);
 
                     if (timeEntries.Count() > 0)
                     {
                         time = timeEntries.Select(x => x.Time.TotalMinutes).Sum();
+                        timeHours = timeEntries.Select(x => x.Time.TotalHours).Sum();
                     }
 
                     var distanceEntries = exercises.Where(p => p.PetId == pet.Id);
@@ -56,43 +62,63 @@ namespace PetminderApp.Views
 
                     var name = pet.Name;
 
-                    if (name.Length < 15)
+                    //if (name.Length < 15)
+                    //{
+                    //    name = name.PadRight(17, 'a');
+                    //}
+                    //else if (name.Length > 15)
+                    //{
+                    //    name = name.Remove(11) + "...";
+                    //}
+
+                    if (time >= 60)
                     {
-                        name = name.PadRight(17, 'a');
-                    }
-                    else if (name.Length > 15)
-                    {
-                        name = name.Remove(11) + "...";
+                        time = timeHours;
+                        timeUnit = "Hr";
                     }
 
-                    var stackLayout = new StackLayout() { Orientation = StackOrientation.Horizontal };
+                    //var stackLayout = new StackLayout() { Orientation = StackOrientation.Horizontal };
+                    var grid = new Grid() {};
+                    ColumnDefinition columnDefinition = new ColumnDefinition() { Width = GridLength.Star};
+                    ColumnDefinition columnDefinition2 = new ColumnDefinition() { Width = 50 };
+                    RowDefinition rowDefinition = new RowDefinition() { Height = 50 };
+                    grid.ColumnDefinitions.Add(columnDefinition);
+                    grid.ColumnDefinitions.Add(columnDefinition);
+                    grid.ColumnDefinitions.Add(columnDefinition);
+                    grid.ColumnDefinitions.Add(columnDefinition2);
+                    grid.RowDefinitions.Add(rowDefinition);
 
-                    stackLayout.Children.Add(new Label()
-                    { 
+                    grid.Children.Add(new Label()
+                    {
                         Text = name,
                         FontSize = 16,
-                        HorizontalOptions = LayoutOptions.StartAndExpand,
-                    });
+                        HorizontalOptions = LayoutOptions.Start,
+                        VerticalOptions = LayoutOptions.Center
+                    }, 0, 0);
 
-                    stackLayout.Children.Add(new Label()
+                    grid.Children.Add(new Label()
                     {
-                        Text = (distance.ToString("0.00") + " Mi").PadLeft(15),
+                        Text = (distance.ToString("0.00") + " Mi"),
                         HorizontalOptions = LayoutOptions.Center,
-                        FontSize = 16,                     
-                    });
+                        VerticalOptions = LayoutOptions.Center,
+                        FontSize = 16,                    
+                    }, 1, 0);
 
-                    stackLayout.Children.Add(new Label()
+                    grid.Children.Add(new Label()
                     {
-                        Text = (time.ToString("0.00") + " Min").PadLeft(15),
-                        HorizontalOptions = LayoutOptions.CenterAndExpand,
+                        Text = (time.ToString("0.00") + $" {timeUnit}"),
+                        HorizontalOptions = LayoutOptions.Center,
+                        VerticalOptions = LayoutOptions.Center,
                         FontSize = 16
-                    });
+                    }, 2, 0);
 
-                    Switch selectedSwitch = new Switch { };
+                    Switch selectedSwitch = new Switch { HorizontalOptions = LayoutOptions.End};
 
-                    stackLayout.Children.Add(selectedSwitch);
+                    grid.Children.Add(selectedSwitch, 3, 0);
 
-                    layouts.Add(stackLayout);
+                    layouts.Add(grid);
+
+                    i++;
                 }
             }
 
@@ -153,7 +179,7 @@ namespace PetminderApp.Views
                 //Data starts on second row
                 if (i > 0)
                 {
-                    StackLayout layout = petRow.View as StackLayout;
+                    Grid layout = petRow.View as Grid;
 
                     var children = layout.Children;
 

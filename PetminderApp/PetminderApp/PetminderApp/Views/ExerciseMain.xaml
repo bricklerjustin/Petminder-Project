@@ -4,7 +4,7 @@
              x:Class="PetminderApp.Views.ExerciseMain"
              xmlns:local="clr-namespace:PetminderApp">
     <ContentPage.Content>
-        <StackLayout Padding="10">
+        <StackLayout Padding="10, 10, 10, 40">
             <TableView
                 x:Name="PetTableView"
                 HasUnevenRows="True"
@@ -53,14 +53,14 @@
             </TableView>
 
             <ImageButton Source="{local:ImageResource
-                PetminderApp.Images.Submit.png}" 
+                PetminderApp.Images.Exercise.png}" 
                 BackgroundColor="Transparent"         
                 HeightRequest="75"
                 FlexLayout.AlignSelf="Center"
                 FlexLayout.Grow="1"
                 x:Name="gotoExerciseTimer"                    
                 Aspect="AspectFit"
-                VerticalOptions="EndAndExpand"
+                VerticalOptions="End"
                 Clicked="gotoExerciseTimer_Clicked">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CommonStates">
