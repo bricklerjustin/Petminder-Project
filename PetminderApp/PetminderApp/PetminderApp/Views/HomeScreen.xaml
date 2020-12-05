@@ -10,7 +10,7 @@
 
     <ContentPage.Content>
         <StackLayout Spacing="0">
-            <Frame Padding="20,40,20,20" CornerRadius="0">
+            <Frame Padding="20,50,20,0" CornerRadius="0">
                 <!-- Logo -->
                 <Image Source="{local:ImageResource 
                        PetminderApp.Images.Logo.png}" 
@@ -20,7 +20,7 @@
             </Frame>
             <!-- Buttons -->
             <Frame>
-                <Grid Padding="20">
+                <Grid Padding="20, 70, 20, 70">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="200" />
                         <RowDefinition Height="200" />
