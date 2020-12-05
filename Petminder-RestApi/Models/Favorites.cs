@@ -31,5 +31,8 @@ namespace Petminder_RestApi.Models
         [Column("url_type")]
         [StringLength(500)]
         public string UrlType { get; set; }
+        [Column("phone")]
+        [StringLength(500)]
+        public string Phone { get; set; }
     }
 }
