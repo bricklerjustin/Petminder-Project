@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PetminderApp.CustomMaster"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:pages="clr-namespace:PetminderApp">
+    
+    
+  <MasterDetailPage.Master>
+      
+        <ContentPage Title="Homne" BackgroundColor="#ffffff" >
+            <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="0,0,0,0" >
+                <ScrollView VerticalOptions="Start">
+                    <StackLayout Orientation="Vertical" BackgroundColor="#ffffff">
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout VerticalOptions="Center" BackgroundColor="#ffffff">
+                                
+                                
+                                <Label x:Name="lblName" FontSize="20" HorizontalOptions="CenterAndExpand"/>
+
+
+                            </StackLayout>
+
+                            <StackLayout BackgroundColor="Silver"
+                                         MinimumHeightRequest="1"
+                                         Orientation="Vertical"
+                                         HeightRequest="1"
+                                         HorizontalOptions="FillAndExpand">
+                                <Label Text="#ffffff" FontSize="1" TextColor="Black"
+                                       BackgroundColor="Black"
+                                       HorizontalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </StackLayout>
+
+                        <ListView x:Name="navigationList" Margin="0" SeparatorVisibility="Default"
+                                  VerticalOptions="Start" ItemTapped="Item_Tapped" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"
+                                                     VerticalOptions="Center">
+                                            <Label Text="{Binding OptionName}" FontAttributes="Bold"
+                                                   FontSize="Default" Margin="10,0,5,2"
+                                                   HorizontalOptions="Start" VerticalOptions="Center"
+                                                   TextColor="#4a4848"/>
+                                        </StackLayout>
+                                                     
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </ContentPage>
+
+  </MasterDetailPage.Master>
+    
+
+    
+    
+</MasterDetailPage>

@@ -38,7 +38,7 @@ namespace PetminderApp
                 Age.Text = _petModel.Age.ToString();
             }
 
-            if (_returnPage.GetType() == typeof(HomeScreen))
+            if (_returnPage.GetType() == typeof(CustomMaster))
             {
                 NavigationPage.SetHasNavigationBar(this, false);
             }
@@ -92,7 +92,7 @@ namespace PetminderApp
             {
                 var response = client.Post("api/pets", "", UserInfo.Token, JsonConvert.SerializeObject(pet));
 
-                if (response.StatusCode == System.Net.HttpStatusCode.Created && _returnPage.GetType() == typeof(HomeScreen))
+                if (response.StatusCode == System.Net.HttpStatusCode.Created && _returnPage.GetType() == typeof(CustomMaster))
                 {
                     var another = await DisplayAlert("", "Would you like to add another pet", "Yes", "No");
                     if (another)
@@ -103,7 +103,7 @@ namespace PetminderApp
                     }
                     else
                     {
-                        Navigation.InsertPageBefore(new HomeScreen(), this);
+                        Navigation.InsertPageBefore(new CustomMaster(), this);
                         await Navigation.PopAsync();
                         return;
                     }

@@ -47,7 +47,8 @@ namespace PetminderApp
                 this.IsBusy = false;
 
                 UserInfo.LoggedIn = true;
-                Navigation.InsertPageBefore(new HomeScreen(), this);
+                Navigation.InsertPageBefore(new CustomMaster(), this);
+               // Navigation.InsertPageBefore(new HomeScreen(), this);
                 await Navigation.PopAsync();
             }
             else
