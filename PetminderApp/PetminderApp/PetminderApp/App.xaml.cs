@@ -11,7 +11,9 @@ namespace PetminderApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            //MainPage = new NavigationPage(new CustomMaster());
+             MainPage = new NavigationPage(new MainPage());
+            // MainPage = new CustomMaster();
 
         }
 

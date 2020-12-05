@@ -20,16 +20,17 @@ namespace PetminderApp
 
             if (UserInfo.LoggedIn)
             {
-                Navigation.PushAsync(new HomeScreen());
-                
+                Navigation.PushAsync(new CustomMaster());
+                //Navigation.PushAsync(new HomeScreen());
+
             }
 
             signUp.Clicked += SignUp_Clicked;
             signIn.Clicked += SignIn_Clicked;
 
             NavigationPage.SetHasNavigationBar(this, false);
-           // ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.FromHex("#2196f3");
-           // ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.FromHex("#ffffff");
+           //((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.FromHex("#2196f3");
+          // ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.FromHex("#ffffff");
         }
 
         private async void SignIn_Clicked(object sender, EventArgs e)

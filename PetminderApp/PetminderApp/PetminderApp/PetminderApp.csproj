@@ -33,6 +33,7 @@
   <ItemGroup>
     <None Remove="Images\2.png" />
     <None Remove="Images\dog.png" />
+    <None Remove="Images\Exercise.png" />
     <None Remove="Images\ExerciseFitBark.png" />
     <None Remove="Images\Logo.png" />
     <None Remove="Images\Pause.png" />
@@ -52,6 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Images\Exercise.png" />
     <EmbeddedResource Include="Images\ExerciseFitBark.png" />
     <EmbeddedResource Include="Images\Logo.png" />
     <EmbeddedResource Include="Images\Pause.png" />
@@ -94,6 +96,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="CustomMaster.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CustomMasterMaster.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MasterDetailPage1Detail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Page1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Page2.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Page3.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\AddPet.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
