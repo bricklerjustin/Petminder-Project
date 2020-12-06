@@ -10,11 +10,13 @@ using Xamarin.Forms.Xaml;
 namespace PetminderApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page1 : ContentPage
+    public partial class Logout : ContentPage
     {
-        public Page1()
+        public Logout()
         {
             InitializeComponent();
+
+            Navigation.InsertPageBefore(new MainPage(), this);
         }
     }
 }

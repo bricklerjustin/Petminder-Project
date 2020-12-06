@@ -98,11 +98,19 @@ namespace PetminderApp.Views
 
                     grid.Children.Add(new Label()
                     {
+<<<<<<< HEAD
+                        Text = (distance.ToString("0.00") + " Mi").PadLeft(15),
+                        HorizontalOptions = LayoutOptions.CenterAndExpand,
+                        Padding=5,
+                        FontSize = 14,                     
+                    });
+=======
                         Text = (distance.ToString("0.00") + " Mi"),
                         HorizontalOptions = LayoutOptions.Center,
                         VerticalOptions = LayoutOptions.Center,
                         FontSize = 16,                    
                     }, 1, 0);
+>>>>>>> 3344389d233a1a1a09ef83925e93da82ac8c8d8e
 
                     grid.Children.Add(new Label()
                     {

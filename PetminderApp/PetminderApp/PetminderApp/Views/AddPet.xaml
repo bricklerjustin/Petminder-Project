@@ -14,7 +14,7 @@
             <Frame CornerRadius="8" 
                        BorderColor="#CBEAF7"
                        Padding="0,0,0,0"
-                       Margin="20,90,20,9">
+                       Margin="20,120,20,9">
                 <local:CustomEntry PlaceholderColor="#B6B6B6"
                                        x:Name="PetName"
                                        Placeholder="Pet Name"

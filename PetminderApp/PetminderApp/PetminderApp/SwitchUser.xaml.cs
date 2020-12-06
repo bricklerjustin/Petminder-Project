@@ -10,11 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace PetminderApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page3 : ContentPage
+    public partial class SwitchUser : ContentPage
     {
-        public Page3()
+        public SwitchUser()
         {
             InitializeComponent();
+
         }
     }
 }
