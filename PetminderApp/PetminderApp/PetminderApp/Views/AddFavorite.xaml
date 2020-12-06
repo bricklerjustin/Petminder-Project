@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PetminderApp.Views.AddFavorite"
+             xmlns:local="clr-namespace:PetminderApp">
+    <ContentPage.Content>
+        <StackLayout Padding="25" Spacing="5">
+            <ActivityIndicator
+                x:Name="activityIndicator"
+                IsRunning="False"
+                Color="{StaticResource MainBlue}"
+                IsVisible="False">
+            </ActivityIndicator>
+            <Label Text="Bookmark Type"
+                VerticalOptions="Start" 
+                HorizontalOptions="StartAndExpand"
+                FontSize="20"
+                FontAttributes="Bold"/>
+
+            <Frame CornerRadius="8" 
+                       BorderColor="#CBEAF7"
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,9">
+                <StackLayout>
+                    <Picker
+                        x:Name="TypePicker"
+                        Title=""
+                        SelectedItem="{Binding SelectedType}"
+                        SelectedIndexChanged="TypePicker_SelectedIndexChanged"
+                        >
+                    </Picker>
+                </StackLayout>
+            </Frame>
+
+            <Label Text="Name"
+                   x:Name="NameLabel"
+                VerticalOptions="Start" 
+                HorizontalOptions="StartAndExpand"
+                FontSize="20"
+                FontAttributes="Bold"/>
+
+            <Frame CornerRadius="8" 
+                       BorderColor="#CBEAF7"
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,9">
+                <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                       x:Name="Name"
+                                       Margin="10,0,0,0"
+                                       WidthRequest="250"
+                                       HeightRequest="40"
+                                       FontSize="18"
+                                       ReturnType="Done"
+                                       />
+            </Frame>
+
+            <Label Text="Address"
+                   x:Name="AddressLabel"
+                VerticalOptions="Start" 
+                HorizontalOptions="StartAndExpand"
+                FontSize="20"
+                FontAttributes="Bold"/>
+
+            <Frame CornerRadius="8"
+                   x:Name="AddressFrame"
+                       BorderColor="#CBEAF7"
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,9">
+                <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                       x:Name="Address"
+                                       Margin="10,0,0,0"
+                                       WidthRequest="250"
+                                       HeightRequest="40"
+                                       FontSize="18"
+                                       ReturnType="Done" />
+            </Frame>
+
+            <Label Text="Phone"
+                   x:Name="PhoneLabel"
+                VerticalOptions="Start" 
+                HorizontalOptions="StartAndExpand"
+                FontSize="20"
+                FontAttributes="Bold"/>
+
+            <Frame CornerRadius="8"
+                   x:Name="PhoneFrame"
+                       BorderColor="#CBEAF7"
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,9">
+                <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                       x:Name="Phone"
+                                       Margin="10,0,0,0"
+                                       WidthRequest="250"
+                                       HeightRequest="40"
+                                       FontSize="18"
+                                       ReturnType="Done" />
+            </Frame>
+
+            <Label Text="URL"
+                   x:Name="URLLabel"
+                VerticalOptions="Start" 
+                HorizontalOptions="StartAndExpand"
+                FontSize="20"
+                FontAttributes="Bold"/>
+
+            <Frame CornerRadius="8" 
+                       BorderColor="#CBEAF7"
+                       Padding="0,0,0,0"
+                       Margin="20,3,20,9">
+                <local:CustomEntry PlaceholderColor="#B6B6B6"
+                                       x:Name="URL"
+                                       Margin="10,0,0,0"
+                                       WidthRequest="250"
+                                       HeightRequest="40"
+                                       FontSize="18"
+                                       ReturnType="Done" />
+            </Frame>
+
+            <ImageButton Source="{local:ImageResource
+                    PetminderApp.Images.Submit.png}" 
+                    BackgroundColor="Transparent"         
+                    HeightRequest="75"
+                    FlexLayout.AlignSelf="Center"
+                    FlexLayout.Grow="1"
+                    x:Name="submitFavorite"                    
+                    Aspect="AspectFit"
+                    VerticalOptions="EndAndExpand"
+                    Clicked="submitFavorite_Clicked">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

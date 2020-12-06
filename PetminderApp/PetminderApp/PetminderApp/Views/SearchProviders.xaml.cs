@@ -16,5 +16,40 @@ namespace PetminderApp.Views
         {
             InitializeComponent();
         }
+
+        public class GroupedReminderList
+        {
+            public string Title { get; set; }
+            public string ShortName { get; set; } //will be used for jump lists
+            public string Subtitle { get; set; }
+            private GroupedReminderList(string title, string shortName)
+            {
+                Title = title;
+                ShortName = shortName;
+            }
+
+            public static IList<GroupedReminderList> All { private set; get; }
+        }
+
+        private void lblSearch_SearchButtonPressed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Edit_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Remove_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

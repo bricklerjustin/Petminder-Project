@@ -4,9 +4,85 @@
              x:Class="PetminderApp.Views.SearchProviders">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <!--<Label x:Name="lblSearch1" 
+               Text="Search Favorite locations"
+               Margin="0,40,0,0"
+               FontSize="25"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+            <SearchBar x:Name="lblSearch" Placeholder="Enter Search Items..."
+               SearchButtonPressed="lblSearch_SearchButtonPressed"
+               FontAttributes="Italic"
+               TextColor="Orange"
+               Margin="60,0,0,0"
+               FontSize="20"
+               PlaceholderColor="Orange"/>
+
+           <ScrollView VerticalOptions="FillAndExpand">
+               <Label x:Name="resultsLabel" />
+            </ScrollView>
+
+            <Button  x:Name="btnSearch" Margin="0,0,0,250" 
+                Padding="40,0,40,0"
+                Text=" Search"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                FontSize="20"
+                Clicked ="btnSearch_Clicked" />-->
+
+            <ActivityIndicator
+                x:Name="activityIndicator"
+                IsRunning="False"
+                Color="{StaticResource MainBlue}"
+                IsVisible="False">
+            </ActivityIndicator>
+            <ListView HasUnevenRows="False" 
+                      x:Name="FavoritesListview"
+                      IsGroupingEnabled="True"
+                      GroupDisplayBinding="{Binding LongName}">
+                <!--<ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Type}">
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Remove"
+                                          x:Name="Remove"
+                                          Clicked="Remove_Clicked"
+                                          CommandParameter="{Binding .}">
+                                </MenuItem>
+                                <MenuItem Text="Edit"
+                                          x:Name="Edit"
+                                          Clicked="Edit_Clicked"
+                                          CommandParameter="{Binding .}">
+                                </MenuItem>
+                            </ViewCell.ContextActions>
+
+                            <ViewCell.View>
+                                <Label Text="{Binding Name}"></Label>
+                                <!--<Grid Padding="10" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto">
+                                        </RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="{Binding Name}"></Label>
+                                    <Label Grid.Column="1" Text="{Binding Message}"></Label>
+                                </Grid>-->
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

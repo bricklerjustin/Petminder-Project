@@ -90,7 +90,7 @@ namespace Petminder_RestApi.Controllers
 
             var favoriteReadDto = _mapper.Map<FavoriteReadDto>(favoriteModel);
 
-            return CreatedAtAction(nameof(favoriteModel), new {id = favoriteReadDto.Id}, favoriteReadDto);
+            return CreatedAtAction(nameof(CreateFavorite), new {id = favoriteReadDto.Id}, favoriteReadDto);
         }
 
         //PUT api/favorite/{id}
