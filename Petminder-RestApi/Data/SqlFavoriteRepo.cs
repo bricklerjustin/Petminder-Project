@@ -27,7 +27,7 @@ namespace Petminder_RestApi.Data
 
         public void DeleteFavorite(Favorites Favorite)
         {
-            if (Favorite != null)
+            if (Favorite == null)
             {
                 throw new ArgumentNullException(nameof(Favorite));
             }
