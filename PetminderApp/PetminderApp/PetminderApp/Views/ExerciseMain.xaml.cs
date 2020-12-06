@@ -77,8 +77,9 @@ namespace PetminderApp.Views
                     stackLayout.Children.Add(new Label()
                     {
                         Text = (distance.ToString("0.00") + " Mi").PadLeft(15),
-                        HorizontalOptions = LayoutOptions.Center,
-                        FontSize = 16,                     
+                        HorizontalOptions = LayoutOptions.CenterAndExpand,
+                        Padding=5,
+                        FontSize = 14,                     
                     });
 
                     stackLayout.Children.Add(new Label()

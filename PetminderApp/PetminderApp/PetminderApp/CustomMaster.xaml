@@ -17,11 +17,7 @@
                     <StackLayout Orientation="Vertical" BackgroundColor="#ffffff">
                         <StackLayout Orientation="Vertical">
                             <StackLayout VerticalOptions="Center" BackgroundColor="#ffffff">
-                                
-                                
-                                <Label x:Name="lblName" FontSize="20" HorizontalOptions="CenterAndExpand"/>
-
-
+                                                                                            
                             </StackLayout>
 
                             <StackLayout BackgroundColor="Silver"

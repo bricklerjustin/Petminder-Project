@@ -20,8 +20,8 @@ namespace PetminderApp
             // Object
             MenuItems = new List<MenuItems>();
             MenuItems.Add(new MenuItems { OptionName = "HomeScreen" });
-            MenuItems.Add(new MenuItems { OptionName = "Page2" });
-            MenuItems.Add(new MenuItems { OptionName = "Page3" });
+            MenuItems.Add(new MenuItems { OptionName = "Logout" });
+            MenuItems.Add(new MenuItems { OptionName = "SwitchUser" });
             navigationList.ItemsSource = MenuItems;
             Detail = new NavigationPage(new HomeScreen());
 
@@ -44,25 +44,20 @@ namespace PetminderApp
                             IsPresented = false;
                         }
                         break;
-                    case "Page2":
-                        {
-                            Detail = new NavigationPage(new Page2());
-                            IsPresented = false;
-                        }
-                        break;
-                    case "Page3":
-                        {
-                            Detail = new NavigationPage(new Page3());
-                            IsPresented = false;
-                        }
-                        break;
                     case "Logout":
                         {
-                           // Settings.AccessToken = string.Empty;
-                           // Settings.Username = string.Empty;
-                           // Settings.Password = string.Empty;
-                          //  Detail.Navigation.PushAsync(new MainPage());
-                          //  IsPresented = false;
+                            //Justin please fix this so this will go to the sign in screen
+                            //Settings.AccessToken = string.Empty;
+                            //Settings.Username = string.Empty;
+                            //Settings.Password = string.Empty;
+                            //Detail.Navigation.PushAsync(new MainPage());
+                            //IsPresented = false;
+                        }
+                        break;
+                    case "SwitchUser":
+                        {
+                            Detail = new NavigationPage(new SwitchUser());
+                            IsPresented = false;
                         }
                         break;
                 }

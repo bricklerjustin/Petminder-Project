@@ -4,23 +4,26 @@
              x:Class="PetminderApp.Views.ExerciseMain"
              xmlns:local="clr-namespace:PetminderApp">
     <ContentPage.Content>
-        <StackLayout Padding="10">
+        <StackLayout Padding="10,20,10,10">
             <TableView
                 x:Name="PetTableView"
                 HasUnevenRows="True"
-                Intent="Data"
-                >
+                Intent="Data">
+               
+                
                 <TableRoot>
                     <TableSection
                         x:Name="PetSection">
+
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" Padding="0,0,0,10" Spacing="0">
                                 <Label
                                     Text="Pet Name"
                                     TextColor="Black"
                                     FontAttributes="Bold"
                                     FontSize="16"
                                     HorizontalOptions="StartAndExpand">
+
                                 </Label>
                                 <Label
                                     Text="Total Distance"
@@ -55,13 +58,14 @@
             <ImageButton Source="{local:ImageResource
                 PetminderApp.Images.Submit.png}" 
                 BackgroundColor="Transparent"         
-                HeightRequest="75"
+                HeightRequest="150"
                 FlexLayout.AlignSelf="Center"
                 FlexLayout.Grow="1"
                 x:Name="gotoExerciseTimer"                    
                 Aspect="AspectFit"
                 VerticalOptions="EndAndExpand"
-                Clicked="gotoExerciseTimer_Clicked">
+                Clicked="gotoExerciseTimer_Clicked"
+                Padding="20">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CommonStates">
                         <VisualState x:Name="Normal">
