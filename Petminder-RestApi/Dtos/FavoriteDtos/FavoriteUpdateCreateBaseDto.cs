@@ -12,5 +12,6 @@ namespace Petminder_RestApi.Dtos
         public string Url { get; set; }
         public string LocationType { get; set; }
         public string UrlType { get; set; }
+        public string Phone { get; set; }
     }
 }
