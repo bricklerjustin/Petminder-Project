@@ -16,6 +16,7 @@ namespace PetminderApp.Views
     public partial class AddFavorite : ContentPage
     {
         private bool _update = false;
+        private Guid _updateId;
         public AddFavorite(FavoriteReadModel favoriteModel)
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace PetminderApp.Views
                 Phone.Text = favoriteModel.Phone;
                 URL.Text = favoriteModel.Url;
                 TypePicker.SelectedItem = favoriteModel.Type;
+                _updateId = favoriteModel.Id;
             }
         }
 
@@ -83,13 +85,31 @@ namespace PetminderApp.Views
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     if (_update)
-                    { }
+                    {
+                        var body = JsonConvert.SerializeObject(favoriteCreate);
+                        var response = client.Put("api/favorite", _updateId, UserInfo.Token, body);
+
+                        if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                        {
+                            ActivityIndicatorToggle(false);
+                            await Navigation.PopModalAsync();
+                        }
+                        else
+                        {
+                            await DisplayAlert("Error", "There was an error updating bookmark", "Ok");
+                        }
+                    }
                     else
                     {
                         var body = JsonConvert.SerializeObject(favoriteCreate);
                         var response = client.Post("api/favorite", "", UserInfo.Token, body);
 
-                        if (response.StatusCode != System.Net.HttpStatusCode.Created)
+                        if (response.StatusCode == System.Net.HttpStatusCode.Created)
+                        {
+                            ActivityIndicatorToggle(false);
+                            await Navigation.PopModalAsync();
+                        }
+                        else
                         {
                             await DisplayAlert("Error", "There was an error uploading bookmark", "Ok");
                         }

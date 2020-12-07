@@ -2,8 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PetminderApp.Views.SearchProviders">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  
+            Text="Add"
+            x:Name="AddFavorite"
+            Order="Primary"
+            Priority="0"
+            Clicked="AddFavorite_Clicked">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10">
 
             <!--<Label x:Name="lblSearch1" 
                Text="Search Favorite locations"
@@ -65,19 +74,25 @@
                             </ViewCell.ContextActions>
 
                             <ViewCell.View>
-                                <Label Text="{Binding Name}"></Label>
-                                <!--<Grid Padding="10" RowSpacing="0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto">
-                                        </RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
+                                <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped_1"></TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                    <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="300"></Label> <!--width requets to make whole line clickable-->
+                                    <!--<Grid Padding="10" RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto">
+                                            </RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Text="{Binding Name}"></Label>
-                                    <Label Grid.Column="1" Text="{Binding Message}"></Label>
-                                </Grid>-->
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Text="{Binding Name}"></Label>
+                                        <Label Grid.Column="1" Text="{Binding Message}"></Label>
+                                    </Grid>-->
+                                </StackLayout>
                             </ViewCell.View>
                         </ViewCell>
                     </DataTemplate>
