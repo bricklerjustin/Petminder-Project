@@ -12,8 +12,7 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout Padding="30">
-
+        <StackLayout Padding="30" Spacing="0">
             <!--<Label x:Name="lblSearch1" 
                Text="Search Favorite locations"
                Margin="0,40,0,0"
@@ -91,7 +90,8 @@
                                            Padding="50, 10, 0, 0"
                                            FontSize="17"
                                            FontAttributes="Bold">
-                                    </Label> <!--width requets to make whole line clickable-->
+                                    </Label> 
+                                    <!--width requets to make whole line clickable-->
                                     <!--<Grid Padding="10" RowSpacing="0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto">
