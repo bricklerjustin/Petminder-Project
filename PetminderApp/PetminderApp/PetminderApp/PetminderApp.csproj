@@ -35,6 +35,7 @@
     <None Remove="Images\dog.png" />
     <None Remove="Images\Exercise.png" />
     <None Remove="Images\ExerciseFitBark.png" />
+    <None Remove="Images\Favorites.png" />
     <None Remove="Images\Logo.png" />
     <None Remove="Images\Pause.png" />
     <None Remove="Images\PetButton.png" />
@@ -55,6 +56,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Images\Exercise.png" />
     <EmbeddedResource Include="Images\ExerciseFitBark.png" />
+    <EmbeddedResource Include="Images\Favorites.png" />
     <EmbeddedResource Include="Images\Logo.png" />
     <EmbeddedResource Include="Images\Pause.png" />
     <EmbeddedResource Include="Images\PetButton.png" />

@@ -12,7 +12,7 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout Padding="10">
+        <StackLayout Padding="30">
 
             <!--<Label x:Name="lblSearch1" 
                Text="Search Favorite locations"
@@ -50,7 +50,8 @@
             <ListView HasUnevenRows="False" 
                       x:Name="FavoritesListview"
                       IsGroupingEnabled="True"
-                      GroupDisplayBinding="{Binding LongName}">
+                      GroupDisplayBinding="{Binding LongName}"
+                      SeparatorColor="#CBEAF7">
                 <!--<ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding Type}">
@@ -74,12 +75,23 @@
                             </ViewCell.ContextActions>
 
                             <ViewCell.View>
-                                <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                                <StackLayout HorizontalOptions="StartAndExpand" 
+                                             VerticalOptions="CenterAndExpand" 
+                                             Orientation="Horizontal">
                                     <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
-                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped_1"></TapGestureRecognizer>
+                                        <TapGestureRecognizer NumberOfTapsRequired="2" 
+                                                              Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                              Tapped="TapGestureRecognizer_Tapped_1"></TapGestureRecognizer>
                                     </StackLayout.GestureRecognizers>
-                                    <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="300"></Label> <!--width requets to make whole line clickable-->
+                                    <Label Text="{Binding Name}" 
+                                           HorizontalOptions="StartAndExpand" 
+                                           VerticalOptions="CenterAndExpand" 
+                                           WidthRequest="300"
+                                           Padding="50, 10, 0, 0"
+                                           FontSize="17"
+                                           FontAttributes="Bold">
+                                    </Label> <!--width requets to make whole line clickable-->
                                     <!--<Grid Padding="10" RowSpacing="0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto">
