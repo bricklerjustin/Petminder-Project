@@ -65,6 +65,13 @@ namespace Petminder_RestApi.Data
                 }
             }
 
+            //Delete FK data for exercises
+            var exercises = _context.Exercises.Where(p => p.PetId == Pet.Id).ToList();
+            foreach(Exercises exercise in exercises)
+            {
+                _context.Exercises.Remove(exercise);
+            }
+
             _context.Pets.Remove(Pet);
         }
     }
