@@ -26,5 +26,8 @@ namespace Petminder_RestApi.Dtos
         [Column("breed")]
         [StringLength(255)]
         public string Breed { get; set; }
+        [Column("gender")]
+        [StringLength(50)]
+        public string Gender { get; set; }
     }
 }

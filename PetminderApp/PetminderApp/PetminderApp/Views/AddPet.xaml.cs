@@ -36,6 +36,7 @@ namespace PetminderApp
                 Type.Text = _petModel.Type;
                 Breed.Text = _petModel.Breed;
                 Age.Text = _petModel.Age.ToString();
+                Gender.Text = _petModel.Gender;
             }
 
             if (_returnPage.GetType() == typeof(CustomMaster))
@@ -57,8 +58,7 @@ namespace PetminderApp
             pet.Type = Type.Text;
             pet.Breed = Breed.Text;
             pet.AccountId = UserInfo.AccountId;
-
-
+            pet.Gender = Gender.Text;
 
             // Age
             if (!int.TryParse(Age.Text, out int _age))
@@ -82,7 +82,7 @@ namespace PetminderApp
 
                 if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
                 {
-                    await Navigation.PopAsync();
+                    await Navigation.PopModalAsync();
                     return;
                 }
 
