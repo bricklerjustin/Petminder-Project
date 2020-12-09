@@ -22,7 +22,7 @@
                                        WidthRequest="250"
                                        HeightRequest="40"
                                        FontSize="18"
-                                       ReturnType="Search" />
+                                       ReturnType="Done" />
             </Frame>
             <!-- Weight -->
             <Frame CornerRadius="8" 
@@ -36,7 +36,8 @@
                                        WidthRequest="250"
                                        HeightRequest="40"
                                        FontSize="18"
-                                       ReturnType="Search" />
+                                       ReturnType="Done"
+                                       Keyboard="Numeric"/>
             </Frame>
             <!-- Gender -->
             <Frame CornerRadius="8" 
@@ -50,7 +51,7 @@
                                        WidthRequest="250"
                                        HeightRequest="40"
                                        FontSize="18"
-                                       ReturnType="Search" />
+                                       ReturnType="Done"/>
             </Frame>
             <!-- Age -->
             <Frame CornerRadius="8" 
@@ -64,7 +65,8 @@
                                        WidthRequest="250"
                                        HeightRequest="40"
                                        FontSize="18"
-                                       ReturnType="Search" />
+                                       ReturnType="Done"
+                                       Keyboard="Numeric"/>
             </Frame>
             <!-- Species -->
             <Frame CornerRadius="8" 
@@ -78,7 +80,7 @@
                                        WidthRequest="250"
                                        HeightRequest="40"
                                        FontSize="18"
-                                       ReturnType="Search" />
+                                       ReturnType="Done" />
             </Frame>
             <!-- Breed -->
             <Frame CornerRadius="8" 
@@ -92,7 +94,7 @@
                                        WidthRequest="250"
                                        HeightRequest="40"
                                        FontSize="18"
-                                       ReturnType="Search" />
+                                       ReturnType="Done" />
             </Frame>
             <!-- Upload Pet Photo 
             removed we may add later-->

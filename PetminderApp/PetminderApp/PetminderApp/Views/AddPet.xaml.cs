@@ -69,11 +69,25 @@ namespace PetminderApp
             pet.Age = _age;
 
             // Species
+            if (string.IsNullOrEmpty(Type.Text))
+            {
+                await DisplayAlert("Input Error", "Species must be inputed", "Ok");
+                return;
+            }
 
+            // Gender
+            if (string.IsNullOrEmpty(Gender.Text))
+            {
+                await DisplayAlert("Input Error", "Gender must be inputed", "Ok");
+                return;
+            }
 
-            // Breed
-
-
+            // Weight
+            if (!double.TryParse(Weight.Text, out double weight))
+            {
+                await DisplayAlert("Input Error", "Weight must be a number", "Ok");
+                return;
+            }
 
             //If update pet
             if (_petModel != null)
