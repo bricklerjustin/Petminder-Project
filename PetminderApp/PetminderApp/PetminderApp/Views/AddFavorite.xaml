@@ -92,7 +92,8 @@
                                        WidthRequest="250"
                                        HeightRequest="40"
                                        FontSize="18"
-                                       ReturnType="Done" />
+                                       ReturnType="Done"
+                                       Keyboard="Telephone"/>
             </Frame>
 
             <Label Text="URL"

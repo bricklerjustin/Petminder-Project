@@ -68,20 +68,55 @@ namespace PetminderApp.Views
                 RestClient client = new RestClient();
                 FavoriteCreateUpdateModel favoriteCreate = new FavoriteCreateUpdateModel();
 
-                favoriteCreate.AccountId = UserInfo.AccountId;
-                favoriteCreate.Url = URL.Text;
-                favoriteCreate.Type = TypePicker.SelectedItem.ToString();
-                favoriteCreate.Name = Name.Text;
-
-                if (TypePicker.SelectedIndex == 0)
+                try
                 {
-                    favoriteCreate.Location = Address.Text;
-                    favoriteCreate.Phone = Phone.Text;
+                    favoriteCreate.AccountId = UserInfo.AccountId;
+                    var url = URL.Text;
+                    favoriteCreate.Type = TypePicker.SelectedItem.ToString();
+                    favoriteCreate.Name = Name.Text;
+
+                    if (!URLValidation(ref url))
+                    {
+                        await DisplayAlert("Error", "Url is improperly formated", "Ok");
+                        return;
+                    }
+
+                    favoriteCreate.Url = url;
+
+                    if (string.IsNullOrEmpty(Name.Text))
+                    {
+                        await DisplayAlert("Error", "Please enter a name", "Ok");
+                        return;
+                    }
+
+                    if (TypePicker.SelectedIndex == 0)
+                    {
+                        if (string.IsNullOrEmpty(Address.Text))
+                        {
+                            await DisplayAlert("Error", "Please enter an address", "Ok");
+                            return;
+                        }
+
+                        favoriteCreate.Location = Address.Text;
+                        favoriteCreate.Phone = Phone.Text;
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(url))
+                        {
+                            await DisplayAlert("Error", "Url must be entered", "Ok");
+                            return;
+                        }
+                    }
+
+
                 }
-                
-                
+                catch (Exception ex)
+                {
+                    
+                }
                 ActivityIndicatorToggle(true);
-                
+
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     if (_update)
@@ -156,6 +191,41 @@ namespace PetminderApp.Views
         {
             activityIndicator.IsVisible = toggle;
             activityIndicator.IsRunning = toggle;
+        }
+
+        private bool URLValidation(ref string Url)
+        {
+            if (string.IsNullOrEmpty(Url))
+            {
+                return true;
+            }
+
+            if (Uri.IsWellFormedUriString(Url, UriKind.Absolute))
+            {
+                return true;
+            }
+            else
+            {
+                if (Url.ToLower().Contains("http://") || Url.ToLower().Contains("https://"))
+                {
+                    return false;
+                }
+                else
+                {
+                    var newUrl = "http://" + Url;
+
+                    if (Uri.IsWellFormedUriString(newUrl, UriKind.Absolute))
+                    {
+                        Url = newUrl;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
         }
     }
 }
