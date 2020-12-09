@@ -189,6 +189,10 @@ namespace PetminderApp.Views
                 {
                     action = await DisplayActionSheet("Open", "Cancel", null, navigateAction, callAction);
                 }
+                else if (!string.IsNullOrEmpty(favorite.Url))
+                {
+                    action = await DisplayActionSheet("Open", "Cancel", null, navigateAction, openWebsiteAction);
+                }
                 else
                 {
                     action = await DisplayActionSheet("Open", "Cancel", null, navigateAction);
