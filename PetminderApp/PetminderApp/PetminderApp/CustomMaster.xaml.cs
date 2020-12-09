@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetminderApp.Api;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,7 @@ namespace PetminderApp
             ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.FromHex("#ffffff");
         }
 
-        private  void Item_Tapped(object sender, ItemTappedEventArgs e)
+        private async void Item_Tapped(object sender, ItemTappedEventArgs e)
         {
             try
             {
@@ -46,12 +47,12 @@ namespace PetminderApp
                         break;
                     case "Logout":
                         {
-                            //Justin please fix this so this will go to the sign in screen
-                            //Settings.AccessToken = string.Empty;
-                            //Settings.Username = string.Empty;
-                            //Settings.Password = string.Empty;
-                            //Detail.Navigation.PushAsync(new MainPage());
-                            //IsPresented = false;
+                            var logout = await DisplayAlert("Logout", "Confirm Logout?", "Yes", "No");
+                            if (logout)
+                            {
+                                UserInfo.LoggedIn = false;
+                                await this.Navigation.PopToRootAsync();
+                            }
                         }
                         break;
                     case "SwitchUser":

@@ -54,15 +54,15 @@ namespace PetminderApp
         {
             base.OnBackButtonPressed();
 
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                var result = await this.DisplayAlert("Logout", "Would you like to contiune with logout?", "Yes", "No");
+            //Device.BeginInvokeOnMainThread(async () =>
+            //{
+            //    var result = await this.DisplayAlert("Logout", "Would you like to contiune with logout?", "Yes", "No");
 
-                if (result)
-                {
-                    await this.Navigation.PopAsync();
-                }
-            });
+            //    if (result)
+            //    {
+            //        await this.Navigation.PopToRootAsync();
+            //    }
+            //});
 
             return true;
         }
