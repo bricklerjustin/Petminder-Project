@@ -22,7 +22,7 @@ namespace PetminderApp
             MenuItems = new List<MenuItems>();
             MenuItems.Add(new MenuItems { OptionName = "HomeScreen" });
             MenuItems.Add(new MenuItems { OptionName = "Logout" });
-            MenuItems.Add(new MenuItems { OptionName = "SwitchUser" });
+            MenuItems.Add(new MenuItems { OptionName = "Settings" });
             navigationList.ItemsSource = MenuItems;
             Detail = new NavigationPage(new HomeScreen());
 
@@ -55,9 +55,9 @@ namespace PetminderApp
                             }
                         }
                         break;
-                    case "SwitchUser":
+                    case "Settings":
                         {
-                            Detail = new NavigationPage(new SwitchUser());
+                            //Detail = new NavigationPage(new Settings());
                             IsPresented = false;
                         }
                         break;
