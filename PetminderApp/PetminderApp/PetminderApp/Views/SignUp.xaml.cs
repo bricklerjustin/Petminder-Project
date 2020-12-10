@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using PetminderApp.Api;
 using PetminderApp.Api.Api_Models;
+using PetminderApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,7 +64,7 @@ namespace PetminderApp
                     this.IsBusy = false;
 
                     UserInfo.LoggedIn = true;
-                    Navigation.InsertPageBefore(new AddPet(null, new CustomMaster()), this);
+                    Navigation.InsertPageBefore(new FirstTimeSetup(), this);
                    // Navigation.InsertPageBefore(new AddPet(null, new HomeScreen()), this);
                     await Navigation.PopAsync();
                     return;

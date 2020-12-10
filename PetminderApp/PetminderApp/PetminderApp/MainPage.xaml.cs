@@ -1,5 +1,6 @@
 ﻿ using PetminderApp.Api;
 using PetminderApp.Files;
+using PetminderApp.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

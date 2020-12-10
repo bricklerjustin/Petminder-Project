@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PetminderApp.Views.FirstTimeSetup"
+             xmlns:local="clr-namespace:PetminderApp" >
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame
+                BorderColor="Transparent"
+                BackgroundColor="Transparent">
+                
+            </Frame>
+            <Image Source="{local:ImageResource 
+                       PetminderApp.Images.Logo.png}" 
+                       HeightRequest="85" 
+                       WidthRequest="400" 
+                       Margin="0"/>
+            <Frame
+                BorderColor="Transparent"
+                BackgroundColor="Transparent">
+
+            </Frame>
+            <Label Text="Welcome to Petminder!"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="Title"
+                FontAttributes="Bold"/>
+            <!--<Frame
+                BorderColor="Transparent"
+                BackgroundColor="Transparent"
+                VerticalOptions="CenterAndExpand">
+
+            </Frame>-->
+            <Label Text="Lets start by entering your first pet."
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="Center"
+                FontSize="Title"
+                FontAttributes="Bold"/>
+
+            <ImageButton Source="{local:ImageResource
+                PetminderApp.Images.Start.png}" 
+                BackgroundColor="Transparent" 
+                VerticalOptions="CenterAndExpand"
+                HeightRequest="75"
+                FlexLayout.AlignSelf="Center"
+                FlexLayout.Grow="1"
+                x:Name="start"        
+                Aspect="AspectFit"
+                Clicked="start_Clicked">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
