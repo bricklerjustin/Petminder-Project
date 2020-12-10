@@ -8,7 +8,6 @@
             <Frame
                 BorderColor="Transparent"
                 BackgroundColor="Transparent">
-                
             </Frame>
             <Image Source="{local:ImageResource 
                        PetminderApp.Images.Logo.png}" 
@@ -18,7 +17,6 @@
             <Frame
                 BorderColor="Transparent"
                 BackgroundColor="Transparent">
-
             </Frame>
             <Label Text="Welcome to Petminder!"
                 VerticalOptions="Center" 
@@ -29,14 +27,17 @@
                 BorderColor="Transparent"
                 BackgroundColor="Transparent"
                 VerticalOptions="CenterAndExpand">
-
             </Frame>-->
-            <Label Text="Lets start by entering your first pet."
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="Center"
-                FontSize="Title"
-                FontAttributes="Bold"/>
-
+            <Label Text="Lets start by entering"
+                   HorizontalTextAlignment="Center"
+                   Margin="5,40,5,0"
+                   FontSize="21"
+                   FontAttributes="Bold"/>
+            <Label Text="your first pet"
+                   HorizontalTextAlignment="Center"
+                   Margin="5,0,5,5"
+                   FontSize="21"
+                   FontAttributes="Bold"/>
             <ImageButton Source="{local:ImageResource
                 PetminderApp.Images.Start.png}" 
                 BackgroundColor="Transparent" 
