@@ -26,8 +26,11 @@ namespace PetminderApp
             navigationList.ItemsSource = MenuItems;
             Detail = new NavigationPage(new HomeScreen());
 
-            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.FromHex("#2196f3");
-            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.FromHex("#ffffff");
+            if (Application.Current.MainPage != null)
+            {
+                ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.FromHex("#2196f3");
+                ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.FromHex("#ffffff");
+            }
         }
 
         private async void Item_Tapped(object sender, ItemTappedEventArgs e)
