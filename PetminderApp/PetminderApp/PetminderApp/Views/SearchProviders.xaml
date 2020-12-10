@@ -50,7 +50,8 @@
                       x:Name="FavoritesListview"
                       IsGroupingEnabled="True"
                       GroupDisplayBinding="{Binding LongName}"
-                      SeparatorColor="#CBEAF7">
+                      SeparatorColor="#CBEAF7"
+                      Header="Favorites">
                 <!--<ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding Type}">
