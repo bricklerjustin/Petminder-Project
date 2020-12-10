@@ -102,7 +102,7 @@ namespace PetminderApp.Views
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(url))
+                        if (string.IsNullOrEmpty(url))
                         {
                             await DisplayAlert("Error", "Url must be entered", "Ok");
                             return;
