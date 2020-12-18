@@ -17,7 +17,7 @@ namespace PetminderApp.Api
             HttpClientHandler clientHandler = new HttpClientHandler();
             clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
             client = new HttpClient(clientHandler);
-            client.BaseAddress = new Uri("http://74.140.176.113:3200/");
+            client.BaseAddress = new Uri(""); //Add Server Ip when building
             client.Timeout = TimeSpan.FromMilliseconds(30000);
         }
         ~RestClient()
